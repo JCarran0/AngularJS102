@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+    <title>Workshop 1</title>
+  </head>
+  <body ng-app="lesson1">
+    <div ng-controller="MyController as ctrl">
+
+      <div ng-hide="ctrl.isEditing">
+        <div>
+          <label>First</label>: <span ng-bind="ctrl.user.first"
+                                      ng-dblclick="ctrl.setEdit()"></span>
+        </div>
+        <div>
+          <label>Last</label>: <span ng-bind="ctrl.user.last"
+                                     ng-dblclick="ctrl.setEdit()"></span>
+        </div>     
+        <button ng-click="ctrl.setEdit()">Edit</button>
+      </div>
+
+      <div ng-show="ctrl.isEditing">
+        <div>
+          <label>First</label>: <input type="text" ng-model="ctrl.user.first">
+        </div>
+        <div>
+          <label>Last</label>: <input type="text" ng-model="ctrl.user.last">
+        </div>
+        <button ng-click="ctrl.saveEdits()">Save</button>
+        <button ng-click="ctrl.cancelEdits()">Cancel</button>
+      </div>
+    </div>
+  </body>
+</html>
