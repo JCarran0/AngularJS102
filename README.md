@@ -6,3 +6,5 @@
   + $watch()
   + $watchCollection()
   + $watch(itemToWatch, callback, true)
+
+### Test
