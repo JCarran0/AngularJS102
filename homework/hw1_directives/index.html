@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src= "index.js"></script>
+<head>
+    <title>Homework1</title>
+    <style type="text/css">
+
+      .red1 {
+        background: #ED7979;
+      }
+      .red2 {
+        background: #E0B1B1;
+      }
+      .red3 {
+        background: #A83B3B;
+      }
+      .green1 {
+        background: #B3ED79;
+      }
+      .green2 {
+        background: #C9E0B1;
+      }
+      .green3 {
+        background: #72A83B;
+      }
+      .blue1 {
+        background: #79EDED;
+      }
+      .blue2 {
+        background: #B1E0E0;
+      }
+      .blue3 {
+        background: #3BA8A8;
+      }
+      .orange1 {
+        background: #FFDE59;
+      }
+      .orange2 {
+        background: #FAEAAC;
+      }
+      .orange3 {
+        background: #FFA200;
+      }          
+      .gray1 {
+        background: #C4C4C4;
+      }
+      .gray2 {
+        background: #F0F0F0;
+      }
+      .gray3 {
+        background: #666666;
+      }      
+
+      .small-blocks {
+        width: 120px;
+        height: 120px;
+        margin: 10px;
+        display: inline-block;        
+      }
+      .background-block {
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        top: 5px;
+        bottom: 5px;
+        padding: 10px;
+      }
+
+    </style>
+
+</head>
+<body ng-controller="MyController as ctrl" class='background-block' ng-class="{ 
+             red1: ctrl.selectedColor === 'red',
+             green1: ctrl.selectedColor === 'green',
+             blue1: ctrl.selectedColor === 'blue',
+             orange1: ctrl.selectedColor === 'orange',
+             gray1: ctrl.selectedColor === 'gray',             
+           }">
+
+<div>
+  <div>
+    <div>
+      <h1>Choose a color theme!</h1>
+      <h2>You chose <span ng-show='ctrl.selectedColor' 
+                         ng-bind='ctrl.selectedColor'></span></h2>
+      <div>
+          <span ng-repeat="color in ctrl.colors">         
+            <input type="radio"
+                ng-model="ctrl.selectedColor"
+                ng-value="color"                
+                name="color-picker"> {{color}}</div>
+          </span>
+
+        <div class='small-blocks' 
+           ng-class="{ 
+             red2: ctrl.selectedColor === 'red',
+             green2: ctrl.selectedColor === 'green',
+             blue2: ctrl.selectedColor === 'blue',
+             orange2: ctrl.selectedColor === 'orange',
+             gray2: ctrl.selectedColor === 'gray',
+           }"></div>
+        
+        <div class='small-blocks' 
+           ng-class="{ 
+             red3: ctrl.selectedColor === 'red',
+             green3: ctrl.selectedColor === 'green',
+             blue3: ctrl.selectedColor === 'blue',
+             orange3: ctrl.selectedColor === 'orange',
+             gray3: ctrl.selectedColor === 'gray'             
+           }"></div>                 
+      </div>
+  </div><!--end ctrl -->
+</div>
+
+</body>
+</html>
