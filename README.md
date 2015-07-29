@@ -3,8 +3,8 @@
 ## Notes
 
 ### Don't Use
-  + $watch()
-  + $watchCollection()
-  + $watch(itemToWatch, callback, true)
+  + $scope.$watch()
+  + $scope.$watchCollection()
+  + $scope.$watch(itemToWatch, callback, true)
 
-### Test
+
