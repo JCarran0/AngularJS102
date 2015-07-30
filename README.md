@@ -1,4 +1,5 @@
 # AngularJS102
+  NYCDA July
 
 ## Notes
 ### Useful
@@ -16,6 +17,24 @@
 	});
 
 [Find other service components](https://docs.angularjs.org/api/ng/service)
+
+### Custom Services (i.e. Model)
+  Features you want to work across components and controllers
+   + Business logic
+   + Data persistence
+   + Server communication
+   + Shared state
+   + Caching
+   + Factories
+   + Third-party JS libraries (wrapped in order to be injectable/testable)
+
+
+  Five Types
+   1. Value
+   2. Constant
+   3. Factory
+   4. Service
+   5. Provider
 
 
 
