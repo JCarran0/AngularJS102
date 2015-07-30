@@ -35,8 +35,11 @@ Five Types
 1. Value
 2. Constant
 3. Factory
+ 1. (i.e an obj constructor - use 'DTO' data transfer obj)
 4. Service
 5. Provider
+
+
 
 
 
