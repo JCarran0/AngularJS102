@@ -1,7 +1,7 @@
-var myApp = angular.module('MyApp', []);
+var myApp = angular.module('MyApp', ['CustomServices']);
 
 
-myApp.controller('MyController', function() {
+myApp.controller('MyController', function(TestFactory, FileCabinet, Colors) {
   var self = this;
 
   self.headerTitle = "Welcome To Jared's First Homework";
@@ -9,34 +9,22 @@ myApp.controller('MyController', function() {
   self.foldersTitle = "My folders:";
   self.newItem = {folder: "Personal"} // default value
 
-  self.colors = ['red', 'blue', 'green', 'orange', 'purple', 'none'];
+  self.colors = Colors;
   self.selectedColor = 'none';
+  var FileCab = new FileCabinet
+  self.folders = FileCab.folders;
 
-  self.folders = [
-  	{ 
-  		name: 'Personal',
-  		items: ['item1','item2']
-  	},
-  	{
-  		name: 'Work',
-  		items: ['item1','item2']
-  	},
-  	{
-  		name: 'Trip',
-  		items: ['item1','item2']
-  	}
-  ];
+  // load default folders
+  FileCab.addFolderToFileCabinet('Personal');
+  FileCab.addFolderToFileCabinet('Business');
+  FileCab.addFolderToFileCabinet('Family');
 
-  self.addNewItem = function(newItemObj){
-  	console.log(newItemObj);
-  	for (var i=0; i<self.folders.length; i++){
-  		var folder = self.folders[i];
-  		if (folder.name === newItemObj.folder){
-			folder.items.push(newItemObj.itemName);
-			self.newItem.itemName = ""; // reset the text input 
-			return;
-  		}
-  	}
-	throw new Error("Folder " + newItemObj.folder + " not found");
+  // method to call FileCabinet factory, but also reset user input
+  // George, is there a better way to do this?
+  this.addNewItem = function(newItemObj){
+    FileCab.addItemToFolder(newItemObj.folder, newItemObj.itemName);
+    self.newItem.itemName = "";  // reset text input
   }
+
+  self.test = new TestFactory('jared', 'carrano');
 });

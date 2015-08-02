@@ -1,6 +1,19 @@
 # AngularJS102
   NYCDA July
 
+## Outstanding Questions
+
+  1. When do we need to use the $scope service, vs using 'this'?
+
+     I thought that when you use the 'controller as' syntax you have access to 'this'.  When would you use $scope vs 'this' (i.e. 'var self = this')
+
+  2. How would I dynamically assign an angular controller value to an html id attribute?  I tried both id='{{}}' and ng-attr-id='{{}}'
+
+  3. From homework assignment:  I created a factory with a method to add an item to a folder.  But I
+     needed to create a 'wrapper' function that both called this method on button click, and then reset the user input field.  Is there a better way?
+
+  4. Why do I get this 'Error: [ngRepeat:dupes]' error when I try to submit the same value to an ng-repeat iterator?  I think George was able to do this no problem.
+
 ## Notes
 ### Useful
 

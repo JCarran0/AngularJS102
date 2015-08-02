@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="MyApp">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<script type="text/javascript" src= "services.js"></script>
 <script type="text/javascript" src= "index.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -72,7 +76,7 @@
   <div id='top-block' class='container'>
     <h1 ng-bind="ctrl.headerTitle"></h1>
   </div>
-  
+
   <div id='theme-picker-block' class='container'>
     <h2 ng-bind='ctrl.colorTitle'></h2>
     <div>
@@ -123,7 +127,7 @@
         <input type="text" 
                class="form-control"
                ng-model='ctrl.newItem.itemName'
-               placeholder="New item...">
+               placeholder="New item name...">
         <span class="input-group-btn">
           <button class="btn btn-primary" 
                   type="button"
@@ -136,8 +140,10 @@
       <div ng-repeat='folder in ctrl.folders' class='container'>
         <input type='radio' 
                name='folders'
+               ng-attr-id='{{ctrl.folder.name}}'
+               id='{{ctrl.folder.name}}'
                ng-value= 'folder.name'
-               ng-model= 'ctrl.newItem.folder'> <span ng-bind='folder.name'></span>              
+               ng-model= 'ctrl.newItem.folder'> <label for='{{ctrl.folder.name}}' ng-bind='folder.name'></label for='ctrl.folder.name'>              
       </div>
     </div>  
   </div>
