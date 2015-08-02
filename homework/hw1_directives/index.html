@@ -74,11 +74,11 @@
 
 
   <div id='top-block' class='container'>
-    <h1 ng-bind="ctrl.headerTitle"></h1>
+    <h1>Welcome to Jared's First Homework</h1>
   </div>
 
   <div id='theme-picker-block' class='container'>
-    <h2 ng-bind='ctrl.colorTitle'></h2>
+    <h2>Select a theme:</h2>
     <div>
         <span ng-repeat="color in ctrl.colors">         
           <input type="radio"
@@ -98,7 +98,7 @@
            orange2: ctrl.selectedColor === 'orange',
            purple2: ctrl.selectedColor === 'purple',
        }">
-    <h2 ng-bind='ctrl.foldersTitle'></h2>
+    <h2>My Folders:</h2>
     
     <div id='folder-list' class='container col-sm-6'> 
       <input type='checkbox' ng-model='ctrl.collapseFolders'> Collapse folders
