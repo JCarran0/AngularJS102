@@ -1,14 +1,5 @@
 var MyApp = angular.module('CustomServices', []);
 
-MyApp.factory('TestFactory', function(){
-
-	var TestFactory = function(first, last){
-		this.first = first;
-		this.last = last;
-	};
-
-	return TestFactory;
-});
 
 MyApp.factory('FileCabinet', function(){
 

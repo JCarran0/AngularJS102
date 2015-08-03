@@ -20,10 +20,8 @@ myApp.controller('MyController', function(TestFactory, FileCabinet, Colors) {
 
   // method to call FileCabinet factory, but also reset user input
   // George, is there a better way to do this?
-  this.addNewItem = function(newItemObj){
+  self.addNewItem = function(newItemObj){
     FileCab.addItemToFolder(newItemObj.folder, newItemObj.itemName);
     self.newItem.itemName = "";  // reset text input
   };
-
-  self.test = new TestFactory('jared', 'carrano');
 });
