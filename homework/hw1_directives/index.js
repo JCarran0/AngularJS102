@@ -1,7 +1,7 @@
 var myApp = angular.module('MyApp', ['CustomServices']);
 
 
-myApp.controller('MyController', function(TestFactory, FileCabinet, Colors) {
+myApp.controller('MyController', function(FileCabinet, Colors) {
   var self = this;
 
   var FileCab = new FileCabinet();
