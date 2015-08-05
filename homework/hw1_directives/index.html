@@ -140,10 +140,9 @@
       <div ng-repeat='folder in ctrl.folders' class='container'>
         <input type='radio' 
                name='folders'
-               ng-attr-id='{{ctrl.folder.name}}'
-               id='{{ctrl.folder.name}}'
+               ng-attr-id='{{folder.name}}'
                ng-value= 'folder.name'
-               ng-model= 'ctrl.newItem.folder'> <label for='{{ctrl.folder.name}}' ng-bind='folder.name'></label for='ctrl.folder.name'>              
+               ng-model= 'ctrl.newItem.folder'> <label for='{{folder.name}}' ng-bind='folder.name'></label for='folder.name'>              
       </div>
     </div>  
   </div>
