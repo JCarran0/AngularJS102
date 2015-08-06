@@ -1,0 +1,94 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>My Favorite Songs</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="services.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>	
+</head>
+<body>
+	<div ng-app='MyApp'>
+		<div ng-controller='MyController as ctrl'>
+
+			<div id='personal-details' class='container col-sm-5'>
+				<h3>About Me:</h3>
+				<div class='form-group'>
+					<label>Name:</label> 
+					<input class='form-control' 
+						   type='text' 
+						   ng-model='ctrl.pendingSubmission.userName' 
+						   placeholder='enter name'><br>
+				</div>
+				<div class='form-group'>
+					<label>Age:</label> 
+					<input type='number'
+						   class='form-control' 
+					       ng-model='ctrl.pendingSubmission.age'
+				       	   ng-change='ctrl.checkAge()'>
+				</div>
+			</div>
+			<div class='container'>
+				<div class='row'>
+					<div id='genre-selector' class='col-sm-4'>
+						<h3>Genre:</h3>
+						<input type='radio' 
+							   name='genre' 
+							   value='all'
+							   id='ev'
+							   ng-model='ctrl.selectedGenre'> <label for='ev'>Everything</label> <br>
+						<input type='radio' 
+							   name='genre' 
+							   value='pop'
+							   id='pop'
+							   ng-model='ctrl.selectedGenre'> <label for='pop'>Pop hits</label> <br>
+						<input type='radio' 
+							   name='genre' 
+							   value='rock'
+							   id='rock'
+							    ng-model='ctrl.selectedGenre'> <label for='rock'>Rock hits</label> <br>
+						<input type='radio' 
+							   name='genre' 
+							   value='rap'
+							   id='rap'
+							   ng-model='ctrl.selectedGenre'> <label for='rap'>Rap hits</label>
+					</div>
+					<div id='type' class='col-sm-4'>
+						<h3>Allow explicit?</h3>
+						<input type='radio' 
+							   name='type' 
+							   value='clean'
+							   id='clean'
+							   ng-model='ctrl.type'> <label for='clean'>Clean</label> <br>				
+							<input type='radio' 
+							   name='type' 
+							   value='explicit'
+							   id='expl'
+							   ng-disabled = 'ctrl.disallowExplicit'
+							   ng-model='ctrl.type'> <label for='expl'>Explicit</label>
+					</div>
+				</div>
+			</div>	
+			<div id='song-list' class='container'>
+				<h3>Songs:</h3>
+				<div ng-repeat='song in ctrl.songList'
+					 ng-show = 'ctrl.selectedGenre === "all" || ctrl.selectedGenre === song.genre'>
+					<input type='checkbox'
+						   ng-model='song.isSelected'
+						   ng-attr-id={{::song.title}}
+						   ng-change='ctrl.addOrRemoveSong(song)'>
+					<label for={{::song.title}}>
+						<span ng-bind='song.title'></span>
+					</label>
+				</div>					
+			</div>
+			<br>
+			<div class='container'>
+				<button class='btn btn-primary' ng-click=ctrl.pendingSubmission.submitSelection()>Submit</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
