@@ -18,7 +18,6 @@
 
 <body ng-app="MyApp">
 	<div ng-controller="MyController as ctrl">
-
 		<div id='top-block' class='container'>
 			<h3>Student</h3>
 			<label>Name: </label>
@@ -40,20 +39,20 @@
 				<div id='assignment-block' class='col-sm-6'>
 					<h3>Assignments:</h3>			
 					<div ng-repeat='assignment in ctrl.student.assignments'>
-						<label>Name: </label><span ng-bind='assignment.assignmentName'></span>
+						<label>Name:</label> <span ng-bind='assignment.assignmentName'></span>
 						<br>
-						<label>Score: </label><span ng-bind='assignment.score'></span>
+						<label>Score:</label> <span ng-bind='assignment.score'></span>
 					</div>
 				</div>
 
 				<div id='totals-block' class='col-sm-6'>
 					<h3>Totals:</h3>
 					<div>
-						<label>Average: </label> <span ng-bind='ctrl.student.totals.average'></span>
+						<label>Average:</label> <span ng-bind='ctrl.student.totals.average'></span>
 						<br>
-						<label>Grade: </label> <span ng-bind='ctrl.student.totals.grade'></span>
+						<label>Grade:</label> <span ng-bind='ctrl.student.totals.grade'></span>
 						<br>
-						<label>Passing: </label> <span ng-bind='ctrl.student.totals.passing'></span>
+						<label>Passing:</label> <span ng-bind='ctrl.student.totals.passing'></span>
 					</div>
 				</div>
 			</div>

@@ -26,7 +26,7 @@ MyApp.factory('Student', function(){
 		}
 		var avg = (totalScore / n);
 		this.totals.average = avg;
-		this.totals.grade = avg < 56 ? 'F' : (avg < 66 ? 'D' : 'A')
+		this.totals.grade = avg < 56 ? 'F' : (avg < 66 ? 'D' : (avg < 76 ? 'C' : (avg < 86 ? 'B' : 'A')))
 		this.totals.passing = avg > 55 ? true : false;
 	}	
 
