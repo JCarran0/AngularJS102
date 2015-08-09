@@ -1,0 +1,38 @@
+.simon-square {
+	margin: 2px;
+	float: left;
+	clear: none;
+  	width: 40%;
+  	height: 40%;
+	border: 2px solid gray;
+	opacity: .5;
+	border-radius: 15px
+}
+
+#game {
+	height: 100vh;
+}
+
+.isClicked {
+	opacity: 1;
+}
+
+.bottom {
+	clear: left;
+}
+
+.red {
+	background: red;
+}
+
+.blue {
+	background: blue;
+}
+
+.green {
+	background: green;
+}
+
+.yellow {
+	background: yellow;	
+}

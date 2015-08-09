@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Simon</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script type="text/javascript" src="services.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div ng-app="MyApp">
+		<div ng-controller='MyController as ctrl'>
+<!-- 			<div>
+				<pre>
+					currentSequence
+					  Simon: {{ctrl.currentSequence.simon}}
+					  User: {{ctrl.currentSequence.user}}
+					turn: {{ctrl.turn}}
+					gameHasStarted: {{ctrl.gameHasStarted}}
+					isRunning: {{ctrl.isRunning}}
+				</pre>
+			</div> -->
+
+
+			<div id='simon' class='container'>			
+				<div class='container'>
+					<h1>Welcome to Simon</h1>
+				</div>
+
+				<div id='game' class='container col-sm-5'>
+					<div class='top'>
+						<div class='simon-square top left red'
+							 ng-click='ctrl.processUsersTurn("red")'
+							 ng-class='{isClicked: ctrl.isClicked.red}'></div>
+						<div class='simon-square top right yellow'
+							 ng-click='ctrl.processUsersTurn("yellow")'
+							 ng-class='{isClicked: ctrl.isClicked.yellow}'></div>
+					</div>
+					<div class='bottom'>
+						<div class='simon-square left green'
+							 ng-click='ctrl.processUsersTurn("green")'
+							 ng-class='{isClicked: ctrl.isClicked.green}'></div>
+						<div class='simon-square right blue'
+							 ng-click='ctrl.processUsersTurn("blue")'
+							 ng-class='{isClicked: ctrl.isClicked.blue}'></div>
+					</div>					
+				</div>
+
+				<div id='picked-color-list' class='container col-sm-4'>
+					<div id='current-list'>
+						<h2 ng-if='ctrl.turn === "user"'>Your Turn</h2>
+						<h2 ng-if='ctrl.turn === "simon"'>Simon's Turn</h2>
+						<h2 ng-if='ctrl.turn === null'>Click to begin</h2>
+						<div ng-repeat='item in ctrl.currentSequence.display track by $index'>
+							<span ng-bind='item'></span>
+						</div>
+					</div>	
+					<div class='container'>
+						<button class='btn btn-primary'
+								ng-click='ctrl.startGame()' 
+								ng-hide='ctrl.gameHasStarted'>Begin!</button>
+					</div>			
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
