@@ -14,60 +14,47 @@
 <body>
 	<div ng-app="MyApp">
 		<div ng-controller='MyController as ctrl'>
-			<div>
-				<pre>
-					currentSequence
-					  Simon: {{ctrl.game.currentSequence.simon}}
-					  User: {{ctrl.game.currentSequence.user}}
-					turn: {{ctrl.game.turn}}
-					gameHasStarted: {{ctrl.game.gameHasStarted}}
-					isRunning: {{ctrl.game.isRunning}}
-
-					modes: {{ctrl.game.modeManager.modes}}
-						selected: {{ctrl.game.modeManager.selected}}
-				</pre>
-			</div>
-
 			<div id='simon' class='container'>			
 				<div class='container'>
 					<h1>Welcome to Simon</h1>
 				</div>
-
 				<div id='game' class='container col-sm-5'>
 					<div class='top'>
 						<div class='simon-square top left red'
-							 ng-click='ctrl.game.processUsersTurn("red")'
-							 ng-class='{isClicked: ctrl.game.isClicked.red}'></div>
+							 ng-click='ctrl.game.processUsersClick("red")'
+							 ng-class='{isClicked: ctrl.isClicked.red}'></div>
 						<div class='simon-square top right yellow'
-							 ng-click='ctrl.game.processUsersTurn("yellow")'
-							 ng-class='{isClicked: ctrl.game.isClicked.yellow}'></div>
+							 ng-click='ctrl.game.processUsersClick("yellow")'
+							 ng-class='{isClicked: ctrl.isClicked.yellow}'></div>
 					</div>
 					<div class='bottom'>
 						<div class='simon-square left green'
-							 ng-click='ctrl.game.processUsersTurn("green")'
-							 ng-class='{isClicked: ctrl.game.isClicked.green}'></div>
+							 ng-click='ctrl.game.processUsersClick("green")'
+							 ng-class='{isClicked: ctrl.isClicked.green}'></div>
 						<div class='simon-square right blue'
-							 ng-click='ctrl.game.processUsersTurn("blue")'
-							 ng-class='{isClicked: ctrl.game.isClicked.blue}'></div>
+							 ng-click='ctrl.game.processUsersClick("blue")'
+							 ng-class='{isClicked: ctrl.isClicked.blue}'></div>
 					</div>					
 				</div>
 
 				<div id='picked-color-list' class='container col-sm-4'>
-					<div>
+					<div class='form-group'>
 						<h4>Game Speed</h4>
-						<span ng-repeat='mode in ctrl.game.modeManager.modes'>
-							<input type='radio'
+						<span ng-repeat='mode in ctrl.mode.modes'>
+							<label>
+								<input type='radio'
 								   name='mode-select'
 								   ng-value='mode.speed'
-								   ng-model='ctrl.game.modeManager.selected'>
-							<label ng-bind='mode.mode'></label>						   
+								   ng-model='ctrl.mode.selected'>
+								{{mode.mode + " "}}<br>
+							</label>						   
 						</span>
 					</div>					
 					<div id='current-list'>
 						<h2 ng-if='ctrl.game.turn === "user"'>Your Turn</h2>
 						<h2 ng-if='ctrl.game.turn === "simon"'>Simon's Turn</h2>
 						<h2 ng-if='ctrl.game.turn === null'>Click to begin</h2>
-						<div ng-repeat='item in ctrl.game.currentSequence.display track by $index'>
+						<div ng-repeat='item in ctrl.sequence.display track by $index'>
 							<span ng-bind='item'></span>
 						</div>
 					</div>	
