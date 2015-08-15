@@ -2,8 +2,10 @@
 
 var MyApp = angular.module('MyApp', ['CustomServices'])
 
-.controller('MyController', function(GameBuilder, $timeout, $interval){
+.controller('MyController', function(ModeManager, colorsArray, $timeout, $interval){
 	var self = this;
+
+	var colors = colorsArray;
 
 	/*
 	** self.turn can = 'simon' or 'user'.
@@ -14,12 +16,8 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
 
 	// mode controls the speed of the game.
 	// i.e. slow, fast, insane.
-	self.mode = 'fast';
-	var modeSpeeds = {
-		normal: 800,
-		fast: 500,
-		insane: 200
-	}
+	self.modeMgmt = new ModeManager;
+
 	
 	/*
 	** The simon and user array hold their respective sequences
@@ -61,7 +59,7 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
 			userPicks.push(color);
 			flashOneColor(color).then(function(){
 				if(userPicks.length === simonPicks.length){
-					console.log('changing turns')
+					// Simon's turn
 					self.currentSequence.user = [];
 					self.currentSequence.display = [];
 					$timeout(function(){
@@ -70,7 +68,7 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
 						runSimonsTurn();
 					});
 				} else{
-					console.log('still users turn');
+					// Still user's turn
 					self.isRunning = false;
 				}				
 			});
@@ -82,7 +80,7 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
 		self.currentSequence.display.push(color);
 		return $timeout(function(){
 			self.isClicked[color] = false;
-		}, modeSpeeds[self.mode]/2);
+		}, self.modeMgmt.selected/2);
 	}
 
 
@@ -101,7 +99,7 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
 	    			resetRound(stop);
 	    		}
     		});
-    	}, modeSpeeds[self.mode]);
+    	}, self.modeMgmt.selected);
     };
 
     function resetRound(stop){
@@ -126,13 +124,12 @@ var MyApp = angular.module('MyApp', ['CustomServices'])
     }
 
 
-	var colors = ['red', 'yellow', 'green', 'blue'];
+	
 
 	function generateRandomColor(){
 		var index = Math.floor((Math.random() * 4) + 1) - 1;
 		return colors[index];
 	}
 
-	self.test = self.runSimonsTurn;
 
 });

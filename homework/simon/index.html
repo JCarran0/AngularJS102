@@ -14,7 +14,7 @@
 <body>
 	<div ng-app="MyApp">
 		<div ng-controller='MyController as ctrl'>
-<!-- 			<div>
+			<div>
 				<pre>
 					currentSequence
 					  Simon: {{ctrl.currentSequence.simon}}
@@ -22,9 +22,11 @@
 					turn: {{ctrl.turn}}
 					gameHasStarted: {{ctrl.gameHasStarted}}
 					isRunning: {{ctrl.isRunning}}
-				</pre>
-			</div> -->
 
+					modes: {{ctrl.modeMgmt.selected}}
+						selected: {{ctrl.modeMgmt.selected}}
+				</pre>
+			</div>
 
 			<div id='simon' class='container'>			
 				<div class='container'>
@@ -51,6 +53,16 @@
 				</div>
 
 				<div id='picked-color-list' class='container col-sm-4'>
+					<div>
+						<h4>Game Speed</h4>
+						<span ng-repeat='mode in ctrl.modeMgmt.modes'>
+							<input type='radio'
+								   name='mode-select'
+								   ng-value='mode.speed'
+								   ng-model='ctrl.modeMgmt.selected'>
+							<label ng-bind='mode.mode'></label>						   
+						</span>
+					</div>					
 					<div id='current-list'>
 						<h2 ng-if='ctrl.turn === "user"'>Your Turn</h2>
 						<h2 ng-if='ctrl.turn === "simon"'>Simon's Turn</h2>
