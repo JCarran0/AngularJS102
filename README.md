@@ -30,6 +30,8 @@ Gulp is the conductor!
 
 [Gulp Vs. Grunt](https://github.com/markdalgleish/presentation-build-wars-gulp-vs-grunt)
 
+Cammand Line(?): yo guld-angular temp
+
 Call 'gulp serve' from command line to start your app server;
 
 ###Promises and ngResource

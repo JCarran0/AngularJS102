@@ -1,0 +1,16 @@
+<div class="container">
+
+  <h1 ng-bind="ctrl.name"></h1>
+  <div class='container'>
+    <div id='search-box'>
+      <label>
+        Enter a place:
+        <input type='text' ng-model='ctrl.value'>
+      </label>
+      <button ng-click='ctrl.search(ctrl.value)'>Search</button>
+    </div>
+    <div id='map-viz' class='container'>
+      <div ng-bind='ctrl.results'></div>
+    </div>
+  </div>
+</div>
