@@ -7,6 +7,77 @@
 
 ## Notes
 
+### Angular Router UI-Router
+
+ui-route is a replacement for ng-route
+
+.config runs prior to your page loading
+the .constant provider is available during config load (.value is not!)
+
+Think of your application being in a 'state' rather than a page located at a particular route
+````javascript
+angular
+  .module('template')
+  .config(function (stateProvider, $urlRouterProvider){
+
+  $stateProvider
+    .state('home', {
+    	url: '/home',
+    	templateUrl: 'app/main/main.html',
+    	controller: 'MainController',
+    	controllerAs: 'ctrl'	
+	})
+
+	.state('contact', {
+    	url: '/contact',
+    	templateUrl: 'app/main/contact.html',
+    	controller: 'MainController',
+    	controllerAs: 'ctrl'
+	})
+
+	.state('store', {
+    	url: '/store',
+    	templateUrl: 'app/main/store.html',
+    	controller: 'MainController',
+    	controllerAs: 'ctrl'		
+	})
+})
+````
+````html
+  <ul ng-controller='NavigationCtrl as navCtrl'>
+  	<li><a href="#" ui-sref='home'></a></li>
+  	<li><a href="#" ui-sref='contact'></a></li>
+  	<li><a href="#" ui-sref='store'></a></li>
+  </ul>
+  <div ui-view>
+  	<!-- ui-view will replace contents in this space based on the state -->
+  </div>
+
+````
+````
+|___App
+|  |___js
+|     |___main
+|        |___factory
+|        |___service
+|        |___value
+|  	      |___controller.js
+|     |___contact
+|     |___store
+|     |___common
+|  |___partials
+|     |___main
+|     |___contact
+|     |___store
+|  |___tests
+|     |___main
+|     |___contact
+|     |___store
+
+````
+
+
+
 ### Web Tools
 [Modernizr](http://modernizr.com/) - Adds CSS classes to <html> tag
 
