@@ -1,4 +1,70 @@
 <div class="container">
+  <div class='well col-md-6'>
+    <h1>View Contact Details</h1>
+    <div id='stdnt-display'>
 
-  <h1>View Contact Details</h1>
+      <div id='view-contacts'>
+        <form name="vCtrl.viewContactsForm">
+          <div class="form-group"></div>
+          <label for="viewSelect">Select a student:</label>
+          <select name="viewSelect"
+                  id="viewSelect"
+                  class="form-control"
+                  ng-options="stdnt as stdnt.studentDetails.first for stdnt in vCtrl.students"
+                  ng-model="vCtrl.selectedStudent"></select>
+
+
+          <accordion close-others="true">
+            <accordion-group is-open="vCtrl.isOpen.home">
+                <accordion-heading>
+                  ATS: Home
+                  <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.home, 'glyphicon-chevron-right': !vCtrl.isOpen.home}"></i>
+                </accordion-heading>
+
+                <h4>{{vCtrl.selectedStudent.studentDetails.first + " " + vCtrl.selectedStudent.studentDetails.last}}</h4>
+                <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.atsContacts.home.phone"></span>
+                <i class="glyphicon glyphicon-flag"></i>
+                <i class="pull-right glyphicon glyphicon-pencil"></i>
+            </accordion-group>
+            <accordion-group is-open="vCtrl.isOpen.adult2">
+                <accordion-heading>
+                  ATS: Adult 1
+                  <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.adult2, 'glyphicon-chevron-right': !vCtrl.isOpen.adult2}"></i>
+                </accordion-heading>
+                <h4>{{vCtrl.selectedStudent.studentDetails.first + " " + vCtrl.selectedStudent.studentDetails.last}}</h4>
+                <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.atsContacts.adult1.phone"></span>
+                <i class="glyphicon glyphicon-flag"></i>
+                <i class="pull-right glyphicon glyphicon-pencil"></i>
+            </accordion-group>
+            <accordion-group is-open="vCtrl.isOpen.adult3">
+                <accordion-heading>
+                  ATS: Adult 3
+                  <i class="pull-right glyphicon"
+                     ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.adult3, 'glyphicon-chevron-right': !vCtrl.isOpen.adult3}"></i>
+                </accordion-heading>
+                Contact content goes here
+            </accordion-group>
+          </accordion>
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <p>
+    <button type="button" class="btn btn-default btn-sm" ng-click="vCtrl.status.open = !vCtrl.status.open">Toggle last panel</button>
+    <button type="button" class="btn btn-default btn-sm" ng-click="vCtrl.status.isFirstDisabled = ! vCtrl.status.isFirstDisabled">Enable / Disable first panel</button>
+  </p>
+
+
+
+  <div>
+    <pre>
+      {{vCtrl.selectedStudent | json}}
+
+    </pre>
+  </div>
 </div>
