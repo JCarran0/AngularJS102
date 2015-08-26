@@ -20,7 +20,7 @@
         controllerAs: 'vCtrl'
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/view');
   });
 
 })();

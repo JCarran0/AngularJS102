@@ -1,5 +1,5 @@
 <div class="container">
-  <div class='well col-md-6'>
+  <div class='well col-sm-6'>
     <h1>View Contact Details</h1>
     <div id='stdnt-display'>
 
@@ -54,17 +54,12 @@
       </div>
     </div>
   </div>
-  <p>
-    <button type="button" class="btn btn-default btn-sm" ng-click="vCtrl.status.open = !vCtrl.status.open">Toggle last panel</button>
-    <button type="button" class="btn btn-default btn-sm" ng-click="vCtrl.status.isFirstDisabled = ! vCtrl.status.isFirstDisabled">Enable / Disable first panel</button>
-  </p>
 
+      <div class='col-sm-12'>
+        <pre>
+          {{vCtrl.selectedStudent | json}}
 
+        </pre>
+      </div>
 
-  <div>
-    <pre>
-      {{vCtrl.selectedStudent | json}}
-
-    </pre>
-  </div>
 </div>
