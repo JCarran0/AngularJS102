@@ -2,10 +2,9 @@
 <html ng-app="template">
   <head>
     <meta charset="utf-8">
-    <title>Home Contacts</title>
+    <title>My Contacts</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
@@ -25,11 +24,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <ul>
-      <li><a href="#" ui-sref="home">Home</a></li>
-      <li><a href="#" ui-sref="editMode">Edit</a></li>
-      <li><a href="#" ui-sref="viewMode">View</a></li>
+    <ul class="nav nav-tabs">
+      <li><a href="#" ui-sref="new">New Contact</a></li>
+      <li><a href="#" ui-sref="list">My Contacts</a></li>
     </ul>
+
     <div ui-view></div>
 
     <!-- build:js(src) scripts/vendor.js -->

@@ -16,9 +16,11 @@
       .state('viewMode', {
         url: '/view',
         templateUrl: 'app/viewContacts/view.html',
+        controller: 'ViewController',
+        controllerAs: 'vCtrl'
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/view');
   });
 
 })();
