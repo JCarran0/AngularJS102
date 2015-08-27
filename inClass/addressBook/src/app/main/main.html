@@ -1,0 +1,63 @@
+<div class="container">
+
+  <h1>New Contact</h1>
+
+  <div class='well'>
+
+    <form name="ctrl.myForm" ng-submit="ctrl.addNewContact()" novalidate>
+
+      <div class='form-group'>
+        <label>First: </label>
+        <input type="text"
+          ng-model="ctrl.newContact.first"
+          placeholder="First name"
+          required
+          class="form-control">
+      </div>
+      <div class='form-group'>
+        <label>Last: </label>
+        <input type="text"
+          ng-model="ctrl.newContact.last"
+          placeholder="Last name"
+          required
+          class="form-control">
+      </div>
+      <div class='form-group'>
+        <label>Email: </label>
+        <input type="email"
+            ng-model="ctrl.newContact.email"
+            placeholder="Email"
+            name="userEmail"
+            required
+            class="form-control">
+      </div>
+      <div class='form-group'>
+        <label>Phone: </label>
+        <input type="phone"
+            ng-model="ctrl.newContact.phone"
+            placeholder="Phone"
+            name="userPhone"
+            required
+            ng-pattern="/^\(\d\d\d\) \d\d\d-\d\d\d\d$/"
+            class="form-control">
+      </div>
+
+      <input type="submit"
+        class="btn btn-primary"
+        value="Add"
+        ng-disabled="!ctrl.myForm.$valid">
+
+    </form>
+
+  </div>
+
+
+<div>
+  <pre>
+    {{ctrl.myForm.$valid}}
+    {{ctrl.myForm | json}}
+  </pre>
+</div>
+
+
+</div>

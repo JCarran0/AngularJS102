@@ -1,0 +1,13 @@
+<div class="container">
+
+  <h1>My Contacts</h1>
+
+  <div ng-repeat='contact in ctrl.list'>
+    <div class='well'>
+      <h4>{{contact.first + " " + contact.last}}</h4>
+      <span ng-bind='contact.email'></span><br>
+      <span ng-bind='contact.phone'></span>
+    </div>
+  </div>
+
+</div>
