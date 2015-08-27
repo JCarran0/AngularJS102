@@ -1,5 +1,5 @@
 <div class="container">
-  <div class='well col-sm-6'>
+  <div class='well col-sm-7'>
     <h1>View Contact Details</h1>
     <div id='stdnt-display'>
 
@@ -22,8 +22,9 @@
                      ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.home, 'glyphicon-chevron-right': !vCtrl.isOpen.home}"></i>
                 </accordion-heading>
 
-                <h4>{{vCtrl.selectedStudent.studentDetails.first + " " + vCtrl.selectedStudent.studentDetails.last}}</h4>
-                <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.atsContacts.home.phone"></span>
+                <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.phone"></span><br>
+                <strong>Address: </strong><span ng-bind="vCtrl.selectedStudent.address"></span><br>
+                <strong>Email: </strong><span ng-bind="vCtrl.selectedStudent.email"></span>
                 <i class="glyphicon glyphicon-flag"></i>
                 <i class="pull-right glyphicon glyphicon-pencil"></i>
             </accordion-group>
