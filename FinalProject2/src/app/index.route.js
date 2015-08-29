@@ -21,7 +21,7 @@
         name: 'childViews',
         templateUrl: 'app/ViewContacts/partials/outreachHistory.html'
       })
-      .state('studentData', {
+      .state('view.studentData', {
         url: '/view/studentData',
         name: 'childViews',
         templateUrl: 'app/ViewContacts/partials/studentData.html'
