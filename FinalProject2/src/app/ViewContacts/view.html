@@ -1,58 +1,154 @@
 <div class='container'>
 
-  <h1>Home Contacts</h1>
-  <button ng-click = 'ctrl.previous(); $event.stopPropagation();'
-    class='btn btn-primary nv-nav-btn'>Previous</button>
-  <select ng-options = 'ctrl.list.indexOf(stdnt) as stdnt.studentDetails.first for stdnt in ctrl.list'
-    ng-model = 'ctrl.index'
-    ng-change = 'ctrl.setSelected(ctrl.index)'
-    class = 'form-control nv-nav-select'>
-  </select>
-  <button ng-click = 'ctrl.next(); $event.stopPropagation();'
-    class='btn btn-primary nv-nav-btn'>Next</button>
 
+  <div id="buttons" class="row">
+    <button ng-click = 'ctrl.previous(); $event.stopPropagation();'
+      class='btn btn-primary nv-nav-btn'>Previous</button>
+    <select ng-options = 'ctrl.list.indexOf(stdnt) as stdnt.studentDetails.first for stdnt in ctrl.list'
+      ng-model = 'ctrl.index'
+      ng-change = 'ctrl.setSelected(ctrl.index)'
+      class = 'form-control nv-nav-select'>
+    </select>
+    <button ng-click = 'ctrl.next(); $event.stopPropagation();'
+      class='btn btn-primary nv-nav-btn'>Next</button>
+  </div> <!-- end butttons -->
+
+  <div>
+    <h1>Home Contacts</h1>
+  </div>
+
+  <div class='row'>
+    <div class="left-panel col-md-5">
 
       <accordion close-others="true">
-        <accordion-group is-open="vCtrl.isOpen.home">
+        <accordion-group is-open="ctrl.isOpen.home">
+
+          <accordion-heading>
+            ATS: Home
+            <i class="pull-right glyphicon"
+               ng-class="{'glyphicon-chevron-down': ctrl.isOpen.home, 'glyphicon-chevron-right': !ctrl.isOpen.home}"></i>
+          </accordion-heading>
+
+          <div class="row">
+
+            <div class="col-xs-1">
+              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
+            </div>
+
+            <div class="col-xs-9">
+              <strong>Number: </strong><span ng-bind="ctrl.selected.phone"></span><br>
+              <strong>Address: </strong><span ng-bind="ctrl.selected.address"></span><br>
+              <strong>Email: </strong><span ng-bind="ctrl.selected.email"></span>
+            </div>
+
+            <div class="col-xs-2">
+              <i class="glyphicon glyphicon-pencil nv-icon red"
+                ng-click="ctrl.toggleEdit('home')"></i>
+            </div>
+          </div> <!-- row -->
+
+          <div class="row">
+            <div class="edit-fields col-xs-10 col-xs-offset-1"
+              ng-if="ctrl.home.editActive">
+              <form name="ctrl.homeForm" ng-submit="ctrl.onSubmit()" novalidate>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" > This number is a cellphone
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" > Number Is Bad
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" > Address Is Bad
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" > Email Is Bad
+                  </label>
+                </div>
+              </form>
+            </div> <!-- edit-fields -->
+          </div> <!-- row -->
+
+        </accordion-group>
+
+        <accordion-group is-open = "ctrl.isOpen.adult1">
             <accordion-heading>
-              ATS: Home
+              ATS: Adult1
               <i class="pull-right glyphicon"
-                 ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.home, 'glyphicon-chevron-right': !vCtrl.isOpen.home}"></i>
+                 ng-class="{'glyphicon-chevron-down': ctrl.isOpen.adult1, 'glyphicon-chevron-right': !ctrl.isOpen.adult1}"></i>
             </accordion-heading>
 
-            <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.phone"></span><br>
-            <strong>Address: </strong><span ng-bind="vCtrl.selectedStudent.address"></span><br>
-            <strong>Email: </strong><span ng-bind="vCtrl.selectedStudent.email"></span>
-            <i class="glyphicon glyphicon-flag"></i>
-            <i class="pull-right glyphicon glyphicon-pencil"></i>
-        </accordion-group>
-        <accordion-group is-open="vCtrl.isOpen.adult2">
+          <div class="row">
+
+            <div class="col-xs-1">
+              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
+            </div>
+            <div class="col-xs-9">
+              <div ng-repeat="(field, val) in ctrl.selected.ats.adult1">
+                <strong class="text-capitalize">{{field}}: </strong>  {{val}}
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <i class="glyphicon glyphicon-pencil nv-icon red"></i>
+            </div>
+          </div> <!-- end row -->
+
+        </accordion-group> <!-- end accordion-group 1 -->
+
+        <accordion-group is-open = "ctrl.isOpen.adult2">
             <accordion-heading>
-              ATS: Adult 1
+              ATS: Adult2
               <i class="pull-right glyphicon"
-                 ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.adult2, 'glyphicon-chevron-right': !vCtrl.isOpen.adult2}"></i>
+                 ng-class="{'glyphicon-chevron-down': ctrl.isOpen.adult2, 'glyphicon-chevron-right': !ctrl.isOpen.adult2}"></i>
             </accordion-heading>
-            <h4>{{vCtrl.selectedStudent.studentDetails.first + " " + vCtrl.selectedStudent.studentDetails.last}}</h4>
-            <strong>Number: </strong><span ng-bind="vCtrl.selectedStudent.atsContacts.adult1.phone"></span>
-            <i class="glyphicon glyphicon-flag"></i>
-            <i class="pull-right glyphicon glyphicon-pencil"></i>
-        </accordion-group>
-        <accordion-group is-open="vCtrl.isOpen.adult3">
-            <accordion-heading>
-              ATS: Adult 3
-              <i class="pull-right glyphicon"
-                 ng-class="{'glyphicon-chevron-down': vCtrl.isOpen.adult3, 'glyphicon-chevron-right': !vCtrl.isOpen.adult3}"></i>
-            </accordion-heading>
-            Contact content goes here
-        </accordion-group>
+
+          <div class="row">
+
+            <div class="col-xs-1">
+              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
+            </div>
+            <div class="col-xs-9">
+              <div ng-repeat="(field, val) in ctrl.selected.ats.adult2">
+                <strong class="text-capitalize">{{field}}: </strong>  {{val}}
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <i class="glyphicon glyphicon-pencil nv-icon red"></i>
+            </div>
+          </div> <!-- end row -->
+
+        </accordion-group> <!-- end accordion-group 2 -->
       </accordion>
+    </div><!--end left-panel-->
 
+    <div id="tmp-sidediv" class="right-panel col-md-7">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+          <a href="#" ui-sref="logOutreach">Log Outreach</a>
+        </li>
+        <li role="presentation">
+          <a href="#" ui-sref="outreachHistory">View Outreach History</a>
+        </li>
+        <li role="presentation">
+          <a href="#" ui-sref="studentData">View Data</a>
+        </li>
+      </ul>
+    </div><!--end right-panel-->
 
-<div>
+    <section ui-view="childViews"></section>
+
+  </div><!--end row-->
+<div><!--end container-->
   <pre>
-    <!-- {{ctrl.list | json}} -->
+    home.editActive: {{ctrl.home.editActive}}
   </pre>
-</div>
+  <pre>
+    {{ctrl.selected | json}}
+  </pre>
 
-
-</div>
