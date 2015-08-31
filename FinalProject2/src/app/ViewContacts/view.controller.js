@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('MainController', function (StudentNavService) {
+  .controller('ViewController', function (StudentNavService) {
     var self = this;
 
     self.home = {};
