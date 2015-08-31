@@ -44,3 +44,30 @@
 
 
 
+/*animations*/
+.nv-slider {
+  transition: .70s ease-in all;
+}
+
+.nv-slider.ng-leave, .nv-slider.ng-hide-add {
+  opacity: 1.0;
+  max-height: 999px;
+}
+
+.nv-slider.ng-leave-active, .nv-slider.ng-hide-add-active {
+  opacity: 0.0;
+  max-height: 0px;
+}
+
+.nv-slider.ng-enter {
+  opacity: 0.0;
+  max-height: 0px;
+}
+
+.nv-slider.ng-enter-active {
+  opacity: 1.0;
+  max-height: 999px;
+}
+
+
+
