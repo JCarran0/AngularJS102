@@ -1,0 +1,86 @@
+<div class="container">
+
+  <h3>New Outreach Log</h3>
+
+  <form name="ctrl.logForm"
+    ng-submit="ctrl.submitLog()"
+    novalidate>
+
+    <div class="form-group">
+      <label>
+        What was this outreach related to?
+        <select ng-options = 'activity._id as activity.name for activity in ctrl.activities'
+          ng-model = 'ctrl.selectedActivity.outreachType'
+          class = 'form-control'
+          required>
+        </select>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label>
+        What was the method of outreach?
+        <select ng-options = 'option as option for option in ctrl.options'
+          ng-model = 'ctrl.selectedActivity.outreachMethod'
+          class = 'form-control'
+          required>
+        </select>
+      </label>
+    </div>
+
+    <div id="attendance-form-fields"
+      ng-if="ctrl.selectedActivity.outreachType === 'attendance'">
+
+      <div class="form-group">
+        <label>
+          Date of absence:
+          <input type="date"
+            class="form-control"
+            ng-model="ctrl.selectedActivity.dateOfAbsence"
+            required>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Duration of absence:
+          <input type="number"
+            class="form-control"
+            ng-model="ctrl.selectedActivity.durationOfAbsence"
+            required>
+        </label>
+      </div>
+    </div><!-- End attendance-form-fields -->
+
+    <div id="standard-form-fields" ng-if="ctrl.selectedActivity">
+      <div class="form-group">
+        <label>
+          Outreach notes:
+          <textarea type="textarea"
+            class="form-control"
+            ng-model="ctrl.selectedActivity.outreachNotes"
+            rows="5"
+            cols="60"
+            required></textarea>
+        </label>
+      </div>
+
+      <input type="submit"
+        value="Submit"
+        class="btn btn-primary"
+        ng-disabled="ctrl.logForm.$invalid">
+    </div>
+  </form>
+
+
+
+
+
+</div>
+
+<!-- <div>
+  <pre>
+    selectedActivity: {{ctrl.selectedActivity | json}}
+    logForm: {{ctrl.logForm | json}}
+  </pre>
+</div> -->

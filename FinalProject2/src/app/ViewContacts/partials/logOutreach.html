@@ -1,1 +1,17 @@
-<div>LOG OUTREACH!</div>
+<div class="container">
+
+  <form name="ctrl.logForm">
+
+    <label>
+      What activity is this log related to?
+      <select ng-options = 'activity as activity.name for activity in ctrl.activities'
+      ng-model = 'ctrl.selectedActivity'
+      class = 'form-control nv-nav-select'>
+      </select>
+    </label>
+
+
+
+  </form>
+
+</div>

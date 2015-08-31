@@ -8,18 +8,20 @@
       .state('view', {
         url: '/view',
         templateUrl: 'app/ViewContacts/view.html',
-        controller: 'MainController',
+        controller: 'ViewController',
         controllerAs: 'ctrl'
       })
       .state('logOutreach', {
         url: '/view/logOutreach',
-        name: 'childViews',
-        templateUrl: 'app/ViewContacts/partials/logOutreach.html'
+        // name: 'childViews',
+        templateUrl: 'app/logOutreach/logOutreach.html',
+        controller: 'LogOutreachController',
+        controllerAs: 'ctrl'
       })
       .state('outreachHistory', {
         url: '/view/outreachHistory',
         name: 'childViews',
-        templateUrl: 'app/ViewContacts/partials/outreachHistory.html'
+        templateUrl: 'app/ViewContacts/partials/outreachHistory.html',
       })
       .state('view.studentData', {
         url: '/view/studentData',
