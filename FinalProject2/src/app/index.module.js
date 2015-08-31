@@ -3,6 +3,6 @@
 
   angular
 
-  .module('template', ['StudentNavModule', 'StudentFetchService', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap']);
+  .module('template', ['StudentNavModule', 'StudentFetchService', 'contactCustomDirective', 'angularSlideables', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap']);
 
 })();
