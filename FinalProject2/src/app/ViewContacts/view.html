@@ -17,6 +17,10 @@
     <h1>Home Contacts</h1>
   </div>
 
+  <div>
+    <home-contact></home-contact>
+  </div>
+
   <div class='row'>
     <div class="left-panel col-md-5">
 
@@ -43,17 +47,18 @@
 
             <div class="col-xs-2">
               <i class="glyphicon glyphicon-pencil nv-icon red"
-                ng-click="ctrl.toggleEdit('home')"></i>
+                ng-click="ctrl.toggleEdit('home')"
+                slide-toggle="#edit0"></i>
             </div>
           </div> <!-- row -->
 
           <div class="row">
-            <div class="edit-fields col-xs-10 col-xs-offset-1"
-              ng-if="ctrl.home.editActive">
-              <form name="ctrl.homeForm" ng-submit="ctrl.onSubmit()" novalidate>
+            <div id='edit0' class="edit-fields col-xs-10 col-xs-offset-1 slideable"
+              >
+              <form name="ctrl.homeForm" ng-submit="ctrl.saveHomeEdits()" novalidate>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" > This number is a cellphone
+                    <input type="checkbox"> This number is a cellphone
                   </label>
                 </div>
                 <div class="checkbox">
@@ -71,6 +76,7 @@
                     <input type="checkbox" > Email Is Bad
                   </label>
                 </div>
+                <input type="submit" value="Save" class="btn btn-danger">
               </form>
             </div> <!-- edit-fields -->
           </div> <!-- row -->
@@ -125,6 +131,7 @@
 
         </accordion-group> <!-- end accordion-group 2 -->
       </accordion>
+      <button class="btn btn-danger">+ Add contact</button>
     </div><!--end left-panel-->
 
     <div id="tmp-sidediv" class="right-panel col-md-7">
@@ -141,14 +148,14 @@
       </ul>
     </div><!--end right-panel-->
 
-    <section ui-view="childViews"></section>
+    <section ui-view></section>
 
   </div><!--end row-->
 <div><!--end container-->
-  <pre>
-    home.editActive: {{ctrl.home.editActive}}
+<!--   <pre>
+    edit form: {{ctrl.homeForm | json}}
   </pre>
   <pre>
     {{ctrl.selected | json}}
-  </pre>
+  </pre> -->
 
