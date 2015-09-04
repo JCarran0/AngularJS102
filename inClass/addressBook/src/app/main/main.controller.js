@@ -12,6 +12,10 @@
       ContactList.add(new Contact(self.newContact));
       self.newContact = {};
     }
+
+    self.deleteUser = function(){
+      ContactList.deleteUser();
+    }
   });
 
 })();

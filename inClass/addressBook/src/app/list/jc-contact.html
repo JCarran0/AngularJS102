@@ -1,0 +1,18 @@
+
+
+<div class='well'>
+  <h4>{{contactCtrl.contact.first + " " + contactCtrl.contact.last}}</h4>
+  <span ng-bind='contactCtrl.contact.email'></span><br>
+  <span ng-bind='contactCtrl.contact.phone'></span><br>
+  <button ng-click='contactCtrl.showDetails()'
+          ng-if='!contactCtrl.show'
+          class='btn btn-primary'>Details</button>
+  <button ng-click='contactCtrl.editDetails()'
+          ng-if='contactCtrl.show'
+          class='btn btn-primary'>Edit</button>
+  <button ng-click='contactCtrl.deleteUser({userKey: contactCtrl.contact})'
+          ng-if='contactCtrl.show'
+          class='btn btn-danger'>Delete</button>
+
+</div>
+
