@@ -11,25 +11,22 @@
         controller: 'ViewController',
         controllerAs: 'ctrl'
       })
-      .state('logOutreach', {
-        url: '/view/logOutreach',
-        // name: 'childViews',
+      .state('view.logOutreach', {
+        url: '/logOutreach',
         templateUrl: 'app/logOutreach/logOutreach.html',
         controller: 'LogOutreachController',
         controllerAs: 'ctrl'
       })
-      .state('outreachHistory', {
-        url: '/view/outreachHistory',
-        name: 'childViews',
-        templateUrl: 'app/ViewContacts/partials/outreachHistory.html',
+      .state('view.outreachHistory', {
+        url: '/outreachHistory',
+        templateUrl: 'app/outreachHistoryView/outreachHistory.html',
       })
       .state('view.studentData', {
-        url: '/view/studentData',
-        name: 'childViews',
-        templateUrl: 'app/ViewContacts/partials/studentData.html'
+        url: '/studentData',
+        templateUrl: 'app/studentDataView/studentData.html'
       });
 
-    $urlRouterProvider.otherwise('/view');
+    $urlRouterProvider.otherwise('/view/logOutreach');
   });
 
 })();

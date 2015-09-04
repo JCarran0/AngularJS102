@@ -19,27 +19,25 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-controller="NavController as nCtrl">
+  <body ng-controller="NavController as navCtrl">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <nav class="navbar navbar-default nv-nav-center" role="navigation">
       <div class="navbar-inner">
         <ul class="nav navbar-nav">
-          <button ng-click = 'nCtrl.previous(); $event.stopPropagation();'
-            class='btn btn-primary nv-nav-btn'>Previous</button>
-          <select ng-options = 'nCtrl.list.indexOf(stdnt) as stdnt.studentDetails.first for stdnt in nCtrl.list'
-            ng-model = 'nCtrl.index'
-            ng-change = 'nCtrl.setSelected(nCtrl.index)'
-            class = 'form-control nv-nav-select'>
-          </select>
-          <button ng-click = 'nCtrl.next(); $event.stopPropagation();'
-            class='btn btn-primary nv-nav-btn'>Next</button>
-<!--
+          <button ng-click = 'navCtrl.previous(); $event.stopPropagation();'
+                  class='btn btn-primary nv-nav-btn'>Previous</button>
 
-          <button class="btn btn-primary nv-nav-btn">Previous</button>
-          <select class="form-control nv-nav-select"><option></option></select>
-          <button class="btn btn-primary nv-nav-btn">Next</button> -->
+          <select ng-options = 'student as student.first for student in navCtrl.list'
+                  ng-model = 'navCtrl.state.selectedStudent'
+                  ng-change = 'navCtrl.setSelected(navCtrl.state.selectedStudent)'
+                  class = 'form-control nv-nav-select'>
+          </select>
+
+          <button ng-click = 'navCtrl.next(); $event.stopPropagation();'
+            class='btn btn-primary nv-nav-btn'>Next</button>
+
         </ul>
       </div>
     </nav>

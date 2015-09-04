@@ -1,26 +1,8 @@
 <div class='container'>
-
-
-  <div id="buttons" class="row">
-    <button ng-click = 'ctrl.previous(); $event.stopPropagation();'
-      class='btn btn-primary nv-nav-btn'>Previous</button>
-    <select ng-options = 'ctrl.list.indexOf(stdnt) as stdnt.studentDetails.first for stdnt in ctrl.list'
-      ng-model = 'ctrl.index'
-      ng-change = 'ctrl.setSelected(ctrl.index)'
-      class = 'form-control nv-nav-select'>
-    </select>
-    <button ng-click = 'ctrl.next(); $event.stopPropagation();'
-      class='btn btn-primary nv-nav-btn'>Next</button>
-  </div> <!-- end butttons -->
-
   <div>
     <h1>Home Contacts</h1>
   </div>
-
-  <div>
-    <home-contact></home-contact>
-  </div>
-
+  <div jc-edit-contact-fields></div>
   <div class='row'>
     <div class="left-panel col-md-5">
 
@@ -40,9 +22,9 @@
             </div>
 
             <div class="col-xs-9">
-              <strong>Number: </strong><span ng-bind="ctrl.selected.phone"></span><br>
-              <strong>Address: </strong><span ng-bind="ctrl.selected.address"></span><br>
-              <strong>Email: </strong><span ng-bind="ctrl.selected.email"></span>
+              <strong>Number: </strong><span ng-bind="ctrl.state.selectedStudent.phone"></span><br>
+              <strong>Address: </strong><span ng-bind="ctrl.state.selectedStudent.address"></span><br>
+              <strong>Email: </strong><span ng-bind="ctrl.state.selectedStudent.email"></span>
             </div>
 
             <div class="col-xs-2">
@@ -76,6 +58,13 @@
                     <input type="checkbox" > Email Is Bad
                   </label>
                 </div>
+                <div>
+                  <label>
+                    Notes related to this contact:
+                    <textarea class="form-control" cols="40" placeholder="Optionally enter notes specific to this contact"></textarea>
+                  </label>
+                  <br>
+                </div>
                 <input type="submit" value="Save" class="btn btn-danger">
               </form>
             </div> <!-- edit-fields -->
@@ -96,7 +85,7 @@
               <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
             </div>
             <div class="col-xs-9">
-              <div ng-repeat="(field, val) in ctrl.selected.ats.adult1">
+              <div ng-repeat="(field, val) in ctrl.state.selectedStudent.ats.adult1">
                 <strong class="text-capitalize">{{field}}: </strong>  {{val}}
               </div>
             </div>
@@ -120,7 +109,7 @@
               <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
             </div>
             <div class="col-xs-9">
-              <div ng-repeat="(field, val) in ctrl.selected.ats.adult2">
+              <div ng-repeat="(field, val) in ctrl.state.selectedStudent.ats.adult2">
                 <strong class="text-capitalize">{{field}}: </strong>  {{val}}
               </div>
             </div>
@@ -137,13 +126,13 @@
     <div id="tmp-sidediv" class="right-panel col-md-7">
       <ul class="nav nav-tabs">
         <li role="presentation" class="active">
-          <a href="#" ui-sref="logOutreach">Log Outreach</a>
+          <a href="#" ui-sref="view.logOutreach">Log Outreach</a>
         </li>
         <li role="presentation">
-          <a href="#" ui-sref="outreachHistory">View Outreach History</a>
+          <a href="#" ui-sref="view.outreachHistory">View Outreach History</a>
         </li>
         <li role="presentation">
-          <a href="#" ui-sref="studentData">View Data</a>
+          <a href="#" ui-sref="view.studentData">View Data</a>
         </li>
       </ul>
     </div><!--end right-panel-->
@@ -156,6 +145,6 @@
     edit form: {{ctrl.homeForm | json}}
   </pre>
   <pre>
-    {{ctrl.selected | json}}
+    {{ctrl.state.selectedStudent | json}}
   </pre> -->
 
