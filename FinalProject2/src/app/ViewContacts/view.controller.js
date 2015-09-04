@@ -8,10 +8,22 @@
     self.state = StudentNavService.state;
   })
 
-  .directive('jcEditContactFields', function(){
+  .directive('jcContactField', function(){
     return {
-      templateUrl: 'app/ViewContacts/jc-edit-contact-fields.html'
+      templateUrl: 'app/ViewContacts/jc-contact-field.html',
+      controller: 'JcContactFieldController',
+      controllerAs: 'contactCtrl',
+      bindToController: true,
+      scope: {
+        state: '='
+      }
     }
+  })
+
+  .controller('JcContactFieldController', function(){
+    var self = this;
+
+    console.log('hello world!')
   })
 
 })();

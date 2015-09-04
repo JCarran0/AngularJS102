@@ -2,7 +2,6 @@
   <div>
     <h1>Home Contacts</h1>
   </div>
-  <div jc-edit-contact-fields></div>
   <div class='row'>
     <div class="left-panel col-md-5">
 
@@ -15,60 +14,7 @@
                ng-class="{'glyphicon-chevron-down': ctrl.isOpen.home, 'glyphicon-chevron-right': !ctrl.isOpen.home}"></i>
           </accordion-heading>
 
-          <div class="row">
-
-            <div class="col-xs-1">
-              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
-            </div>
-
-            <div class="col-xs-9">
-              <strong>Number: </strong><span ng-bind="ctrl.state.selectedStudent.phone"></span><br>
-              <strong>Address: </strong><span ng-bind="ctrl.state.selectedStudent.address"></span><br>
-              <strong>Email: </strong><span ng-bind="ctrl.state.selectedStudent.email"></span>
-            </div>
-
-            <div class="col-xs-2">
-              <i class="glyphicon glyphicon-pencil nv-icon red"
-                ng-click="ctrl.toggleEdit('home')"
-                slide-toggle="#edit0"></i>
-            </div>
-          </div> <!-- row -->
-
-          <div class="row">
-            <div id='edit0' class="edit-fields col-xs-10 col-xs-offset-1 slideable"
-              >
-              <form name="ctrl.homeForm" ng-submit="ctrl.saveHomeEdits()" novalidate>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> This number is a cellphone
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" > Number Is Bad
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" > Address Is Bad
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" > Email Is Bad
-                  </label>
-                </div>
-                <div>
-                  <label>
-                    Notes related to this contact:
-                    <textarea class="form-control" cols="40" placeholder="Optionally enter notes specific to this contact"></textarea>
-                  </label>
-                  <br>
-                </div>
-                <input type="submit" value="Save" class="btn btn-danger">
-              </form>
-            </div> <!-- edit-fields -->
-          </div> <!-- row -->
+          <jc-contact-field state="ctrl.state"></jc-contact-field>
 
         </accordion-group>
 
