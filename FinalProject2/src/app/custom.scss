@@ -35,10 +35,10 @@
 .nv-icon.blue:hover {
   color: blue;
 }
-.nv-icon.red:hover {
+.nv-icon.red:hover, .nv-icon.red.isOpen{
   color: red;
 }
-.nv-icon.red:active, .nv-icon.blue:active {
+.nv-icon.red:active, .nv-icon.blue:active{
   color: black;
 }
 
@@ -71,3 +71,12 @@
 
 
 
+/*Form fields*/
+.nv-input {
+  max-width: 60%;
+}
+
+.form-control.nv-input {
+  max-width: 60%;
+  display: inline-block;
+}

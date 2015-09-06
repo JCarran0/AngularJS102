@@ -6,6 +6,12 @@
   .controller('ViewController', function (StudentNavService) {
     var self = this;
     self.state = StudentNavService.state;
+    self.isActive = {log: true};
+
+    self.activateTab = function(tab){
+      self.isActive = {};
+      self.isActive[tab] = true;
+    }
   })
 
   .directive('jcContactField', function(){
@@ -15,15 +21,54 @@
       controllerAs: 'contactCtrl',
       bindToController: true,
       scope: {
-        state: '='
+        contact: '=',
+        header: '@'
       }
     }
   })
 
-  .controller('JcContactFieldController', function(){
+  .controller('JcContactFieldController', function($scope, $modal, $log){
+    var self = this;
+    self.editFieldIsCollapsed = true;
+
+    self.openDialerModal = function(phoneNumber){
+
+      var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'app/ngBootstrapModal/modals/auto-dialer.html',
+        controller: 'ModalInstanceCtrl',
+        controllerAs: 'modalCtrl',
+        bindToController: true,
+        size: 'md',
+        resolve: {
+          phoneNumber: function () {
+            // return $scope.items;
+            return phoneNumber
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
+  })
+
+  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, phoneNumber) {
     var self = this;
 
-    console.log('hello world!')
+    self.phoneNumber = phoneNumber;
+
+    self.ok = function () {
+      $modalInstance.close(self.phoneNumber);
+    };
+
+    self.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
   })
 
 })();

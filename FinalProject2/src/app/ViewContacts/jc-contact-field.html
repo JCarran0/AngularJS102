@@ -1,49 +1,67 @@
 <div class="row">
 
   <div class="col-xs-1">
-    <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
+    <i class="glyphicon glyphicon-earphone nv-icon blue"
+       ng-click="contactCtrl.openDialerModal(contactCtrl.contact.phone)"></i>
   </div>
 
   <div class="col-xs-9">
-    <strong>Number: </strong><span ng-bind="contactCtrl.state.selectedStudent.phone"></span>
-    <br>
-    <strong>Address: </strong><span ng-bind="contactCtrl.state.selectedStudent.address"></span>
-    <br>
-    <strong>Email: </strong><span ng-bind="contactCtrl.state.selectedStudent.email"></span>
+
+    <div ng-if="contactCtrl.contact.name">
+      <strong>Name: </strong>
+      <span ng-bind="contactCtrl.contact.name" class="text-capitalize"></span>
+    </div>
+
+    <div ng-if="contactCtrl.contact.phone">
+      <strong>Phone: </strong>
+      <span ng-bind="contactCtrl.contact.phone" class="text-capitalize"></span>
+    </div>
+
+    <div ng-if="contactCtrl.contact.email">
+      <strong>Email: </strong>
+      <span ng-bind="contactCtrl.contact.email" class="text-capitalize"></span>
+    </div>
+
+    <div ng-if="contactCtrl.contact.address">
+      <strong>Address: </strong>
+      <span ng-bind="contactCtrl.contact.address" class="text-capitalize"></span>
+    </div>
   </div>
 
   <div class="col-xs-2">
     <i class="glyphicon glyphicon-pencil nv-icon red"
-       ng-click="contactCtrl.toggleEdit('home')"
-       slide-toggle="#edit0"></i>
+       ng-class="{isOpen: !contactCtrl.editFieldIsCollapsed}"
+       ng-click="contactCtrl.editFieldIsCollapsed = !contactCtrl.editFieldIsCollapsed"></i>
   </div>
 </div> <!-- row -->
 
 <div class="row">
-  <div id='edit0' class="edit-fields col-xs-10 col-xs-offset-1 slideable"
+
+  <div collapse="contactCtrl.editFieldIsCollapsed"
+       class="edit-fields col-xs-10 col-xs-offset-1 slideable"
     >
-    <form name="contactCtrl.homeForm"
-          ng-submit="contactCtrl.saveHomeEdits()"
+    <form name="contactCtrl.editForm"
+          ng-submit="contactCtrl.saveEdits()"
           novalidate>
 
-      <div class="checkbox">
+      <div class="checkbox" ng-if="contactCtrl.contact.phone">
         <label>
-          <input type="checkbox"> This number is a cellphone
+          <input type="checkbox"> Number is a cellphone
         </label>
       </div>
-      <div class="checkbox">
+      <div class="checkbox" ng-if="contactCtrl.contact.phone">
         <label>
           <input type="checkbox" > Number Is Bad
         </label>
       </div>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" > Address Is Bad
-        </label>
-      </div>
-      <div class="checkbox">
+      <div class="checkbox" ng-if="contactCtrl.contact.email">
         <label>
           <input type="checkbox" > Email Is Bad
+        </label>
+      </div>
+      <div class="checkbox" ng-if="contactCtrl.contact.address">
+        <label>
+          <input type="checkbox"> Address Is Bad
         </label>
       </div>
       <div>
@@ -51,7 +69,7 @@
           Notes related to this contact:
           <textarea class="form-control"
                     cols="40"
-                    placeholder="Optionally enter notes specific to this contact"></textarea>
+                    placeholder="Optional: Enter notes specific to this contact"></textarea>
         </label>
         <br>
       </div>

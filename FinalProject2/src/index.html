@@ -25,11 +25,10 @@
     <![endif]-->
     <nav class="navbar navbar-default nv-nav-center" role="navigation">
       <div class="navbar-inner">
-        <ul class="nav navbar-nav">
           <button ng-click = 'navCtrl.previous(); $event.stopPropagation();'
                   class='btn btn-primary nv-nav-btn'>Previous</button>
 
-          <select ng-options = 'student as student.first for student in navCtrl.list'
+          <select ng-options = 'student as student.studentDetails.first for student in navCtrl.list'
                   ng-model = 'navCtrl.state.selectedStudent'
                   ng-change = 'navCtrl.setSelected(navCtrl.state.selectedStudent)'
                   class = 'form-control nv-nav-select'>
@@ -37,11 +36,8 @@
 
           <button ng-click = 'navCtrl.next(); $event.stopPropagation();'
             class='btn btn-primary nv-nav-btn'>Next</button>
-
-        </ul>
       </div>
     </nav>
-
 
     <div ui-view></div>
 

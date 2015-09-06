@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h3 class="modal-title"></span>Place 2-way call?</h3>
+</div>
+
+<div class="modal-body">
+
+      <strong>Number to call: </strong>
+      <span ng-bind="modalCtrl.phoneNumber"></span>?
+      <br>
+
+      <strong>Your number: </strong>
+      <input type="tel"
+             ng-model="modalCtrl.userPhone"
+             class="form-control nv-input"
+             placeholder="number">
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()">
+      <span class="glyphicon glyphicon-earphone"></span>
+      Place Call
+    </button>
+    <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+</div>
+
+
+
+
+
+

@@ -6,91 +6,62 @@
     <div class="left-panel col-md-5">
 
       <accordion close-others="true">
-        <accordion-group is-open="ctrl.isOpen.home">
-
-          <accordion-heading>
-            ATS: Home
-            <i class="pull-right glyphicon"
-               ng-class="{'glyphicon-chevron-down': ctrl.isOpen.home, 'glyphicon-chevron-right': !ctrl.isOpen.home}"></i>
-          </accordion-heading>
-
-          <jc-contact-field state="ctrl.state"></jc-contact-field>
-
-        </accordion-group>
-
-        <accordion-group is-open = "ctrl.isOpen.adult1">
+        <div ng-repeat="contact in ctrl.state.selectedStudent.contacts">
+          <accordion-group is-open="isOpen">
             <accordion-heading>
-              ATS: Adult1
+              <span ng-bind='contact.title'></span>
               <i class="pull-right glyphicon"
-                 ng-class="{'glyphicon-chevron-down': ctrl.isOpen.adult1, 'glyphicon-chevron-right': !ctrl.isOpen.adult1}"></i>
+                 ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
             </accordion-heading>
-
-          <div class="row">
-
-            <div class="col-xs-1">
-              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
-            </div>
-            <div class="col-xs-9">
-              <div ng-repeat="(field, val) in ctrl.state.selectedStudent.ats.adult1">
-                <strong class="text-capitalize">{{field}}: </strong>  {{val}}
-              </div>
-            </div>
-            <div class="col-xs-2">
-              <i class="glyphicon glyphicon-pencil nv-icon red"></i>
-            </div>
-          </div> <!-- end row -->
-
-        </accordion-group> <!-- end accordion-group 1 -->
-
-        <accordion-group is-open = "ctrl.isOpen.adult2">
-            <accordion-heading>
-              ATS: Adult2
-              <i class="pull-right glyphicon"
-                 ng-class="{'glyphicon-chevron-down': ctrl.isOpen.adult2, 'glyphicon-chevron-right': !ctrl.isOpen.adult2}"></i>
-            </accordion-heading>
-
-          <div class="row">
-
-            <div class="col-xs-1">
-              <i class="glyphicon glyphicon-earphone nv-icon blue"></i>
-            </div>
-            <div class="col-xs-9">
-              <div ng-repeat="(field, val) in ctrl.state.selectedStudent.ats.adult2">
-                <strong class="text-capitalize">{{field}}: </strong>  {{val}}
-              </div>
-            </div>
-            <div class="col-xs-2">
-              <i class="glyphicon glyphicon-pencil nv-icon red"></i>
-            </div>
-          </div> <!-- end row -->
-
-        </accordion-group> <!-- end accordion-group 2 -->
+            <jc-contact-field
+                contact="contact"></jc-contact-field>
+          </accordion-group>
+        </div> <!-- end ng-repeat for contacts -->
       </accordion>
+
       <button class="btn btn-danger">+ Add contact</button>
+      <br><br>
     </div><!--end left-panel-->
 
-    <div id="tmp-sidediv" class="right-panel col-md-7">
+
+    <div id="tmp-sidediv" class="right-panel col-md-7 container">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active">
-          <a href="#" ui-sref="view.logOutreach">Log Outreach</a>
+        <li role="presentation" ng-class='{active: ctrl.isActive.log}'>
+          <a href="#" ui-sref="view.logOutreach" ng-click='ctrl.activateTab("log")'>Log Outreach</a>
         </li>
-        <li role="presentation">
-          <a href="#" ui-sref="view.outreachHistory">View Outreach History</a>
+        <li role="presentation" ng-class='{active: ctrl.isActive.history}'>
+          <a href="#" ui-sref="view.outreachHistory" ng-click='ctrl.activateTab("history")'>View Outreach History</a>
         </li>
-        <li role="presentation">
-          <a href="#" ui-sref="view.studentData">View Data</a>
+        <li role="presentation" ng-class='{active: ctrl.isActive.data}'>
+          <a href="#" ui-sref="view.studentData" ng-click='ctrl.activateTab("data")'>View Data</a>
         </li>
       </ul>
+      <section ui-view></section>
     </div><!--end right-panel-->
-
-    <section ui-view></section>
-
   </div><!--end row-->
 <div><!--end container-->
-<!--   <pre>
-    edit form: {{ctrl.homeForm | json}}
-  </pre>
-  <pre>
-    {{ctrl.state.selectedStudent | json}}
-  </pre> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

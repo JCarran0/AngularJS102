@@ -15,7 +15,6 @@
     };
     self.next = StudentNavService.next;
     self.previous = StudentNavService.previous;
-
   });
 
 })();
