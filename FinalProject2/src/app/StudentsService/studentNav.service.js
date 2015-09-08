@@ -15,7 +15,6 @@
     self.state = {};
     setSelected();
 
-    // NOTE TO JARED: figure out where this is being used
     self.setSelected = function(selectedStudent){
       index = self.list.indexOf(selectedStudent);
     }
@@ -71,6 +70,11 @@
       }
       student.contacts = contactList;
       console.log(student);
+    }
+
+    self.addNewContact = function(newContact){
+      console.log('newContact', newContact);
+      self.state.selectedStudent.contacts.push(newContact);
     }
 
     // self.load = function(callback){

@@ -12,6 +12,19 @@
       self.isActive = {};
       self.isActive[tab] = true;
     }
+
+    self.addBlankContact = function(){
+      console.log('adding blank contact');
+      var blankContact = {
+        isBlank: true,
+        title: 'Custom Contact:'
+      }
+      StudentNavService.addNewContact(blankContact);
+    }
+
+    self.saveNewContact = function(newContact){
+      console.log(newContact)
+    }
   })
 
   .directive('jcContactField', function(){
@@ -22,7 +35,7 @@
       bindToController: true,
       scope: {
         contact: '=',
-        header: '@'
+        saveNewContact: '&'
       }
     }
   })
@@ -31,8 +44,11 @@
     var self = this;
     self.editFieldIsCollapsed = true;
 
-    self.openDialerModal = function(phoneNumber){
+    self.saveNewContact = function(newContact){
+      console.log(newContact);
+    }
 
+    self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'app/ngBootstrapModal/modals/auto-dialer.html',

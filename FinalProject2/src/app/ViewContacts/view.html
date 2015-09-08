@@ -13,13 +13,14 @@
               <i class="pull-right glyphicon"
                  ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
             </accordion-heading>
-            <jc-contact-field
-                contact="contact"></jc-contact-field>
+            <jc-contact-field contact="contact"
+                              addNewContact="ctrl.addNewContact(newContact)"></jc-contact-field>
           </accordion-group>
         </div> <!-- end ng-repeat for contacts -->
       </accordion>
 
-      <button class="btn btn-danger">+ Add contact</button>
+      <button class="btn btn-danger"
+              ng-click="ctrl.addBlankContact()">+ Add contact</button>
       <br><br>
     </div><!--end left-panel-->
 
