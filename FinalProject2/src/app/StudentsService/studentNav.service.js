@@ -3,7 +3,7 @@
 
   angular.module('StudentNavModule', ['StudentFetchService'])
 
-  .service('StudentNavService', function($q, StudentResource, TEMPDATA){
+  .service('StudentNavService', function($q, StudentResource, TEMPDATA, NewContact){
     var self = this;
 
     //temp data - will come from API call to db
@@ -40,6 +40,16 @@
       setSelected();
     };
 
+    self.addNewContact = function(newContact){
+      self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
+      formatSelectedStudent(self.state.selectedStudent);
+      console.log(self.state.selectedStudent.contacts)
+    }
+
+    self.createNewContact = function(){
+      return new NewContact();
+    }
+
     /* This function builds an array of contacts and collapses
     ** some of the contact fields for easier use within the markup
     ** I.e. creates 'address' field from 'street', 'apt', 'zip', etc.
@@ -49,6 +59,7 @@
     function formatSelectedStudent(student){
       var contactList = [];
       var ats = student.atsContacts;
+      var alts = student.additionalContactDetails.altContacts;
       var custom = student.additionalContacts;
       for (var contact in ats){
 
@@ -65,17 +76,23 @@
         }
 
         ats[contact].contactType = 'ats';
-        ats[contact].title = "ATS: " + contact;
+        ats[contact].title = "ATS: " + (ats[contact].name || "");
         contactList.push(ats[contact]);
       }
+
+      for (var contact in alts){
+        if (alts[contact].first){
+          alts[contact].name = alts[contact].first;
+          alts[contact].name += " " + alts[contact].last;
+        }
+        alts[contact].contactType = 'alts';
+        alts[contact].title = "Custom Contact: " + (alts[contact].name || "");
+        contactList.push(alts[contact]);
+      }
       student.contacts = contactList;
-      console.log(student);
     }
 
-    self.addNewContact = function(newContact){
-      console.log('newContact', newContact);
-      self.state.selectedStudent.contacts.push(newContact);
-    }
+
 
     // self.load = function(callback){
 
@@ -109,6 +126,9 @@
             "first": "Jared",
             "last": "Carrano",
             "email": "email"
+        },
+        "additionalContactDetails": {
+          "altContacts": []
         },
         "atsContacts": {
             "home": {
@@ -145,6 +165,9 @@
             "last": "Scaramellino",
             "email": "email"
         },
+        "additionalContactDetails": {
+          "altContacts": []
+        },
         "atsContacts": {
             "home": {
                 "street": "6th Ave",
@@ -172,5 +195,16 @@
         }
     }
 ])
+
+.factory('NewContact', function(){
+  return function(){
+    this.title = "Cutsom Contact";
+    this.first = "";
+    this.last = "";
+    this.email = "";
+    this.phone = "";
+    this.phoneType = "";
+  }
+})
 
 })();

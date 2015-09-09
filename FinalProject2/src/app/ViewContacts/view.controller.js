@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('ViewController', function (StudentNavService) {
+  .controller('ViewController', function ($scope, $modal, $log, StudentNavService) {
     var self = this;
     self.state = StudentNavService.state;
     self.isActive = {log: true};
@@ -13,78 +13,51 @@
       self.isActive[tab] = true;
     }
 
-    self.addBlankContact = function(){
-      console.log('adding blank contact');
-      var blankContact = {
-        isBlank: true,
-        title: 'Custom Contact:'
-      }
-      StudentNavService.addNewContact(blankContact);
-    }
-
     self.saveNewContact = function(newContact){
       console.log(newContact)
     }
-  })
 
-  .directive('jcContactField', function(){
-    return {
-      templateUrl: 'app/ViewContacts/jc-contact-field.html',
-      controller: 'JcContactFieldController',
-      controllerAs: 'contactCtrl',
-      bindToController: true,
-      scope: {
-        contact: '=',
-        saveNewContact: '&'
-      }
-    }
-  })
-
-  .controller('JcContactFieldController', function($scope, $modal, $log){
-    var self = this;
-    self.editFieldIsCollapsed = true;
-
-    self.saveNewContact = function(newContact){
-      console.log(newContact);
-    }
-
-    self.openDialerModal = function(phoneNumber){
+    self.createNewContact = function(){
+      var newContact = StudentNavService.createNewContact();
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'app/ngBootstrapModal/modals/auto-dialer.html',
-        controller: 'ModalInstanceCtrl',
-        controllerAs: 'modalCtrl',
+        templateUrl: 'app/ngBootstrapModal/modals/new-student-form.html',
+        controller: 'NewStudentInstanceCtrl',
+        controllerAs: 'newCtrl',
         bindToController: true,
-        size: 'md',
+        size: 'lg',
         resolve: {
-          phoneNumber: function () {
+          newContact: function () {
             // return $scope.items;
-            return phoneNumber
+            return newContact
           }
         }
       });
-
+      // may or may not need this
       modalInstance.result.then(function (selectedItem) {
         $scope.selected = selectedItem;
+        console.log('back from modal')
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-    }
+    };
   })
 
-  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, phoneNumber) {
+
+  .controller('NewStudentInstanceCtrl', function ($modalInstance, newContact, StudentNavService) {
     var self = this;
 
-    self.phoneNumber = phoneNumber;
+    self.newContact = newContact;
 
-    self.ok = function () {
-      $modalInstance.close(self.phoneNumber);
+    self.save = function (newContact) {
+      $modalInstance.close('saving new contact');
+      StudentNavService.addNewContact(newContact);
     };
 
     self.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
-
   })
+
 
 })();

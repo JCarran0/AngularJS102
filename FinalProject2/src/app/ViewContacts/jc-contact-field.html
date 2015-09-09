@@ -1,4 +1,4 @@
-<div class="row" ng-if="!contactCtrl.contact.isBlank">
+<div class="row">
 
   <div class="col-xs-1">
     <i class="glyphicon glyphicon-earphone nv-icon blue"
@@ -78,59 +78,11 @@
   </div> <!-- edit-fields -->
 </div> <!-- row -->
 
-  <!-- George: Is there a better way to implement this branching html? -->
-<div class="row" ng-if="contactCtrl.contact.isBlank">
-  <div class="col-xs-9 col-xs-offset-1">
-    <form name="contactCtrl.newContactForm"
-          ng-submit="contactCtrl.saveNewContact(contactCtrl.newContact)"
-          novalidate>
-      <label class='form-group'>First Name:
-        <input type="text"
-               class="form-control"
-               ng-model="contactCtrl.newContact.first"></label>
-        <br>
-      <label class='form-group'>Last Name:
-        <input type="text"
-               class="form-control"
-               ng-model="contactCtrl.newContact.last"></label>
-        <br>
-      <label class='form-group'>Email:
-        <input type="text"
-               class="form-control"
-               ng-model="contactCtrl.newContact.email"></label>
-        <br>
-      <label class='form-group'>Phone:
-        <input type="text"
-               class="form-control"
-               ng-model="contactCtrl.newContact.phone"></label class='form-group'>
-        <br>
-      <label >Phone type:
-        <select name="phoneType"
-                ng-model="contactCtrl.newContact.phoneType"
-                class="form-control">
-          <option value="mobile" ng-selected=true>Mobile</option>
-          <option value="home">Home</option>
-          <option value="work">Work</option>
-          <option value="other">Other</option>
-        </select>
-      </label><br>
-      <label class='form-group'>Ralationship to student:
-        <input type="text"
-               class="form-control"
-               ng-model="contactCtrl.newContact.relationship"></label>
-        <br>
-      <label>Notes related to this contact:
-      <textarea class="form-control"
-                cols="40"
-                placeholder="Optional: Enter notes specific to this contact"
-                ng-model="contactCtrl.newContact.contactNotes"></textarea></label><br>
-      <input type="submit"
-             class="btn btn-danger"
-             value="Save"
-             ng-disabled="contactCtrl.newContactForm.$pristine">
-    </form>
-  </div>
-</div>
+
+
+
+
+
 
 
 
