@@ -17,6 +17,10 @@
       console.log(newContact)
     }
 
+    self.saveAtsMetaData = function(metaData, contactType){
+      StudentNavService.saveAtsMetaData(metaData, contactType);
+    }
+
     self.createNewContact = function(){
       var newContact = StudentNavService.createNewContact();
       var modalInstance = $modal.open({

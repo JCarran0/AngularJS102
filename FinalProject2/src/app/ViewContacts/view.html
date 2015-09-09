@@ -14,7 +14,7 @@
                  ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
             </accordion-heading>
             <jc-contact-field contact="contact"
-                              addNewContact="ctrl.addNewContact(newContact)"></jc-contact-field>
+                              save-ats-meta-data="ctrl.saveAtsMetaData(metaData, contactType)"></jc-contact-field>
           </accordion-group>
         </div> <!-- end ng-repeat for contacts -->
       </accordion>

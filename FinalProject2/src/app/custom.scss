@@ -80,3 +80,14 @@
   max-width: 60%;
   display: inline-block;
 }
+
+.bad-val {
+  text-decoration: line-through;
+  color: red;
+}
+
+.bad-icon {
+  color: red;
+  cursor: not-allowed;
+}
+

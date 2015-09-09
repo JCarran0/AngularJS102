@@ -2,7 +2,10 @@
 
   <div class="col-xs-1">
     <i class="glyphicon glyphicon-earphone nv-icon blue"
+       ng-if="!contactCtrl.contact.atsMetaData.numberIsBad"
        ng-click="contactCtrl.openDialerModal(contactCtrl.contact.phone)"></i>
+    <i class="glyphicon glyphicon-earphone nv-icon bad-icon"
+       ng-if="contactCtrl.contact.atsMetaData.numberIsBad"></i>
   </div>
 
   <div class="col-xs-9">
@@ -13,8 +16,11 @@
     </div>
 
     <div ng-if="contactCtrl.contact.phone">
-      <strong>Phone: </strong>
-      <span ng-bind="contactCtrl.contact.phone" class="text-capitalize"></span>
+      <strong ng-if="!contactCtrl.contact.atsMetaData.isCellPhone">Phone: </strong>
+      <strong ng-if="contactCtrl.contact.atsMetaData.isCellPhone">Mobile: </strong>
+      <span ng-bind="contactCtrl.contact.phone"
+            class="text-capitalize"
+            ng-class="{'bad-val': contactCtrl.contact.atsMetaData.numberIsBad}"></span>
     </div>
 
     <div ng-if="contactCtrl.contact.email">
@@ -41,34 +47,35 @@
        class="edit-fields col-xs-10 col-xs-offset-1 slideable"
     >
     <form name="contactCtrl.editForm"
-          ng-submit="contactCtrl.saveEdits()"
+          ng-submit="contactCtrl.saveAtsMetaData({metaData: contactCtrl.contact.atsMetaData, contactType: contactCtrl.contact.contactField})"
           novalidate>
 
       <div class="checkbox" ng-if="contactCtrl.contact.phone">
         <label>
-          <input type="checkbox"> Number is a cellphone
+          <input type="checkbox" ng-model="contactCtrl.contact.atsMetaData.isCellPhone"> Number is a cellphone
         </label>
       </div>
       <div class="checkbox" ng-if="contactCtrl.contact.phone">
         <label>
-          <input type="checkbox" > Number Is Bad
+          <input type="checkbox" ng-model="contactCtrl.contact.atsMetaData.numberIsBad" > Number Is Bad
         </label>
       </div>
       <div class="checkbox" ng-if="contactCtrl.contact.email">
         <label>
-          <input type="checkbox" > Email Is Bad
+          <input type="checkbox" ng-model="contactCtrl.contact.atsMetaData.emailIsBad" > Email Is Bad
         </label>
       </div>
       <div class="checkbox" ng-if="contactCtrl.contact.address">
         <label>
-          <input type="checkbox"> Address Is Bad
+          <input type="checkbox" ng-model="contactCtrl.contact.atsMetaData.addressIsBad"> Address Is Bad
         </label>
       </div>
       <div>
         <label>
-          Notes related to this contact:
+          New note for this contact:
           <textarea class="form-control"
                     cols="40"
+                    ng-model="contactCtrl.contact.atsMetaData.newNote"
                     placeholder="Optional: Enter notes specific to this contact"></textarea>
         </label>
         <br>

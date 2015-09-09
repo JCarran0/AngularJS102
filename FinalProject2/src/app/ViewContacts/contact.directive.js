@@ -12,7 +12,7 @@
       bindToController: true,
       scope: {
         contact: '=',
-        saveNewContact: '&'
+        saveAtsMetaData: '&'
       }
     }
   })
@@ -20,10 +20,7 @@
   .controller('JcContactFieldController', function($scope, $modal, $log){
     var self = this;
     self.editFieldIsCollapsed = true;
-
-    // self.saveNewContact = function(newContact){
-    //   console.log(newContact);
-    // }
+    console.log(self.contact.atsMetaData)
 
     self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({

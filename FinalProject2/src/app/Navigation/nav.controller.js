@@ -9,9 +9,8 @@
     self.state = StudentNavService.state;
     self.list = StudentNavService.list;
 
-    self.setSelected = function(selectedStudent) {
-      console.log(selectedStudent);
-      StudentNavService.setSelected(selectedStudent);
+    self.setIndex = function(selectedStudent) {
+      StudentNavService.setIndex(selectedStudent);
     };
     self.next = StudentNavService.next;
     self.previous = StudentNavService.previous;

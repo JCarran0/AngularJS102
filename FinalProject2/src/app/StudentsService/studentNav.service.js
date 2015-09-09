@@ -15,7 +15,8 @@
     self.state = {};
     setSelected();
 
-    self.setSelected = function(selectedStudent){
+    self.setIndex = function(selectedStudent){
+      formatSelectedStudent(selectedStudent);
       index = self.list.indexOf(selectedStudent);
     }
 
@@ -50,6 +51,15 @@
       return new NewContact();
     }
 
+    self.saveAtsMetaData = function(metaData, contactType){
+      var atsMetaData = self.state.selectedStudent.additionalContactDetails.atsMetaData;
+      if (!atsMetaData[contactType].notes){
+        atsMetaData[contactType].notes = [];
+      }
+      atsMetaData[contactType].notes.push(metaData.newNote);
+      console.log('Write atsMeta to database here', atsMetaData)
+    }
+
     /* This function builds an array of contacts and collapses
     ** some of the contact fields for easier use within the markup
     ** I.e. creates 'address' field from 'street', 'apt', 'zip', etc.
@@ -59,33 +69,41 @@
     function formatSelectedStudent(student){
       var contactList = [];
       var ats = student.atsContacts;
-      var alts = student.additionalContactDetails.altContacts;
+      var addlDetails = student.additionalContactDetails;
+      var alts = addlDetails.altContacts;
       var custom = student.additionalContacts;
       for (var contact in ats){
-
+        // concatentate ATS data with ATS meta data
+        var metaData = addlDetails.atsMetaData[contact];
+        ats[contact].atsMetaData = metaData;
+        ats[contact].email = metaData.email || ats[contact].email || '';
+        ats[contact].notes = metaData.notes ? metaData.notes.join('<br>') : '';
+        // make address a single entity for readability
         if (ats[contact].street){
           var address = ats[contact].street;
           address = ats[contact].apt ? (address + ' ' + ats[contact].apt) : address;
           address += ', ' + ats[contact].city + ', NY ' + ats[contact].zip;
           ats[contact].address = address;
         }
-
+        // concat first + last name
         if (ats[contact].first){
           ats[contact].name = ats[contact].first;
           ats[contact].name += " " + ats[contact].last;
         }
-
         ats[contact].contactType = 'ats';
+        ats[contact].contactField = contact;
         ats[contact].title = "ATS: " + (ats[contact].name || "");
         contactList.push(ats[contact]);
       }
 
+      // add alternative contacts to contacts array
       for (var contact in alts){
         if (alts[contact].first){
           alts[contact].name = alts[contact].first;
           alts[contact].name += " " + alts[contact].last;
         }
         alts[contact].contactType = 'alts';
+        alts[contact].contactField = contact;
         alts[contact].title = "Custom Contact: " + (alts[contact].name || "");
         contactList.push(alts[contact]);
       }
@@ -128,7 +146,16 @@
             "email": "email"
         },
         "additionalContactDetails": {
-          "altContacts": []
+          "altContacts": [],
+          "atsMetaData": {
+            "adult1": {
+              "email": 'testEmail@email.com',
+              "numberIsBad": true
+            },
+            "adult2": {},
+            "adult3": {},
+            "home": {}
+          }
         },
         "atsContacts": {
             "home": {
@@ -166,7 +193,17 @@
             "email": "email"
         },
         "additionalContactDetails": {
-          "altContacts": []
+          "altContacts": [],
+          "atsMetaData": {
+            "adult1": {
+              "numberIsBad": true
+            },
+            "adult2": {},
+            "adult3": {},
+            "home": {
+              "numberIsBad": true
+            }
+          }
         },
         "atsContacts": {
             "home": {
