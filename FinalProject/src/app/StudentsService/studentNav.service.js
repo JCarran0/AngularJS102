@@ -3,7 +3,7 @@
 
   angular.module('StudentNavModule', ['StudentFetchService'])
 
-  .service('StudentNavService', function($q, StudentResource, TEMPDATA, NewContact){
+  .service('StudentNavService', function($q, $log, StudentResource, TEMPDATA, NewContact){
     var self = this;
 
     //temp data - will come from API call to db
@@ -11,19 +11,27 @@
 
     self.list = angular.copy(data);
     self.data = angular.copy(data);
+    var cachedCopyOfSelectedStudent; // a restore point to use with resetStudent();
     var index = 0;
     self.state = {};
     setSelected();
 
     self.setIndex = function(selectedStudent){
-      formatSelectedStudent(selectedStudent);
+      formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
       index = self.list.indexOf(selectedStudent);
-    }
+      cachedCopyOfSelectedStudent = angular.copy(selectedStudent);
+    };
 
     function setSelected(){
       self.state.selectedStudent = self.list[index];
       formatSelectedStudent(self.state.selectedStudent);
+      cachedCopyOfSelectedStudent = angular.copy(self.state.selectedStudent);
     }
+
+    self.restoreSelectedStudent = function(){
+      self.state.selectedStudent = angular.copy(cachedCopyOfSelectedStudent);
+      formatSelectedStudent(self.state.selectedStudent);
+    };
 
     self.next = function(){
       index ++;
@@ -41,26 +49,30 @@
       setSelected();
     };
 
+
+
+
+    // All this contact business should be moved to another service
+    // Possibly the contact.controller.js file???
+    // Or else a new service.
     self.addNewContact = function(newContact){
+      delete newContact.isNew;
       self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
       formatSelectedStudent(self.state.selectedStudent);
-      console.log(self.state.selectedStudent.contacts)
-    }
+    };
 
     self.createNewContact = function(){
       return new NewContact();
-    }
+    };
 
     self.saveAtsMetaData = function(metaData, contactType){
       var atsMetaData = self.state.selectedStudent.additionalContactDetails.atsMetaData;
-      console.log('contactType', contactType)
-      console.log('atsMetaData[contactType]', atsMetaData[contactType])
       if (!atsMetaData[contactType].notes){
         atsMetaData[contactType].notes = [];
       }
       atsMetaData[contactType].notes.push(metaData.newNote);
-      console.log('Write atsMeta to database here', atsMetaData)
-    }
+      $log.debug('Write atsMeta to database here', atsMetaData);
+    };
 
     /* This function builds an array of contacts and collapses
     ** some of the contact fields for easier use within the markup
@@ -73,41 +85,39 @@
       var ats = student.atsContacts;
       var addlDetails = student.additionalContactDetails;
       var alts = addlDetails.altContacts;
-      var custom = student.additionalContacts;
-      for (var contact in ats){
+      for (var atsContact in ats){
         // concatentate ATS data with ATS meta data
-        var metaData = addlDetails.atsMetaData[contact];
-        ats[contact].atsMetaData = metaData;
-        ats[contact].email = metaData.email || ats[contact].email || '';
-        ats[contact].notes = metaData.notes ? metaData.notes.join('<br>') : '';
+        var metaData = addlDetails.atsMetaData[atsContact];
+        ats[atsContact].atsMetaData = metaData;
+        ats[atsContact].email = metaData.email || ats[atsContact].email || '';
+        ats[atsContact].notes = metaData.notes ? metaData.notes.join('<br>') : '';
         // make address a single entity for readability
-        if (ats[contact].street){
-          var address = ats[contact].street;
-          address = ats[contact].apt ? (address + ' ' + ats[contact].apt) : address;
-          address += ', ' + ats[contact].city + ', NY ' + ats[contact].zip;
-          ats[contact].address = address;
+        if (ats[atsContact].street){
+          var address = ats[atsContact].street;
+          address = ats[atsContact].apt ? (address + ' ' + ats[atsContact].apt) : address;
+          address += ', ' + ats[atsContact].city + ', NY ' + ats[atsContact].zip;
+          ats[atsContact].address = address;
         }
         // concat first + last name
-        if (ats[contact].first){
-          ats[contact].name = ats[contact].first;
-          ats[contact].name += " " + ats[contact].last;
+        if (ats[atsContact].first){
+          ats[atsContact].name = ats[atsContact].first;
+          ats[atsContact].name += " " + ats[atsContact].last;
         }
-        ats[contact].contactType = 'ats';
-        ats[contact].contactField = contact;
-        ats[contact].title = "ATS: " + (ats[contact].name || "");
-        contactList.push(ats[contact]);
+        ats[atsContact].isAts = true;
+        ats[atsContact].contactField = atsContact;
+        ats[atsContact].title = "ATS: " + (ats[atsContact].name || "");
+        contactList.push(ats[atsContact]);
       }
 
       // add alternative contacts to contacts array
-      for (var contact in alts){
-        if (alts[contact].first){
-          alts[contact].name = alts[contact].first;
-          alts[contact].name += " " + alts[contact].last;
+      for (var altContact in alts){
+        if (alts[altContact].first){
+          alts[altContact].name = alts[altContact].first;
+          alts[altContact].name += " " + alts[altContact].last;
         }
-        alts[contact].contactType = 'alts';
-        alts[contact].contactField = contact;
-        alts[contact].title = "Custom Contact: " + (alts[contact].name || "");
-        contactList.push(alts[contact]);
+        alts[altContact].contactField = altContact;
+        alts[altContact].title = "Custom Contact: " + (alts[altContact].name || "");
+        contactList.push(alts[altContact]);
       }
       student.contacts = contactList;
     }
@@ -241,13 +251,14 @@
 
 .factory('NewContact', function(){
   return function(){
+    this.isNew = true;
     this.title = "Cutsom Contact";
     this.first = "";
     this.last = "";
     this.email = "";
     this.phone = "";
     this.phoneType = "";
-  }
-})
+  };
+});
 
 })();

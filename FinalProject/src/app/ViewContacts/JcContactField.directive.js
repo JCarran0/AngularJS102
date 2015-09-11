@@ -14,20 +14,16 @@
         contact: '=',
         saveAtsMetaData: '&'
       }
-    }
+    };
   })
 
   .controller('JcContactFieldController', function($scope, $modal, $log, ContactService){
     var self = this;
     self.editFieldIsCollapsed = true;
 
-    self.editContact = function(contactType){
-      if (contactType === 'ats') {
-        self.editFieldIsCollapsed = !self.editFieldIsCollapsed;
-      } else {
-        ContactService.createOrEdit(self.contact);
-      }
-    }
+    self.editContact = function(contact){
+      ContactService.createOrEdit(contact);
+    };
 
     self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({
@@ -39,8 +35,7 @@
         size: 'md',
         resolve: {
           phoneNumber: function () {
-            // return $scope.items;
-            return phoneNumber
+            return phoneNumber;
           }
         }
       });
@@ -50,7 +45,7 @@
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
-    }
+    };
   })
 
   .controller('DialerModalInstanceCtrl', function ($scope, $modalInstance, phoneNumber) {
@@ -65,7 +60,7 @@
     self.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
-  })
+  });
 
 })();
 

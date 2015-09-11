@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('LogOutreachController', function (StudentNavService) {
+  .controller('LogOutreachController', function () {
     var self = this;
 
     self.activities = [
@@ -25,13 +25,13 @@
       },
     ];
 
-    self.options = ["Phone call home", "Email sent home", "Spoke with student"]
+    self.options = ["Phone call home", "Email sent home", "Spoke with student"];
 
 
     self.submitLog = function(){
       self.selectedActivity.timestamp = new Date().toLocaleString();
       self.selectedActivity = {};
-    }
+    };
 
   });
 })();

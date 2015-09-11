@@ -10,12 +10,19 @@
     self.header = header;
 
     self.save = function (contact) {
-      $modalInstance.close('saving contact');
-      StudentNavService.addNewContact(contact);
+      if (contact.isNew){
+        StudentNavService.addNewContact(contact);
+      }
+      $modalInstance.close();
     };
 
     self.cancel = function () {
-      $modalInstance.dismiss('cancel');
+      StudentNavService.restoreSelectedStudent();
+      $modalInstance.dismiss();
+    };
+
+    self.setDirty = function(){
+      self.editContactForm.$setDirty();
     };
   })
 
@@ -23,13 +30,14 @@
     var self = this;
 
     self.createOrEdit = function(existingContact){
-      // if no contact is passed through, create a new one
+      var contact;
+      var header;
       if (existingContact){
-        var contact = existingContact;
-        var header = "Edit Custom Contact";
+        contact = existingContact;
+        header = existingContact.isAts ? "Edit ATS Contact" : "Edit Custom Contact";
       } else {
-        var contact = StudentNavService.createNewContact();
-        var header = "New Custom Contact";
+        contact = StudentNavService.createNewContact();
+        header = "New Custom Contact";
       }
 
       var modalInstance = $modal.open({
@@ -38,10 +46,9 @@
         controller: 'CreateOrEditContactInstanceCtrl',
         controllerAs: 'contCtrl',
         bindToController: true,
-        size: 'lg',
+        size: 'md',
         resolve: {
           contact: function () {
-            // return $scope.items;
             return contact;
           },
           header: function(){
@@ -51,11 +58,11 @@
       });
       // may or may not need this
       modalInstance.result.then(function () {
-        $log.info('back from modal')
+        $log.debug('Update database here');
       }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
+        $log.info('Action cancelled - contact reset');
       });
-    }
+    };
   });
 
 
