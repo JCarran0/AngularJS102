@@ -17,10 +17,17 @@
     }
   })
 
-  .controller('JcContactFieldController', function($scope, $modal, $log){
+  .controller('JcContactFieldController', function($scope, $modal, $log, ContactService){
     var self = this;
     self.editFieldIsCollapsed = true;
-    console.log(self.contact.atsMetaData)
+
+    self.editContact = function(contactType){
+      if (contactType === 'ats') {
+        self.editFieldIsCollapsed = !self.editFieldIsCollapsed;
+      } else {
+        ContactService.createOrEdit(self.contact);
+      }
+    }
 
     self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({
@@ -58,8 +65,14 @@
     self.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
-
   })
 
-
 })();
+
+
+
+
+
+
+
+

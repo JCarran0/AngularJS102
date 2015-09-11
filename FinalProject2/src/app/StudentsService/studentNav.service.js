@@ -53,6 +53,8 @@
 
     self.saveAtsMetaData = function(metaData, contactType){
       var atsMetaData = self.state.selectedStudent.additionalContactDetails.atsMetaData;
+      console.log('contactType', contactType)
+      console.log('atsMetaData[contactType]', atsMetaData[contactType])
       if (!atsMetaData[contactType].notes){
         atsMetaData[contactType].notes = [];
       }
@@ -146,7 +148,11 @@
             "email": "email"
         },
         "additionalContactDetails": {
-          "altContacts": [],
+          "altContacts": [{
+            first: 'Joj',
+            last: 'Contreras',
+            phone: '555 444 3221'
+          }],
           "atsMetaData": {
             "adult1": {
               "email": 'testEmail@email.com',
