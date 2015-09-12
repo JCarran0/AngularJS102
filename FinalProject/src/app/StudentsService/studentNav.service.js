@@ -36,8 +36,6 @@
       var newCacheCopy = angular.copy(cachedCopyOfSelectedStudent);
       self.state.selectedStudent = angular.copy(cachedCopyOfSelectedStudent);
       setSelected();
-
-      // formatSelectedStudent(self.state.selectedStudent);
     };
 
     self.next = function(){
@@ -76,9 +74,6 @@
     self.deleteContact = function(contact){
       var alts = self.state.selectedStudent.additionalContactDetails.altContacts;
       var indx = alts.indexOf(contact);
-      $log.debug(alts[0])
-      $log.debug(contact)
-      $log.debug('indx ', indx)
       alts.splice(indx, 1);
       formatSelectedStudent(self.state.selectedStudent);
       cacheSelectedStudent();
