@@ -6,7 +6,7 @@
   .directive('jcHomeContactDialerButton', function(){
     return {
       animation: true,
-      templateUrl: 'app/shared/dialer/jcHomeContactDialerButton.html',
+      templateUrl: 'app/components/home/contacts/dialer/jcHomeContactDialerButton.html',
       controller: 'HomeContactDialerButtonController',
       controllerAs: 'ctrl',
       bindToController: true,
