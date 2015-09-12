@@ -9,7 +9,6 @@
     //temp data - will come from API call to db
     var data = TEMPDATA;
 
-    var cachedCopyOfSelectedStudent; // a restore point to use with resetStudent();
     var index = 0;
     self.state = {};
     self.state.list = angular.copy(data);
@@ -21,17 +20,11 @@
     self.setIndex = function(selectedStudent){
       index = self.state.list.indexOf(selectedStudent);
       formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
-      cacheSelectedStudent();
     };
-
-    function cacheSelectedStudent(){
-      cachedCopyOfSelectedStudent = angular.copy(self.state.selectedStudent);
-    }
 
     function setSelected(){
       self.state.selectedStudent = self.state.list[index];
       formatSelectedStudent(self.state.selectedStudent);
-      cacheSelectedStudent();
     }
 
     self.swapContacts = function(newContact, existingContact){
@@ -57,8 +50,6 @@
     };
 
 
-
-
     // All this contact business should be moved to another service
     // Possibly the contact.controller.js file???
     // Or else a new service.
@@ -66,7 +57,6 @@
       delete newContact.isNew;
       self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
       formatSelectedStudent(self.state.selectedStudent);
-      cacheSelectedStudent();
     };
 
     self.createNewContact = function(){
@@ -78,7 +68,6 @@
       var indx = alts.indexOf(contact);
       alts.splice(indx, 1);
       formatSelectedStudent(self.state.selectedStudent);
-      cacheSelectedStudent();
     };
 
     self.saveAtsMetaData = function(metaData, contactType){
