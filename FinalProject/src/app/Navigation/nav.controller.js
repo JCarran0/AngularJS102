@@ -7,7 +7,7 @@
     var self = this;
 
     self.state = StudentNavService.state;
-    self.list = StudentNavService.list;
+    self.list = StudentNavService.state.list;
 
     self.setIndex = function(selectedStudent) {
       StudentNavService.setIndex(selectedStudent);

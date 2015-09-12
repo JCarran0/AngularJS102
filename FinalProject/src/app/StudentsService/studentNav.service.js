@@ -9,15 +9,15 @@
     //temp data - will come from API call to db
     var data = TEMPDATA;
 
-    self.list = angular.copy(data);
-    self.data = angular.copy(data);
     var cachedCopyOfSelectedStudent; // a restore point to use with resetStudent();
     var index = 0;
     self.state = {};
+    self.state.list = angular.copy(data);
+    self.state.data = angular.copy(data);
     setSelected();
 
     self.setIndex = function(selectedStudent){
-      index = self.list.indexOf(selectedStudent);
+      index = self.state.list.indexOf(selectedStudent);
       formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
       cacheSelectedStudent();
     };
@@ -27,14 +27,17 @@
     }
 
     function setSelected(){
-      self.state.selectedStudent = self.list[index];
+      self.state.selectedStudent = self.state.list[index];
       formatSelectedStudent(self.state.selectedStudent);
       cacheSelectedStudent();
     }
 
     self.restoreSelectedStudent = function(){
+      var newCacheCopy = angular.copy(cachedCopyOfSelectedStudent);
       self.state.selectedStudent = angular.copy(cachedCopyOfSelectedStudent);
-      formatSelectedStudent(self.state.selectedStudent);
+      setSelected();
+
+      // formatSelectedStudent(self.state.selectedStudent);
     };
 
     self.next = function(){
@@ -48,7 +51,7 @@
     self.previous = function(){
       index --;
       if(index === -1){
-        index = self.list.length-1;
+        index = self.state.list.length-1;
       }
       setSelected();
     };
@@ -147,13 +150,13 @@
 
     // $q.all([apiCall1, apiCall2]).then(function(ret){
     //     console.log(ret.length + ' docs fetched successfully');
-    //     Nav.list.length = 0; // clear existing array
+    //     Nav.state.list.length = 0; // clear existing array
     //     Nav.data.length = 0;
 
-    //     Nav.list.push.apply(Nav.list, ret[0].data); // Push data to initial arrays
+    //     Nav.state.list.push.apply(Nav.state.list, ret[0].data); // Push data to initial arrays
     //     Nav.data.push.apply(Nav.data, ret[1].data); // Push data to initial arrays
 
-    //     angular.extend(self.selectedStudent, Nav.list[Nav.index]);
+    //     angular.extend(self.selectedStudent, Nav.state.list[Nav.index]);
     //     angular.extend(self.selectedStudentData, Nav.data[Nav.index]);
     //     console.log(self.selectedStudentData)
     //     callback();
