@@ -1,41 +1,38 @@
 <div class="row">
-
   <div class="col-xs-1">
-    <jc-dialer-button contact="contactCtrl.contact"></jc-dialer-button>
+    <jc-dialer-button contact="ctrl.contact"></jc-dialer-button>
   </div>
 
   <div class="col-xs-9">
 
-    <div ng-if="contactCtrl.contact.name">
+    <div ng-if="ctrl.contact.name">
       <strong>Name: </strong>
-      <span ng-bind="contactCtrl.contact.name" class="text-capitalize"></span>
+      <span ng-bind="ctrl.contact.name" class="text-capitalize"></span>
     </div>
 
-    <div ng-if="contactCtrl.contact.phone">
-      <strong ng-if="!contactCtrl.contact.atsMetaData.isCellPhone">Phone: </strong>
-      <strong ng-if="contactCtrl.contact.atsMetaData.isCellPhone">Mobile: </strong>
-      <span ng-bind="contactCtrl.contact.phone"
+    <div ng-if="ctrl.contact.phone">
+      <strong ng-if="!ctrl.contact.atsMetaData.isCellPhone">Phone: </strong>
+      <strong ng-if="ctrl.contact.atsMetaData.isCellPhone">Mobile: </strong>
+      <span ng-bind="ctrl.contact.phone"
             class="text-capitalize"
-            ng-class="{'bad-val': contactCtrl.contact.atsMetaData.numberIsBad}"></span>
+            ng-class="{'bad-val': ctrl.contact.atsMetaData.numberIsBad}"></span>
     </div>
 
-    <div ng-if="contactCtrl.contact.email">
+    <div ng-if="ctrl.contact.email">
       <strong>Email: </strong>
-      <span ng-bind="contactCtrl.contact.email"
+      <span ng-bind="ctrl.contact.email"
             class="text-capitalize"
-            ng-class="{'bad-val': contactCtrl.contact.atsMetaData.emailIsBad}"></span>
+            ng-class="{'bad-val': ctrl.contact.atsMetaData.emailIsBad}"></span>
     </div>
 
-    <div ng-if="contactCtrl.contact.address">
+    <div ng-if="ctrl.contact.address">
       <strong>Address: </strong>
-      <span ng-bind="contactCtrl.contact.address" class="text-capitalize"></span>
+      <span ng-bind="ctrl.contact.address" class="text-capitalize"></span>
     </div>
   </div>
 
   <div class="col-xs-2">
-    <i class="glyphicon glyphicon-pencil nv-icon red"
-       ng-class="{isOpen: !contactCtrl.editFieldIsCollapsed}"
-       ng-click="contactCtrl.editContact(contactCtrl.contact)"></i>
+    <jc-contact-edit-button type="icon" contact="ctrl.contact"></jc-contact-edit-button>
   </div>
 </div> <!-- row -->
 

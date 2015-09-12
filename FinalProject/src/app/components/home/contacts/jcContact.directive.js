@@ -7,7 +7,7 @@
     return {
       templateUrl: 'app/components/home/contacts/jcContact.html',
       controller: 'ContactController',
-      controllerAs: 'contactCtrl',
+      controllerAs: 'ctrl',
       bindToController: true,
       scope: {
         contact: '=',
@@ -16,14 +16,6 @@
     };
   })
 
-  .controller('ContactController', function(ContactService){
-    var self = this;
-    self.editFieldIsCollapsed = true;
-
-    self.editContact = function(contact){
-      ContactService.createOrEdit(contact);
-    };
-  })
 })();
 
 

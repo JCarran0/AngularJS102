@@ -40,8 +40,8 @@
 .nv-icon.blue:hover {
   color: blue;
 }
-.nv-icon.red:hover, .nv-icon.red.isOpen{
-  color: red;
+.nv-icon.red:hover {
+  color: #BA0F0F;
 }
 .nv-icon.red:active, .nv-icon.blue:active{
   color: black;
@@ -88,11 +88,11 @@
 
 .bad-val {
   text-decoration: line-through;
-  color: red;
+  color: #BA0F0F;
 }
 
 .bad-icon {
-  color: red;
+  color: #BA0F0F;
   cursor: not-allowed;
 }
 

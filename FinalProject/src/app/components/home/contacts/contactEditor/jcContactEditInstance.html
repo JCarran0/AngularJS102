@@ -1,32 +1,32 @@
-<div ng-show="!contCtrl.confirmDelete">
+<div ng-show="!ctrl.confirmDelete">
 <div class="modal-header">
-    <h3 class="modal-title" ng-bind="contCtrl.header"></h3>
-    <span ng-if="contCtrl.contact.isAts" class="red-text">NOTE: Some ATS fields can only be updated by your ATS secretary</span>
+    <h3 class="modal-title" ng-bind="ctrl.header"></h3>
+    <span ng-if="ctrl.contact.isAts" class="red-text">NOTE: Some ATS fields can only be updated by your ATS secretary</span>
 </div>
 
 <div class="modal-body">
   <div class="row">
-    <form name="contCtrl.editContactForm"
+    <form name="ctrl.editContactForm"
             novalidate>
       <div class="col-sm-5 left-side">
         <label class='form-group'>First Name:
           <input type="text"
                  class="form-control"
-                 ng-disabled="contCtrl.contact.isAts"
-                 ng-model="contCtrl.contact.first">
+                 ng-disabled="ctrl.contact.isAts"
+                 ng-model="ctrl.contact.first">
         </label>
         <br>
         <label class='form-group'>Last Name:
           <input type="text"
                  class="form-control"
-                 ng-disabled="contCtrl.contact.isAts"
-                 ng-model="contCtrl.contact.last">
+                 ng-disabled="ctrl.contact.isAts"
+                 ng-model="ctrl.contact.last">
         </label>
         <br>
         <label class='form-group'>Ralationship to student:
           <input type="text"
                  class="form-control"
-                 ng-model="contCtrl.contact.relationship">
+                 ng-model="ctrl.contact.relationship">
         </label>
       </div> <!-- end left-side -->
 
@@ -34,14 +34,14 @@
         <label class='form-group'>Email:
           <input type="text"
                  class="form-control"
-                 ng-model="contCtrl.contact.email">
+                 ng-model="ctrl.contact.email">
         </label>
         <br>
         <label class='form-group'>Phone:
           <input type="text"
                  class="form-control"
-                 ng-disabled="contCtrl.contact.isAts"
-                 ng-model="contCtrl.contact.phone">
+                 ng-disabled="ctrl.contact.isAts"
+                 ng-model="ctrl.contact.phone">
         </label class='form-group'>
         <br>
       </div><!-- end right-side -->
@@ -50,43 +50,43 @@
 
   <div class="row">
     <div class="col-sm-9 left-side">
-      <div class="checkbox" ng-if="contCtrl.contact.phone">
+      <div class="checkbox" ng-if="ctrl.contact.phone">
         <label>
           <input type="checkbox"
-                 ng-click="contCtrl.setDirty()"
-                 ng-model="contCtrl.contact.atsMetaData.isCellPhone"> Number is a cellphone
+                 ng-click="ctrl.setDirty()"
+                 ng-model="ctrl.contact.atsMetaData.isCellPhone"> Number is a cellphone
         </label>
       </div>
       <div class="flags"
-           ng-if="!contCtrl.contact.isNew">
-        <div class="checkbox" ng-if="contCtrl.contact.phone">
+           ng-if="!ctrl.contact.isNew">
+        <div class="checkbox" ng-if="ctrl.contact.phone">
           <label>
             <input type="checkbox"
-                   ng-click="contCtrl.setDirty()"
-                   ng-model="contCtrl.contact.atsMetaData.numberIsBad" > Number Is Bad
+                   ng-click="ctrl.setDirty()"
+                   ng-model="ctrl.contact.atsMetaData.numberIsBad" > Number Is Bad
           </label>
         </div>
-        <div class="checkbox" ng-if="contCtrl.contact.email">
+        <div class="checkbox" ng-if="ctrl.contact.email">
           <label>
             <input type="checkbox"
-                   ng-click="contCtrl.setDirty()"
-                   ng-model="contCtrl.contact.atsMetaData.emailIsBad" > Email Is Bad
+                   ng-click="ctrl.setDirty()"
+                   ng-model="ctrl.contact.atsMetaData.emailIsBad" > Email Is Bad
           </label>
         </div>
-        <div class="checkbox" ng-if="contCtrl.contact.address">
+        <div class="checkbox" ng-if="ctrl.contact.address">
           <label>
             <input type="checkbox"
-                   ng-click="contCtrl.setDirty()"
-                   ng-model="contCtrl.contact.atsMetaData.addressIsBad"> Address Is Bad
+                   ng-click="ctrl.setDirty()"
+                   ng-model="ctrl.contact.atsMetaData.addressIsBad"> Address Is Bad
           </label>
         </div>
       </div><!-- end flags -->
       <label>New note related to this contact:
         <textarea class="form-control"
                   cols="100"
-                  ng-change="contCtrl.setDirty()"
+                  ng-change="ctrl.setDirty()"
                   placeholder="Optional: Enter notes specific to this contact"
-                  ng-model="contCtrl.contact.contactNotes"></textarea>
+                  ng-model="ctrl.contact.contactNotes"></textarea>
       </label>
       <br>
     </div>
@@ -97,21 +97,21 @@
 <div class="modal-footer">
     <button class="btn btn-primary"
             type="button"
-            ng-click="contCtrl.save(contCtrl.contact)"
-            ng-disabled="contCtrl.editContactForm.$pristine">Save</button>
+            ng-click="ctrl.save(ctrl.contact)"
+            ng-disabled="ctrl.editContactForm.$pristine">Save</button>
     <button class="btn btn-danger"
             type="button"
-            ng-if="!contCtrl.contact.isAts && !contCtrl.contact.isNew"
-            ng-click="contCtrl.confirmDelete = !contCtrl.confirmDelete">Delete</button>
+            ng-if="!ctrl.contact.isAts && !ctrl.contact.isNew"
+            ng-click="ctrl.confirmDelete = !ctrl.confirmDelete">Delete</button>
     <button class="btn btn-default"
             type="button"
-            ng-click="contCtrl.cancel()">Cancel</button>
+            ng-click="ctrl.cancel()">Cancel</button>
 </div>
 </div>
 
 
 
-<div class="confirm-delete-box" ng-show="contCtrl.confirmDelete">
+<div class="confirm-delete-box" ng-show="ctrl.confirmDelete">
   <div class="modal-header">
       <h3 class="modal-title text-danger"><span class="glyphicon glyphicon-alert"></span> Delete Contact</h3>
   </div>
@@ -123,11 +123,11 @@
   <div class="modal-footer">
     <button class="btn btn-danger"
             type="button"
-            ng-if="!contCtrl.contact.isAts && !contCtrl.contact.isNew"
-            ng-click="contCtrl.deleteContact(contCtrl.contact)">Delete</button>
+            ng-if="!ctrl.contact.isAts && !ctrl.contact.isNew"
+            ng-click="ctrl.deleteContact(ctrl.contact)">Delete</button>
     <button class="btn btn-default"
             type="button"
-            ng-click="contCtrl.confirmDelete = !contCtrl.confirmDelete">Cancel</button>
+            ng-click="ctrl.confirmDelete = !ctrl.confirmDelete">Cancel</button>
   </div>
 </div>
 

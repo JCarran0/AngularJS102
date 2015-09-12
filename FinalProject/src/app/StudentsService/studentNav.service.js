@@ -34,11 +34,13 @@
       cacheSelectedStudent();
     }
 
-    self.restoreSelectedStudent = function(){
-      var newCacheCopy = angular.copy(cachedCopyOfSelectedStudent);
-      self.state.selectedStudent = angular.copy(cachedCopyOfSelectedStudent);
-      setSelected();
-    };
+    // self.restoreSelectedStudent = function(){
+    //   var newCacheCopy = angular.copy(cachedCopyOfSelectedStudent);
+    //   self.state.list.splice(index, 1, newCacheCopy); // remove
+    //   // self.state.selectedStudent = newCacheCopy;
+    //   // formatSelectedStudent(self.state.selectedStudent);
+    //   // cacheSelectedStudent();
+    // };
 
     self.next = function(){
       index ++;
