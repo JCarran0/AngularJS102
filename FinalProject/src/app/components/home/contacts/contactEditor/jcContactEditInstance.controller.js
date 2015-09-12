@@ -7,18 +7,20 @@
   .controller('ContactEditInstanceController', function ($modalInstance, contact, header, StudentNavService) {
     var self = this;
 
-    self.contact = contact;
+    self.stagedContact = angular.copy(contact);
     self.header = header;
 
-    self.save = function (contact) {
-      if (contact.isNew){
-        StudentNavService.addNewContact(contact);
+    self.save = function (modContact) {
+      if (modContact.isNew){
+        StudentNavService.addNewContact(modContact);
+      } else {
+        StudentNavService.swapContacts(modContact, contact);
       }
       $modalInstance.close();
     };
 
     self.cancel = function () {
-      StudentNavService.restoreSelectedStudent();
+      self.stagedContact = angular.copy(contact);
       $modalInstance.dismiss();
     };
 
