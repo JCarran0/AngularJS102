@@ -17,15 +17,19 @@
     setSelected();
 
     self.setIndex = function(selectedStudent){
-      formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
       index = self.list.indexOf(selectedStudent);
-      cachedCopyOfSelectedStudent = angular.copy(selectedStudent);
+      formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
+      cacheSelectedStudent();
     };
+
+    function cacheSelectedStudent(){
+      cachedCopyOfSelectedStudent = angular.copy(self.state.selectedStudent);
+    }
 
     function setSelected(){
       self.state.selectedStudent = self.list[index];
       formatSelectedStudent(self.state.selectedStudent);
-      cachedCopyOfSelectedStudent = angular.copy(self.state.selectedStudent);
+      cacheSelectedStudent();
     }
 
     self.restoreSelectedStudent = function(){
@@ -59,10 +63,22 @@
       delete newContact.isNew;
       self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
       formatSelectedStudent(self.state.selectedStudent);
+      cacheSelectedStudent();
     };
 
     self.createNewContact = function(){
       return new NewContact();
+    };
+
+    self.deleteContact = function(contact){
+      var alts = self.state.selectedStudent.additionalContactDetails.altContacts;
+      var indx = alts.indexOf(contact);
+      $log.debug(alts[0])
+      $log.debug(contact)
+      $log.debug('indx ', indx)
+      alts.splice(indx, 1);
+      formatSelectedStudent(self.state.selectedStudent);
+      cacheSelectedStudent();
     };
 
     self.saveAtsMetaData = function(metaData, contactType){

@@ -1,9 +1,10 @@
+<div ng-show="!contCtrl.confirmDelete">
 <div class="modal-header">
     <h3 class="modal-title" ng-bind="contCtrl.header"></h3>
+    <span ng-if="contCtrl.contact.isAts" class="red-text">NOTE: Some ATS fields can only be updated by your ATS secretary</span>
 </div>
 
 <div class="modal-body">
-  <p ng-if="contCtrl.contact.isAts" class="red-text">NOTE: Some ATS fields can only be updated by your ATS secretary</p>
   <div class="row">
     <form name="contCtrl.editContactForm"
             novalidate>
@@ -94,13 +95,40 @@
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-danger"
+    <button class="btn btn-primary"
             type="button"
             ng-click="contCtrl.save(contCtrl.contact)"
-            ng-disabled="contCtrl.editContactForm.$pristine">Save Contact</button>
+            ng-disabled="contCtrl.editContactForm.$pristine">Save</button>
+    <button class="btn btn-danger"
+            type="button"
+            ng-if="!contCtrl.contact.isAts && !contCtrl.contact.isNew"
+            ng-click="contCtrl.confirmDelete = !contCtrl.confirmDelete">Delete</button>
     <button class="btn btn-default"
             type="button"
             ng-click="contCtrl.cancel()">Cancel</button>
+</div>
+</div>
+
+
+
+<div class="confirm-delete-box" ng-show="contCtrl.confirmDelete">
+  <div class="modal-header">
+      <h3 class="modal-title text-danger"><span class="glyphicon glyphicon-alert"></span> Delete Contact</h3>
+  </div>
+
+  <div class="modal-body">
+    <h4>Are you sure you want to delete this contact?</h4>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-danger"
+            type="button"
+            ng-if="!contCtrl.contact.isAts && !contCtrl.contact.isNew"
+            ng-click="contCtrl.deleteContact(contCtrl.contact)">Delete</button>
+    <button class="btn btn-default"
+            type="button"
+            ng-click="contCtrl.confirmDelete = !contCtrl.confirmDelete">Cancel</button>
+  </div>
 </div>
 
 

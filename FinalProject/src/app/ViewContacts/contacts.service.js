@@ -21,6 +21,11 @@
       $modalInstance.dismiss();
     };
 
+    self.deleteContact = function(contact){
+      $modalInstance.close();
+      StudentNavService.deleteContact(contact);
+    };
+
     self.setDirty = function(){
       self.editContactForm.$setDirty();
     };
