@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('HomeContactDialerInstanceController', function ($scope, $modalInstance, phoneNumber) {
+  .controller('DialerInstanceController', function ($scope, $modalInstance, phoneNumber) {
     var self = this;
 
     self.phoneNumber = phoneNumber;

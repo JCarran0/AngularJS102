@@ -3,14 +3,14 @@
 
   angular.module('template')
 
-  .controller('HomeContactDialerButtonController', function($scope, $modal, $log){
+  .controller('DialerButtonController', function($scope, $modal, $log){
     var self = this;
 
     self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'app/components/home/contacts/dialer/homeContactDialerInstance.html',
-        controller: 'HomeContactDialerInstanceController',
+        templateUrl: 'app/components/home/contacts/dialer/dialerInstance.html',
+        controller: 'DialerInstanceController',
         controllerAs: 'modalCtrl',
         bindToController: true,
         size: 'md',
