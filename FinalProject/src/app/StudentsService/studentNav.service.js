@@ -15,6 +15,8 @@
     self.state.list = angular.copy(data);
     self.state.data = angular.copy(data);
     setSelected();
+    // self.state.list = [];
+    // self.state.data = [];
 
     self.setIndex = function(selectedStudent){
       index = self.state.list.indexOf(selectedStudent);
@@ -138,26 +140,24 @@
 
 
 
-    // self.load = function(callback){
+    // self.load = function(){
 
     // var apiCall1 = StudentResource.getStudents().$promise;
     // var apiCall2 = StudentResource.getStudents().$promise;
 
     // $q.all([apiCall1, apiCall2]).then(function(ret){
     //     console.log(ret.length + ' docs fetched successfully');
-    //     Nav.state.list.length = 0; // clear existing array
-    //     Nav.data.length = 0;
+    //     self.state.list.length = 0; // clear existing array
+    //     self.state.data.length = 0;
 
-    //     Nav.state.list.push.apply(Nav.state.list, ret[0].data); // Push data to initial arrays
-    //     Nav.data.push.apply(Nav.data, ret[1].data); // Push data to initial arrays
+    //     self.state.list.push.apply(self.state.list, ret[0].data); // Push data to initial arrays
+    //     self.state.data.push.apply(self.state.data, ret[1].data); // Push data to initial arrays
 
-    //     angular.extend(self.selectedStudent, Nav.state.list[Nav.index]);
-    //     angular.extend(self.selectedStudentData, Nav.data[Nav.index]);
-    //     console.log(self.selectedStudentData)
-    //     callback();
+    //     console.log('self.state.list', self.state.list)
+    //     setSelected();
     //   })
-    // },
-
+    // }
+    // self.load();
 
   })
 

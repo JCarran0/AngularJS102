@@ -28,7 +28,7 @@
           <button ng-click = 'navCtrl.previous(); $event.stopPropagation();'
                   class='btn btn-primary nv-nav-btn'>Previous</button>
 
-          <select ng-options = 'student as student.studentDetails.first for student in navCtrl.list'
+          <select ng-options = 'student as student.studentDetails.first for student in navCtrl.state.list'
                   ng-model = 'navCtrl.state.selectedStudent'
                   ng-change = 'navCtrl.setIndex(navCtrl.state.selectedStudent)'
                   class = 'form-control nv-nav-select'>
