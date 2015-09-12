@@ -1,0 +1,11 @@
+<i class="glyphicon glyphicon-earphone nv-icon blue"
+   ng-if="!ctrl.contact.atsMetaData.numberIsBad"
+   ng-click="ctrl.openDialerModal(ctrl.contact.phone)"></i>
+<i class="glyphicon glyphicon-earphone nv-icon bad-icon"
+   ng-if="ctrl.contact.atsMetaData.numberIsBad"></i>
+
+
+   <!-- ng-class="{
+    'blue': !ctrl.contact.atsMetaData.numberIsBad,
+    'bad-icon': ctrl.contact.atsMetaData.numberIsBad
+   }" -->
