@@ -3,7 +3,7 @@
 
   angular.module('StudentNavModule', ['StudentFetchService'])
 
-  .service('StudentNavService', function($q, $log, StudentResource, TEMPDATA, NewContact){
+  .service('StudentNavService', function($q, $log, GetStudentsResource, TEMPDATA, NewContact){
     var self = this;
 
     //temp data - will come from API call to db
@@ -131,8 +131,8 @@
 
     // self.load = function(){
 
-    // var apiCall1 = StudentResource.getStudents().$promise;
-    // var apiCall2 = StudentResource.getStudents().$promise;
+    // var apiCall1 = GetStudentsResource.getStudents().$promise;
+    // var apiCall2 = GetStudentsResource.getStudents().$promise;
 
     // $q.all([apiCall1, apiCall2]).then(function(ret){
     //     console.log(ret.length + ' docs fetched successfully');
