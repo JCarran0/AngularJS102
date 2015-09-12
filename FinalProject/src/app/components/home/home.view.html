@@ -28,13 +28,13 @@
     <div id="tmp-sidediv" class="right-panel col-md-7 container">
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class='{active: ctrl.isActive.log}'>
-          <a href="#" ui-sref="view.logOutreach" ng-click='ctrl.activateTab("log")'>Log Outreach</a>
+          <a href="#" ui-sref="home.logOutreach" ng-click='ctrl.activateTab("log")'>Log Outreach</a>
         </li>
         <li role="presentation" ng-class='{active: ctrl.isActive.history}'>
-          <a href="#" ui-sref="view.outreachHistory" ng-click='ctrl.activateTab("history")'>View Outreach History</a>
+          <a href="#" ui-sref="home.outreachHistory" ng-click='ctrl.activateTab("history")'>View Outreach History</a>
         </li>
         <li role="presentation" ng-class='{active: ctrl.isActive.data}'>
-          <a href="#" ui-sref="view.studentData" ng-click='ctrl.activateTab("data")'>View Data</a>
+          <a href="#" ui-sref="home.studentData" ng-click='ctrl.activateTab("data")'>View Data</a>
         </li>
       </ul>
       <section ui-view></section>

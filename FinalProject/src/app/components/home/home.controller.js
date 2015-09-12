@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('ViewController', function ($scope, $modal, $log, StudentNavService, ContactService) {
+  .controller('HomeController', function ($scope, $modal, $log, StudentNavService, ContactService) {
     var self = this;
     self.state = StudentNavService.state;
     self.isActive = {log: true};

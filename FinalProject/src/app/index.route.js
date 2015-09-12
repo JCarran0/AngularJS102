@@ -5,28 +5,28 @@
     .module('template')
     .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('view', {
-        url: '/view',
-        templateUrl: 'app/ViewContacts/view.html',
-        controller: 'ViewController',
+      .state('home', {
+        url: '/home',
+        templateUrl: 'app/components/home/home.view.html',
+        controller: 'HomeController',
         controllerAs: 'ctrl'
       })
-      .state('view.logOutreach', {
-        url: '/logOutreach',
-        templateUrl: 'app/logOutreach/logOutreach.html',
+      .state('home.logOutreach', {
+        url: '/log-outreach',
+        templateUrl: 'app/components/outreach/log/log.view.html',
         controller: 'LogOutreachController',
         controllerAs: 'ctrl'
       })
-      .state('view.outreachHistory', {
-        url: '/outreachHistory',
-        templateUrl: 'app/outreachHistoryView/outreachHistory.html',
+      .state('home.outreachHistory', {
+        url: '/outreach-history',
+        templateUrl: 'app/components/outreach/history/history.view.html',
       })
-      .state('view.studentData', {
-        url: '/studentData',
-        templateUrl: 'app/studentDataView/studentData.html'
+      .state('home.studentData', {
+        url: '/student-data',
+        templateUrl: 'app/components/outreach/data/data.view.html'
       });
 
-    $urlRouterProvider.otherwise('/view/logOutreach');
+    $urlRouterProvider.otherwise('/log-outreach');
   });
 
 })();
