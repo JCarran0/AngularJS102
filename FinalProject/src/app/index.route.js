@@ -13,20 +13,20 @@
       })
       .state('home.logOutreach', {
         url: '/log-outreach',
-        templateUrl: 'app/components/outreach/log/log.view.html',
+        templateUrl: 'app/components/home/outreach/log/log.view.html',
         controller: 'LogOutreachController',
         controllerAs: 'ctrl'
       })
       .state('home.outreachHistory', {
         url: '/outreach-history',
-        templateUrl: 'app/components/outreach/history/history.view.html',
+        templateUrl: 'app/components/home/outreach/history/history.view.html',
       })
       .state('home.studentData', {
         url: '/student-data',
-        templateUrl: 'app/components/outreach/data/data.view.html'
+        templateUrl: 'app/components/home/outreach/data/data.view.html'
       });
 
-    $urlRouterProvider.otherwise('/log-outreach');
+    $urlRouterProvider.otherwise('/home/log-outreach');
   });
 
 })();
