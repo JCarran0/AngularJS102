@@ -3,10 +3,12 @@
 
   angular.module('template')
 
-  .controller('HomeController', function ($rootScope, $modal, $log, ContactService) {
+  .controller('HomeController', function ($rootScope, $modal, $log, ContactService, CONSTANTS) {
     var self = this;
     self.state = ContactService.state;
     self.isActive = {log: true};
+    self.header = CONSTANTS.headers.home;
+    self.tabLabels = CONSTANTS.tabLabels;
 
     self.activateTab = function(tab){
       self.isActive = {};

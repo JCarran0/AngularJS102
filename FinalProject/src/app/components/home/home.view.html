@@ -1,6 +1,6 @@
 <div class='container'>
   <div>
-    <h1>Home Contacts</h1>
+    <h1 ng-bind="ctrl.header"></h1>
   </div>
   <div class='row'>
     <div class="left-panel col-md-5">
@@ -27,37 +27,28 @@
     <div id="tmp-sidediv" class="right-panel col-md-7 container">
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class='{active: ctrl.isActive.log}'>
-          <a href="#" ui-sref="home.logOutreach" ng-click='ctrl.activateTab("log")'>Log Outreach</a>
+          <a href="#"
+             ui-sref="home.logOutreach"
+             ng-click='ctrl.activateTab("log")'
+             ng-bind="ctrl.tabLabels.logOutreach"></a>
         </li>
         <li role="presentation" ng-class='{active: ctrl.isActive.history}'>
-          <a href="#" ui-sref="home.outreachHistory" ng-click='ctrl.activateTab("history")'>View Outreach History</a>
+          <a href="#"
+             ui-sref="home.outreachHistory"
+             ng-click='ctrl.activateTab("history")'
+             ng-bind="ctrl.tabLabels.outreachLogs"></a>
         </li>
         <li role="presentation" ng-class='{active: ctrl.isActive.data}'>
-          <a href="#" ui-sref="home.studentData" ng-click='ctrl.activateTab("data")'>View Data</a>
+          <a href="#"
+             ui-sref="home.studentData"
+             ng-click='ctrl.activateTab("data")'
+             ng-bind="ctrl.tabLabels.studentData"></a>
         </li>
       </ul>
       <section ui-view></section>
     </div><!--end right-panel-->
   </div><!--end row-->
 <div><!--end container-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

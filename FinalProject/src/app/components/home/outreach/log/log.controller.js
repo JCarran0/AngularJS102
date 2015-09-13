@@ -3,8 +3,9 @@
 
   angular.module('template')
 
-  .controller('LogOutreachController', function (OutreachService, ActivityTypes, OutreachMethods) {
+  .controller('LogOutreachController', function (OutreachService, ActivityTypes, OutreachMethods, CONSTANTS) {
     var self = this;
+    self.header = CONSTANTS.headers.logOutreach;
     self.outreachState = OutreachService.outreachState; // outreach state allows the selected values to persist when views change
     self.activities = ActivityTypes;
     self.outreachMethod = OutreachMethods;

@@ -79,8 +79,8 @@
         "studentId": 909987547,
         "schoolId": "96B049",
         "studentDetails": {
-            "first": "Jared",
-            "last": "Carrano",
+            "first": "Danielle",
+            "last": "Scaramellino",
             "email": "email"
         },
         "additionalContactDetails": {
@@ -130,8 +130,8 @@
         "studentId": 909987548,
         "schoolId": "96B049",
         "studentDetails": {
-            "first": "Danielle",
-            "last": "Scaramellino",
+            "first": "Jared",
+            "last": "Carrano",
             "email": "email"
         },
         "additionalContactDetails": {
