@@ -3,7 +3,7 @@
       <button ng-click = 'ctrl.previous()'
               class='btn btn-primary nv-nav-btn'>Previous</button>
 
-      <select ng-options = 'student as student.studentDetails.first for student in ctrl.state.list'
+      <select ng-options = 'student as student.studentDetails.lastFirst for student in ctrl.state.list'
               ng-model = 'ctrl.state.selectedStudent'
               ng-change = 'ctrl.setIndex(ctrl.state.selectedStudent)'
               class = 'form-control nv-nav-select'>

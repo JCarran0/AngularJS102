@@ -1,11 +1,9 @@
-<div class="container">
-  <h3 ng-bind="ctrl.header"></h3>
 
-  <div class="row">
-    <div class="container">
-      <div ng-repeat="log in ctrl.outreachLogs">
-        <jc-outreach-log log="log"></jc-outreach-log>
-      </div>
-    </div>
+<h3 ng-bind="ctrl.header"></h3>
+
+<div class="row">
+  <div ng-repeat="log in ctrl.outreachLogs | orderBy :'-timestamp'">
+    <jc-outreach-log log="log"></jc-outreach-log>
   </div>
 </div>
+

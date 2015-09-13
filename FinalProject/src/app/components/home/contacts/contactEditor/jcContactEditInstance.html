@@ -5,9 +5,10 @@
 </div>
 
 <div class="modal-body">
-  <div class="row">
-    <form name="ctrl.editContactForm"
+  <form name="ctrl.editContactForm"
             novalidate>
+  <div class="row">
+
       <div class="col-sm-5 left-side">
         <label class='form-group'>First Name:
           <input type="text"
@@ -41,11 +42,12 @@
           <input type="text"
                  class="form-control"
                  ng-disabled="ctrl.stagedContact.isAts"
-                 ng-model="ctrl.stagedContact.phone">
+                 ng-model="ctrl.stagedContact.phone"
+                 placeholder="(xxx) xxx-xxxx">
         </label class='form-group'>
         <br>
       </div><!-- end right-side -->
-    </form>
+
   </div><!-- end row -->
 
   <div class="row">
@@ -91,7 +93,7 @@
       <br>
     </div>
   </div>
-
+</form>
 </div>
 
 <div class="modal-footer">
@@ -130,7 +132,6 @@
             ng-click="ctrl.confirmDelete = !ctrl.confirmDelete">Cancel</button>
   </div>
 </div>
-
 
 
 

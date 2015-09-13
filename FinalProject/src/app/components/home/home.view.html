@@ -1,10 +1,9 @@
 <div class='container'>
-  <div>
-    <h1 ng-bind="ctrl.header"></h1>
-  </div>
   <div class='row'>
     <div class="left-panel col-md-5">
-
+      <div>
+        <h1 ng-bind="ctrl.header"></h1>
+      </div>
       <accordion close-others="true">
         <div ng-repeat="contact in ctrl.state.selectedStudent.contacts">
           <accordion-group is-open="isOpen">
@@ -25,6 +24,9 @@
 
 
     <div id="tmp-sidediv" class="right-panel col-md-7 container">
+      <div>
+        <h1></h1>
+      </div>
       <ul class="nav nav-tabs">
         <li role="presentation" ng-class='{active: ctrl.isActive.log}'>
           <a href="#"

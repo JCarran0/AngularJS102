@@ -81,6 +81,7 @@
         "studentDetails": {
             "first": "Danielle",
             "last": "Scaramellino",
+            "lastFirst": "Scaramellino, Danielle",
             "email": "email"
         },
         "additionalContactDetails": {
@@ -132,6 +133,7 @@
         "studentDetails": {
             "first": "Jared",
             "last": "Carrano",
+            "lastFirst": "Carrano, Jared",
             "email": "email"
         },
         "additionalContactDetails": {
