@@ -19,25 +19,11 @@
     <!-- endinject -->
     <!-- endbuild -->
   </head>
-  <body ng-controller="NavController as navCtrl">
+  <body>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <nav class="navbar navbar-default nv-nav-center" role="navigation">
-      <div class="navbar-inner">
-          <button ng-click = 'navCtrl.previous(); $event.stopPropagation();'
-                  class='btn btn-primary nv-nav-btn'>Previous</button>
-
-          <select ng-options = 'student as student.studentDetails.first for student in navCtrl.state.list'
-                  ng-model = 'navCtrl.state.selectedStudent'
-                  ng-change = 'navCtrl.setIndex(navCtrl.state.selectedStudent)'
-                  class = 'form-control nv-nav-select'>
-          </select>
-
-          <button ng-click = 'navCtrl.next(); $event.stopPropagation();'
-            class='btn btn-primary nv-nav-btn'>Next</button>
-      </div>
-    </nav>
+    <jc-student-nav></jc-student-nav>
 
     <div ui-view></div>
 

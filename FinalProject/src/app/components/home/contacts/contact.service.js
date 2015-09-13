@@ -1,11 +1,17 @@
-// (function() {
-//   'use strict';
+(function() {
+  'use strict';
 
-//   angular.module('template')
+  angular.module('template')
 
-//   .service('ContactService', function(){
-//     var self = this;
-//   });
+  .service('ContactService', function(StudentNavService){
+    var self = this;
+    self.state = StudentNavService.state;
 
+    self.loadStudents = function(){
+      StudentNavService.loadStudents();
+    }
 
-// })();
+  })
+
+})();
+

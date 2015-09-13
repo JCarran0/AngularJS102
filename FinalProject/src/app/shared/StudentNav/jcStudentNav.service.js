@@ -11,11 +11,14 @@
 
     var index = 0;
     self.state = {};
-    self.state.list = angular.copy(data);
-    self.state.data = angular.copy(data);
-    setSelected();
     // self.state.list = [];
     // self.state.data = [];
+
+    self.loadStudents = function(){
+      self.state.list = angular.copy(data);
+      self.state.data = angular.copy(data);
+      setSelected();
+    }
 
     self.setIndex = function(selectedStudent){
       index = self.state.list.indexOf(selectedStudent);
@@ -24,7 +27,7 @@
 
     function setSelected(){
       self.state.selectedStudent = self.state.list[index];
-      formatSelectedStudent(self.state.selectedStudent);
+      formatSelectedStudent();
     }
 
     self.swapContacts = function(newContact, existingContact){
@@ -67,7 +70,7 @@
       var alts = self.state.selectedStudent.additionalContactDetails.altContacts;
       var indx = alts.indexOf(contact);
       alts.splice(indx, 1);
-      formatSelectedStudent(self.state.selectedStudent);
+      formatSelectedStudent();
     };
 
     self.saveAtsMetaData = function(metaData, contactType){
@@ -85,8 +88,9 @@
     **
     ** Also joins ATS contacts with custom contacts
     **/
-    function formatSelectedStudent(student){
+    function formatSelectedStudent(){
       var contactList = [];
+      var student = self.state.selectedStudent;
       var ats = student.atsContacts;
       var addlDetails = student.additionalContactDetails;
       var alts = addlDetails.altContacts;
@@ -126,7 +130,6 @@
       }
       student.contacts = contactList;
     }
-
 
 
     // self.load = function(){

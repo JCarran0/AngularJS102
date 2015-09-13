@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('template')
+  angular.module('StudentNavModule')
 
-  .controller('NavController', function (StudentNavService) {
+  .controller('StudentNavController', function (StudentNavService) {
     var self = this;
 
     self.state = StudentNavService.state;
