@@ -6,7 +6,7 @@
   .value('ActivityTypes', [
     {
       _id: "general",
-      name: "General home outreach"
+      name: "General outreach"
     },
     {
       _id: "attendance",

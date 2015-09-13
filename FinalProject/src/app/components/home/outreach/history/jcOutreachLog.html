@@ -16,6 +16,16 @@
     <span ng-bind="ctrl.log.outreachMethod"></span>
   </div>
 
+  <div ng-if="ctrl.log.numberDialed">
+    <strong>Number dialed: </strong>
+    <span ng-bind="ctrl.log.numberDialed"></span>
+  </div>
+
+   <div ng-if="ctrl.log.recipientEmail">
+    <strong>Recipient email: </strong>
+    <span ng-bind="ctrl.log.recipientEmail"></span>
+  </div>
+
   <div ng-if="ctrl.log.outreachType == 'attendance'">
     <strong>Date of Abs: </strong>
     <span ng-bind="ctrl.log.dateOfAbsence"></span>
