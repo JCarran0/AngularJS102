@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('ContactEditButtonController', function($scope, $modal, $log, StudentNavService){
+  .controller('ContactEditButtonController', function($scope, $modal, $log, ContactService){
     var self = this;
 
     if (self.type === 'btn') {
@@ -21,7 +21,7 @@
         contact = existingContact;
         header = existingContact.isAts ? "Edit ATS Contact" : "Edit Custom Contact";
       } else {
-        contact = StudentNavService.createNewContact();
+        contact = ContactService.createNewContact();
         header = "New Custom Contact";
       }
 

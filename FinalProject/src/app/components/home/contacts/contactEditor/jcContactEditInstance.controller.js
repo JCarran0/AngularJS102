@@ -4,7 +4,7 @@
   angular.module('template')
 
 
-  .controller('ContactEditInstanceController', function ($modalInstance, contact, header, StudentNavService) {
+  .controller('ContactEditInstanceController', function ($modalInstance, contact, header, ContactService) {
     var self = this;
 
     self.stagedContact = angular.copy(contact);
@@ -12,9 +12,9 @@
 
     self.save = function (modContact) {
       if (modContact.isNew){
-        StudentNavService.addNewContact(modContact);
+        ContactService.addNewContact(modContact);
       } else {
-        StudentNavService.swapContacts(modContact, contact);
+        ContactService.swapContacts(modContact, contact);
       }
       $modalInstance.close();
     };
@@ -26,7 +26,7 @@
 
     self.deleteContact = function(contact){
       $modalInstance.close();
-      StudentNavService.deleteContact(contact);
+      ContactService.deleteContact(contact);
     };
 
     self.setDirty = function(){

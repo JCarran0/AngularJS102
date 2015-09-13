@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default nv-nav-center" role="navigation">
   <div class="navbar-inner">
-      <button ng-click = 'ctrl.previous(); $event.stopPropagation();'
+      <button ng-click = 'ctrl.previous()'
               class='btn btn-primary nv-nav-btn'>Previous</button>
 
       <select ng-options = 'student as student.studentDetails.first for student in ctrl.state.list'
@@ -9,7 +9,7 @@
               class = 'form-control nv-nav-select'>
       </select>
 
-      <button ng-click = 'ctrl.next(); $event.stopPropagation();'
+      <button ng-click = 'ctrl.next()'
         class='btn btn-primary nv-nav-btn'>Next</button>
   </div>
 </nav>

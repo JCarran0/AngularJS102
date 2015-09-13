@@ -3,9 +3,8 @@
 
   angular.module('StudentNavModule', ['StudentFetchService'])
 
-  .service('StudentNavService', function($q, $log, GetStudentsResource, TEMPDATA, NewContact){
+  .service('StudentNavService', function($q, $log, $rootScope, GetStudentsResource, TEMPDATA){
     var self = this;
-
     //temp data - will come from API call to db
     var data = TEMPDATA;
 
@@ -14,26 +13,21 @@
     // self.state.list = [];
     // self.state.data = [];
 
-    self.loadStudents = function(){
+    self.loadStudents = function(callback){
       self.state.list = angular.copy(data);
       self.state.data = angular.copy(data);
       setSelected();
+      if (callback) callback();
     }
 
     self.setIndex = function(selectedStudent){
       index = self.state.list.indexOf(selectedStudent);
-      formatSelectedStudent(selectedStudent);  // this should be moved out of this service - add to contact service?
+      $rootScope.$broadcast('newStudentLoaded');
     };
 
     function setSelected(){
       self.state.selectedStudent = self.state.list[index];
-      formatSelectedStudent();
-    }
-
-    self.swapContacts = function(newContact, existingContact){
-      var contacts = self.state.selectedStudent.contacts;
-      var indx = contacts.indexOf(existingContact);
-      contacts.splice(indx, 1, newContact); // swap existing with new
+      $rootScope.$broadcast('newStudentLoaded');
     }
 
     self.next = function(){
@@ -53,83 +47,9 @@
     };
 
 
-    // All this contact business should be moved to another service
-    // Possibly the contact.controller.js file???
-    // Or else a new service.
-    self.addNewContact = function(newContact){
-      delete newContact.isNew;
-      self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
-      formatSelectedStudent(self.state.selectedStudent);
-    };
 
-    self.createNewContact = function(){
-      return new NewContact();
-    };
 
-    self.deleteContact = function(contact){
-      var alts = self.state.selectedStudent.additionalContactDetails.altContacts;
-      var indx = alts.indexOf(contact);
-      alts.splice(indx, 1);
-      formatSelectedStudent();
-    };
 
-    self.saveAtsMetaData = function(metaData, contactType){
-      var atsMetaData = self.state.selectedStudent.additionalContactDetails.atsMetaData;
-      if (!atsMetaData[contactType].notes){
-        atsMetaData[contactType].notes = [];
-      }
-      atsMetaData[contactType].notes.push(metaData.newNote);
-      $log.debug('Write atsMeta to database here', atsMetaData);
-    };
-
-    /* This function builds an array of contacts and collapses
-    ** some of the contact fields for easier use within the markup
-    ** I.e. creates 'address' field from 'street', 'apt', 'zip', etc.
-    **
-    ** Also joins ATS contacts with custom contacts
-    **/
-    function formatSelectedStudent(){
-      var contactList = [];
-      var student = self.state.selectedStudent;
-      var ats = student.atsContacts;
-      var addlDetails = student.additionalContactDetails;
-      var alts = addlDetails.altContacts;
-      for (var atsContact in ats){
-        // concatentate ATS data with ATS meta data
-        var metaData = addlDetails.atsMetaData[atsContact];
-        ats[atsContact].atsMetaData = metaData;
-        ats[atsContact].email = metaData.email || ats[atsContact].email || '';
-        ats[atsContact].notes = metaData.notes ? metaData.notes.join('<br>') : '';
-        // make address a single entity for readability
-        if (ats[atsContact].street){
-          var address = ats[atsContact].street;
-          address = ats[atsContact].apt ? (address + ' ' + ats[atsContact].apt) : address;
-          address += ', ' + ats[atsContact].city + ', NY ' + ats[atsContact].zip;
-          ats[atsContact].address = address;
-        }
-        // concat first + last name
-        if (ats[atsContact].first){
-          ats[atsContact].name = ats[atsContact].first;
-          ats[atsContact].name += " " + ats[atsContact].last;
-        }
-        ats[atsContact].isAts = true;
-        ats[atsContact].contactField = atsContact;
-        ats[atsContact].title = "ATS: " + (ats[atsContact].name || "");
-        contactList.push(ats[atsContact]);
-      }
-
-      // add alternative contacts to contacts array
-      for (var altContact in alts){
-        if (alts[altContact].first){
-          alts[altContact].name = alts[altContact].first;
-          alts[altContact].name += " " + alts[altContact].last;
-        }
-        alts[altContact].contactField = altContact;
-        alts[altContact].title = "Custom Contact: " + (alts[altContact].name || "");
-        contactList.push(alts[altContact]);
-      }
-      student.contacts = contactList;
-    }
 
 
     // self.load = function(){
@@ -254,17 +174,5 @@
         }
     }
 ])
-
-.factory('NewContact', function(){
-  return function(){
-    this.isNew = true;
-    this.title = "Cutsom Contact";
-    this.first = "";
-    this.last = "";
-    this.email = "";
-    this.phone = "";
-    this.phoneType = "";
-  };
-});
 
 })();

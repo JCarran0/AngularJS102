@@ -12,8 +12,14 @@
     self.setIndex = function(selectedStudent) {
       StudentNavService.setIndex(selectedStudent);
     };
-    self.next = StudentNavService.next;
-    self.previous = StudentNavService.previous;
+
+    self.next = function(){
+      StudentNavService.next();
+    }
+
+    self.previous = function(){
+      StudentNavService.previous();
+    }
   });
 
 })();
