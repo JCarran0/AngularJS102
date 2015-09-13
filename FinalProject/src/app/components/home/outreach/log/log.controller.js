@@ -3,8 +3,9 @@
 
   angular.module('template')
 
-  .controller('LogOutreachController', function () {
+  .controller('LogOutreachController', function (OutreachService) {
     var self = this;
+    self.outreachState = OutreachService.outreachState;
 
     self.activities = [
       {

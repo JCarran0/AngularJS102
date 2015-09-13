@@ -10,7 +10,7 @@
       <label>
         What was this outreach related to?
         <select ng-options = 'activity._id as activity.name for activity in ctrl.activities'
-          ng-model = 'ctrl.selectedActivity.outreachType'
+          ng-model = 'ctrl.outreachState.outreachType'
           class = 'form-control'
           required>
         </select>
@@ -21,7 +21,7 @@
       <label>
         What was the method of outreach?
         <select ng-options = 'option as option for option in ctrl.options'
-          ng-model = 'ctrl.selectedActivity.outreachMethod'
+          ng-model = 'ctrl.outreachState.outreachMethod'
           class = 'form-control'
           required>
         </select>
@@ -29,36 +29,36 @@
     </div>
 
     <div id="attendance-form-fields"
-      ng-if="ctrl.selectedActivity.outreachType === 'attendance'">
+      ng-if="ctrl.outreachState.outreachType === 'attendance'">
 
       <div class="form-group">
         <label>
           Date of absence:
           <input type="date"
             class="form-control"
-            ng-model="ctrl.selectedActivity.dateOfAbsence"
+            ng-model="ctrl.outreachState.dateOfAbsence"
             required>
         </label>
       </div>
 
       <div class="form-group">
         <label>
-          Duration of absence:
+          Duration of absence (consecutive days):
           <input type="number"
             class="form-control"
-            ng-model="ctrl.selectedActivity.durationOfAbsence"
+            ng-model="ctrl.outreachState.durationOfAbsence"
             required>
         </label>
       </div>
     </div><!-- End attendance-form-fields -->
 
-    <div id="standard-form-fields" ng-if="ctrl.selectedActivity">
+    <div id="standard-form-fields" ng-if="ctrl.outreachState">
       <div class="form-group">
         <label>
           Outreach notes:
           <textarea type="textarea"
             class="form-control"
-            ng-model="ctrl.selectedActivity.outreachNotes"
+            ng-model="ctrl.outreachState.outreachNotes"
             rows="5"
             cols="60"
             required></textarea>
@@ -78,9 +78,9 @@
 
 </div>
 
-<!-- <div>
+<div>
   <pre>
-    selectedActivity: {{ctrl.selectedActivity | json}}
+    outreachState: {{ctrl.outreachState | json}}
     logForm: {{ctrl.logForm | json}}
   </pre>
-</div> -->
+</div>
