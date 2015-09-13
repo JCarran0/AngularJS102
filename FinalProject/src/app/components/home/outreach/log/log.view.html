@@ -1,16 +1,15 @@
 <div class="container">
-
   <h3>New Outreach Log</h3>
 
   <form name="ctrl.logForm"
-    ng-submit="ctrl.submitLog()"
+    ng-submit="ctrl.submitOutreachLog()"
     novalidate>
 
     <div class="form-group">
       <label>
         What was this outreach related to?
         <select ng-options = 'activity._id as activity.name for activity in ctrl.activities'
-          ng-model = 'ctrl.outreachState.outreachType'
+          ng-model = 'ctrl.outreachState.newLog.outreachType'
           class = 'form-control'
           required>
         </select>
@@ -20,8 +19,8 @@
     <div class="form-group">
       <label>
         What was the method of outreach?
-        <select ng-options = 'option as option for option in ctrl.options'
-          ng-model = 'ctrl.outreachState.outreachMethod'
+        <select ng-options = 'option as option for option in ctrl.outreachMethod'
+          ng-model = 'ctrl.outreachState.newLog.outreachMethod'
           class = 'form-control'
           required>
         </select>
@@ -29,14 +28,14 @@
     </div>
 
     <div id="attendance-form-fields"
-      ng-if="ctrl.outreachState.outreachType === 'attendance'">
+      ng-if="ctrl.outreachState.newLog.outreachType === 'attendance'">
 
       <div class="form-group">
         <label>
           Date of absence:
           <input type="date"
             class="form-control"
-            ng-model="ctrl.outreachState.dateOfAbsence"
+            ng-model="ctrl.outreachState.newLog.dateOfAbsence"
             required>
         </label>
       </div>
@@ -46,19 +45,19 @@
           Duration of absence (consecutive days):
           <input type="number"
             class="form-control"
-            ng-model="ctrl.outreachState.durationOfAbsence"
+            ng-model="ctrl.outreachState.newLog.durationOfAbsence"
             required>
         </label>
       </div>
     </div><!-- End attendance-form-fields -->
 
-    <div id="standard-form-fields" ng-if="ctrl.outreachState">
+    <div id="standard-form-fields" ng-if="ctrl.outreachState.newLog">
       <div class="form-group">
         <label>
           Outreach notes:
           <textarea type="textarea"
             class="form-control"
-            ng-model="ctrl.outreachState.outreachNotes"
+            ng-model="ctrl.outreachState.newLog.outreachNotes"
             rows="5"
             cols="60"
             required></textarea>
@@ -80,7 +79,7 @@
 
 <div>
   <pre>
-    outreachState: {{ctrl.outreachState | json}}
-    logForm: {{ctrl.logForm | json}}
+    outreachState.newLog: {{ctrl.outreachState.newLog | json}}
+    <!-- form: {{ ctrl.logForm |json}} -->
   </pre>
 </div>

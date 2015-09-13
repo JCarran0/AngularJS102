@@ -1,0 +1,34 @@
+
+<div class="well">
+
+  <div>
+    <strong>Timestamp: </strong>
+    <span ng-bind="ctrl.log.timestamp"></span>
+  </div>
+
+  <div>
+    <strong>Type: </strong>
+    <span ng-bind="ctrl.log.outreachType"></span>
+  </div>
+
+  <div>
+    <strong>Method: </strong>
+    <span ng-bind="ctrl.log.outreachMethod"></span>
+  </div>
+
+  <div ng-if="ctrl.log.outreachType == 'attendance'">
+    <strong>Date of Abs: </strong>
+    <span ng-bind="ctrl.log.dateOfAbsence"></span>
+  </div>
+
+  <div ng-if="ctrl.log.outreachType == 'attendance'">
+    <strong>Duration of Abs: </strong>
+    <span ng-bind="ctrl.log.durationOfAbsence"></span>
+  </div>
+
+  <div>
+    <strong>Notes: </strong>
+    <span ng-bind="ctrl.log.outreachNotes"></span>
+  </div>
+
+</div>

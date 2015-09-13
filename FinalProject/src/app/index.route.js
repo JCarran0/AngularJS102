@@ -20,6 +20,8 @@
       .state('home.outreachHistory', {
         url: '/outreach-history',
         templateUrl: 'app/components/home/outreach/history/history.view.html',
+        controller: 'ViewHistoryController',
+        controllerAs: 'ctrl'
       })
       .state('home.studentData', {
         url: '/student-data',

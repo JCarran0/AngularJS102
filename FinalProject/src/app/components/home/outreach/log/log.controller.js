@@ -3,35 +3,16 @@
 
   angular.module('template')
 
-  .controller('LogOutreachController', function (OutreachService) {
+  .controller('LogOutreachController', function (OutreachService, ActivityTypes, OutreachMethods) {
     var self = this;
-    self.outreachState = OutreachService.outreachState;
+    self.outreachState = OutreachService.outreachState; // outreach state allows the selected values to persist when views change
+    self.activities = ActivityTypes;
+    self.outreachMethod = OutreachMethods;
 
-    self.activities = [
-      {
-        _id: "general",
-        name: "General home outreach"
-      },
-      {
-        _id: "attendance",
-        name: "Attendance"
-      },
-      {
-        _id: "discipline",
-        name: "Discipline"
-      },
-      {
-        _id: "regents",
-        name: "Regents"
-      },
-    ];
-
-    self.options = ["Phone call home", "Email sent home", "Spoke with student"];
-
-
-    self.submitLog = function(){
-      self.selectedActivity.timestamp = new Date().toLocaleString();
-      self.selectedActivity = {};
+    self.submitOutreachLog = function(){
+      self.outreachState.newLog.timestamp = new Date().toLocaleString();
+      OutreachService.saveOutreachLog(self.outreachState.newLog);
+      self.outreachState.newLog = {};
     };
 
   });
