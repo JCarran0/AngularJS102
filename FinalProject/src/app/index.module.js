@@ -3,6 +3,6 @@
 
   angular
 
-  .module('template', ['StudentNavModule', 'StudentFetchService', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap', 'API_CONFIG']);
+  .module('template', ['StudentNavModule', 'NvApiService', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap', 'API_CONFIG']);
 
 })();
