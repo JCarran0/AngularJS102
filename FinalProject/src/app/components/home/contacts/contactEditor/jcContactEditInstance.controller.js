@@ -32,6 +32,6 @@
     self.setDirty = function(){
       self.editContactForm.$setDirty();
     };
-  })
+  });
 
 })();

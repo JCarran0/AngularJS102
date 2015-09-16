@@ -15,11 +15,11 @@
 
     self.next = function(){
       StudentNavService.next();
-    }
+    };
 
     self.previous = function(){
       StudentNavService.previous();
-    }
+    };
   });
 
 })();

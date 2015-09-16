@@ -8,7 +8,7 @@
     //temp data - will come from API call to db
     var data = TEMPDATA;
 
-    var index = 0;
+    self.index = 0;
     self.state = {};
     // self.state.list = [];
     // self.state.data = [];
@@ -17,31 +17,33 @@
       self.state.list = angular.copy(data);
       self.state.data = angular.copy(data);
       setSelected();
-      if (callback) callback();
-    }
+      if (callback) {
+        callback();
+      }
+    };
 
     self.setIndex = function(selectedStudent){
-      index = self.state.list.indexOf(selectedStudent);
+      self.index = self.state.list.indexOf(selectedStudent);
       $rootScope.$broadcast('newStudentLoaded');
     };
 
     function setSelected(){
-      self.state.selectedStudent = self.state.list[index];
+      self.state.selectedStudent = self.state.list[self.index];
       $rootScope.$broadcast('newStudentLoaded');
     }
 
     self.next = function(){
-      index ++;
-      if(index === data.length){
-        index = 0;
+      self.index ++;
+      if(self.index === data.length){
+        self.index = 0;
       }
       setSelected();
     };
 
     self.previous = function(){
-      index --;
-      if(index === -1){
-        index = self.state.list.length-1;
+      self.index --;
+      if(self.index === -1){
+        self.index = self.state.list.length-1;
       }
       setSelected();
     };
@@ -124,7 +126,12 @@
                 "last": "ad3last",
                 "phone": "555-555-5637"
             }
-        }
+        },
+        "outreachLogs": [
+          {"outreachType": "attendance", "outreachMethod": "Phone call home", "dateOfAbsence": "2015-09-11T04:00:00.000Z", "durationOfAbsence": 1, "outreachNotes": "Jared was absent again on Friday. Called his mother. She was very upset.", "timestamp": "9/13/2015, 2:00:19 PM" },
+          {"outreachType":"discipline","outreachMethod":"Phone call home","numberDialed":"(222) 494-0002","outreachNotes":"Jared was using really inappropriate language. Told his mother.","timestamp":"9/13/2015, 5:43:22 PM"},
+          {"outreachType":"regents","outreachMethod":"Email sent home","recipientEmail":"paul@email.com","outreachNotes":"Emailed Jared's father to remind him how important the upcoming exam is.","timestamp":"9/13/2015, 5:45:53 PM"}
+        ]
     },
     {
         "_id": "90998754896B049",
@@ -175,6 +182,6 @@
             }
         }
     }
-])
+]);
 
 })();

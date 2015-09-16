@@ -15,7 +15,7 @@
     };
   })
 
-  .service('ContactService', function(StudentNavService, NewContactFactory){
+  .service('ContactService', function($log, StudentNavService, NewContactFactory){
     var self = this;
     self.state = StudentNavService.state;
 
@@ -23,7 +23,7 @@
       StudentNavService.loadStudents(function(){
         self.formatSelectedStudent();
       });
-    }
+    };
 
     // All this contact business should be moved to another service
     // Possibly the contact.controller.js file???
@@ -58,7 +58,7 @@
       var contacts = self.state.selectedStudent.contacts;
       var indx = contacts.indexOf(existingContact);
       contacts.splice(indx, 1, newContact); // swap existing with new
-    }
+    };
 
     /* This function builds an array of contacts and collapses
     ** some of the contact fields for easier use within the markup
@@ -107,9 +107,9 @@
         contactList.push(alts[altContact]);
       }
       student.contacts = contactList;
-    }
+    };
 
-  })
+  });
 
 })();
 

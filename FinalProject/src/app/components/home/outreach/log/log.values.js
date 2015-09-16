@@ -26,6 +26,6 @@
     "Phone call home",
     "Email sent home",
     "Spoke with student"
-  ])
+  ]);
 
 })();

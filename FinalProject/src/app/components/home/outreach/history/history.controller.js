@@ -6,7 +6,6 @@
   .controller('ViewHistoryController', function (OutreachService, CONSTANTS) {
     var self = this;
     self.header = CONSTANTS.headers.outreachLogs;
-    self.outreachLogs = OutreachService.outreachLogs;
-
+    self.state = OutreachService.state;
   });
 })();

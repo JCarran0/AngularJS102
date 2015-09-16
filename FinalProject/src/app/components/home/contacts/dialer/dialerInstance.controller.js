@@ -15,6 +15,6 @@
     self.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
-  })
+  });
 
 })();

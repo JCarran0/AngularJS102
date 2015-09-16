@@ -9,7 +9,7 @@
       controller: 'StudentNavController',
       controllerAs: 'ctrl',
       bindToController: true
-    }
+    };
   });
 
 })();

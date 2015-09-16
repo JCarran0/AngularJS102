@@ -45,9 +45,8 @@
       modalInstance.result.then(function () {
         $log.debug('Update database here');
       }, function () {
-        $log.info('Action cancelled - contact reset');
+        $log.info('Action canceled - contact reset');
       });
-    }
-
-  })
+    };
+  });
 })();
