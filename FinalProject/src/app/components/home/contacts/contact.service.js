@@ -33,15 +33,6 @@
       self.formatSelectedStudent();
     };
 
-    self.saveAtsMetaData = function(metaData, contactType){
-      var atsMetaData = self.state.selectedStudent.additionalContactDetails.atsMetaData;
-      if (!atsMetaData[contactType].notes){
-        atsMetaData[contactType].notes = [];
-      }
-      atsMetaData[contactType].notes.push(metaData.newNote);
-      $log.debug('Write atsMeta to database here', atsMetaData);
-    };
-
     self.swapContacts = function(newContact, existingContact){
       var contacts = self.state.selectedStudent.contacts;
       var indx = contacts.indexOf(existingContact);

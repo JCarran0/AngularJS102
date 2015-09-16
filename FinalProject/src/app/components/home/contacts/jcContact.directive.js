@@ -10,8 +10,7 @@
       controllerAs: 'ctrl',
       bindToController: true,
       scope: {
-        contact: '=',
-        saveAtsMetaData: '&'
+        contact: '='
       }
     };
   });
