@@ -9,7 +9,7 @@
 
     self.loadOutreachLogs = function(){
       self.state.outreachLogs = StudentNavService.state.selectedStudent.outreachLogs;
-    }
+    };
 
     self.saveOutreachLog = function(newLog){
       var selected = StudentNavService.state.selectedStudent;
