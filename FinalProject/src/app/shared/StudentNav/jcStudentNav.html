@@ -3,9 +3,9 @@
       <button ng-click = 'ctrl.previous(); $event.stopPropagation();'
               class='btn btn-primary nv-nav-btn'>Previous</button>
 
-      <select ng-options = 'student as student.studentDetails.lastFirst for student in ctrl.state.list'
-              ng-model = 'ctrl.state.selectedStudent'
-              ng-change = 'ctrl.setIndex(ctrl.state.selectedStudent)'
+      <select ng-options = 'student as student.studentDetails.lastFirst for student in ctrl.displayList'
+              ng-model = 'ctrl.selectedStudent'
+              ng-change = 'ctrl.setIndex(ctrl.selectedStudent)'
               class = 'form-control nv-nav-select'>
       </select>
 
@@ -13,3 +13,4 @@
         class='btn btn-primary nv-nav-btn'>Next</button>
   </div>
 </nav>
+

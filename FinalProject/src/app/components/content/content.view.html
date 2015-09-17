@@ -5,7 +5,7 @@
         <h1 ng-bind="ctrl.header"></h1>
       </div>
       <accordion close-others="true">
-        <div ng-repeat="contact in ctrl.state.selectedStudent.contacts">
+        <div ng-repeat="contact in ctrl.state.activeStudent.contacts">
           <accordion-group is-open="isOpen">
             <accordion-heading>
               <span ng-bind='contact.title'></span>

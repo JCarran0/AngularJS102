@@ -3,7 +3,7 @@
 
   angular
 
-  .module('template', ['StudentNavModule', 'NvApiService', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap', 'API_CONFIG']);
+  .module('template', ['StudentNavModule', 'NvApiService', 'State', 'ngAnimate', 'ngResource', 'ui.router', 'ui.bootstrap', 'API_CONFIG', 'ngLodash']);
 
 })();
 
@@ -14,5 +14,14 @@
   angular
 
   .module('NvApiService', []);
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+
+  .module('StudentNavModule', []);
 
 })();

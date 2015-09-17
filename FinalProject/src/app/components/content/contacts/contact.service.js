@@ -3,23 +3,17 @@
 
   angular.module('template')
 
-  .service('ContactService', function($log, StudentNavService, NewContactFactory){
+  .service('ContactService', function(State, NewContactFactory){
     var self = this;
-    self.state = StudentNavService.state;
-
-    self.loadStudents = function(){
-      StudentNavService.loadStudents(function(){
-        self.formatSelectedStudent();
-      });
-    };
+    self.state = State;
 
     // All this contact business should be moved to another service
     // Possibly the contact.controller.js file???
     // Or else a new service.
     self.addNewContact = function(newContact){
       delete newContact.isNew;
-      self.state.selectedStudent.additionalContactDetails.altContacts.push(newContact);
-      self.formatSelectedStudent();
+      self.state.activeStudent.additionalContactDetails.altContacts.push(newContact);
+      self.formatActiveStudent();
     };
 
     self.createNewContact = function(){
@@ -27,14 +21,14 @@
     };
 
     self.deleteContact = function(contact){
-      var alts = self.state.selectedStudent.additionalContactDetails.altContacts;
+      var alts = self.state.activeStudent.additionalContactDetails.altContacts;
       var indx = alts.indexOf(contact);
       alts.splice(indx, 1);
-      self.formatSelectedStudent();
+      self.formatActiveStudent();
     };
 
     self.swapContacts = function(newContact, existingContact){
-      var contacts = self.state.selectedStudent.contacts;
+      var contacts = self.state.activeStudent.contacts;
       var indx = contacts.indexOf(existingContact);
       contacts.splice(indx, 1, newContact); // swap existing with new
     };
@@ -45,9 +39,9 @@
     **
     ** Also joins ATS contacts with custom contacts
     **/
-    self.formatSelectedStudent = function(){
+    self.formatActiveStudent = function(){
       var contactList = [];
-      var student = self.state.selectedStudent;
+      var student = self.state.activeStudent;
       var ats = student.atsContacts;
       var addlDetails = student.additionalContactDetails;
       var alts = addlDetails.altContacts;
