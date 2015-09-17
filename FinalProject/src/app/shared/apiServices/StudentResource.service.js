@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('NvApiService', [])
+  angular.module('NvApiService')
 
   .factory('StudentResource', function($resource) {
     var StudentResource = function(){};
@@ -22,32 +22,5 @@
     });
 
     return StudentResource;
-  })
-
-  .factory('OutreachResource', function($resource) {
-    var OutreachResource = function(){};
-
-    OutreachResource.list = $resource('/assets/fixtures/studentList.json', null, {
-      get: {
-        method: 'GET',
-        isArray: true
-      }
-    });
-
-    OutreachResource.data = $resource('/assets/fixtures/studentData.json', null, {
-      get: {
-        method: 'GET',
-        isArray: true
-      }
-    });
-
-    return OutreachResource;
-  })
-
-
-  ;
-
-
-
-
+  });
 })();
