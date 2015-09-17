@@ -5,7 +5,7 @@
 
   .directive('jcContactEditButton', function(){
     return {
-      templateUrl: 'app/components/home/contacts/contactEditor/jcContactEditButton.html',
+      templateUrl: 'app/components/content/contacts/contactEditor/jcContactEditButton.html',
       controller: 'ContactEditButtonController',
       controllerAs: 'ctrl',
       bindToController: true,

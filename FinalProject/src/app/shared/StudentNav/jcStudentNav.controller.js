@@ -10,6 +10,7 @@
     self.list = StudentNavService.state.list;
 
     self.setIndex = function(selectedStudent) {
+      // self.onUpdate({selectedKey: selectedStudent})
       StudentNavService.setIndex(selectedStudent);
     };
 

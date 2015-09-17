@@ -9,7 +9,7 @@
     self.openDialerModal = function(phoneNumber){
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'app/components/home/contacts/dialer/dialerInstance.html',
+        templateUrl: 'app/components/content/contacts/dialer/dialerInstance.html',
         controller: 'DialerInstanceController',
         controllerAs: 'modalCtrl',
         bindToController: true,

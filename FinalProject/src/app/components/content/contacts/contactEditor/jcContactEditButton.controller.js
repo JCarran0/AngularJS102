@@ -27,7 +27,7 @@
 
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'app/components/home/contacts/contactEditor/jcContactEditInstance.html',
+        templateUrl: 'app/components/content/contacts/contactEditor/jcContactEditInstance.html',
         controller: 'ContactEditInstanceController',
         controllerAs: 'ctrl',
         bindToController: true,

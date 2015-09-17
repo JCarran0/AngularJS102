@@ -8,7 +8,11 @@
       templateUrl: 'app/shared/studentNav/jcStudentNav.html',
       controller: 'StudentNavController',
       controllerAs: 'ctrl',
-      bindToController: true
+      bindToController: true,
+      scope: {
+        displayList: '=',
+        onUpdate: '&'
+      }
     };
   });
 

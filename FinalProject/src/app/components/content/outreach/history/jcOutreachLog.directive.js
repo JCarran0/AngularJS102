@@ -5,7 +5,7 @@
 
   .directive('jcOutreachLog', function(){
     return {
-      templateUrl: 'app/components/home/outreach/history/jcOutreachLog.html',
+      templateUrl: 'app/components/content/outreach/history/jcOutreachLog.html',
       controller: 'JcOutreachLogController',
       controllerAs: 'ctrl',
       bindToController: true,

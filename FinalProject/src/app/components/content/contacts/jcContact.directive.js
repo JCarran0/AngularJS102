@@ -3,11 +3,10 @@
 
   angular.module('template')
 
-  .directive('jcDialerButton', function(){
+  .directive('jcContact', function(){
     return {
-      animation: true,
-      templateUrl: 'app/components/home/contacts/dialer/jcDialerButton.html',
-      controller: 'DialerButtonController',
+      templateUrl: 'app/components/content/contacts/jcContact.html',
+      controller: 'ContactController',
       controllerAs: 'ctrl',
       bindToController: true,
       scope: {
@@ -17,3 +16,11 @@
   });
 
 })();
+
+
+
+
+
+
+
+
