@@ -1,7 +1,7 @@
 [
   {
     "_id": "123432",
-    "loggedBy": "jcarrano@newvisions.org",
+    "loggedBy": "Teacher A",
     "studentId": "90998754796B049",
     "studentName": "Danielle Scaramellino",
     "outreachType": "attendance",
@@ -13,7 +13,7 @@
   },
   {
     "_id": "345543",
-    "loggedBy": "dscaramellino@newvisions.org",
+    "loggedBy": "AP B",
     "studentId": "90998754796B049",
     "studentName": "Danielle Scaramellino",
     "outreachType": "discipline",
@@ -24,7 +24,7 @@
   },
   {
     "_id": "234421",
-    "loggedBy": "jcarrano@newvisions.org",
+    "loggedBy": "Teacher A",
     "studentId": "90998754796B049",
     "studentName": "Danielle Scaramellino",
     "outreachType": "regents",
@@ -35,13 +35,13 @@
   },
   {
     "_id": "342324",
-    "loggedBy": "jcarrano@newvisions.org",
+    "loggedBy": "AP B",
     "studentId": "90998754896B049",
     "studentName": "Jared Carrano",
     "outreachType": "regents",
     "outreachMethod": "Email sent home",
-    "recipientEmail": "dsmom@email.com",
-    "outreachNotes": "Emailed Danielle's father to remind him how important the upcoming exam is.",
+    "recipientEmail": "pappa.paul@cox.net",
+    "outreachNotes": "Emailed Jared's father to let him know Jared showed up on time and prepared!",
     "timestamp": "9/13/2015, 5:45:53 PM"
   }
 ]

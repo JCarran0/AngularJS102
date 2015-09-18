@@ -5,7 +5,7 @@
 
   .controller('StudentDataController', function (CONSTANTS) {
     var self = this;
-    self.header = CONSTANTS.headers.outreachLogs;
+    self.header = CONSTANTS.headers.studentData;
 
   });
 })();
