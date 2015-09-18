@@ -7,11 +7,20 @@
     var self = this;
     var _ = lodash;
 
-    self.loadStudents = function(callback){
+    self.loadStudents = function(){
+      var deferred = $q.defer();
       var dataAsync = StudentResource.list.get().$promise;
       var listAsync = StudentResource.data.get().$promise;
-      fetchAndLoadData(dataAsync, listAsync, callback);
-    };
+      $q.all([dataAsync, listAsync]).then(function(ret){
+        var dataObj = {};
+        dataObj.list = ret[0];
+        dataObj.data = ret[1];
+        deferred.resolve(dataObj);
+      }, function(err){
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
 
     self.loadOutreachLogs = function(studentId, callback){
       OutreachLogResource.byStudent.get(studentId).$promise.then(function(allLogs){
@@ -24,6 +33,7 @@
         callback(err);
       });
     };
+
 
     self.loadFixtures = function() {
       //coming soon!

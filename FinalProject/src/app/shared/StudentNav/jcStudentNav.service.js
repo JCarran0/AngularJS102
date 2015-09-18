@@ -1,32 +1,39 @@
 // (function() {
 //   'use strict';
 
-//   angular.module('StudentNavModule', ['NvApiService'])
+//   angular.module('StudentNavModule')
 
-//   .service('StudentNavService', function(){
+//   .service('JcStudentNavService', function(){
 //     var self = this;
-//     self.index = 0;
+//     var index = 0;
+//     var listState = {};
 
-//     // self.setIndex = function(selected){
-//     //   self.index = self.state.list.indexOf(selected);
-//     //   StudentService.setActive(self.index);
-//     //   // $rootScope.$broadcast('newStudentLoaded');
-//     // };
+//     // I really want to get rid of this service.  The only
+//     // reason I need it is to be able to call setSelectedStudent()
+//     // from Master.controller after the student data comes back from the API
+
+//     self.setIndex = function(selected){
+//       index = self.listState.displayList.indexOf(selected);
+//     };
 
 //     self.next = function(){
-//       self.index ++;
-//       if(self.index === self.state.data.length){
-//         self.index = 0;
+//       index ++;
+//       if(index === self.listState.displayList.length){
+//         index = 0;
 //       }
-//       StudentService.setActive(self.index);
+//       return self.setSelectedStudent(index);
 //     };
 
 //     self.previous = function(){
-//       self.index --;
-//       if(self.index === -1){
-//         self.index = self.state.data.length-1;
+//       index --;
+//       if(index === -1){
+//         index = self.listState.displayList.length-1;
 //       }
-//       StudentService.setActive(self.index);
+//       return self.setSelectedStudent(index);
 //     };
+
+//     self.setSelectedStudent = function(index){
+//       return self.listState.displayList[index];
+//     }
 //   });
 // })();

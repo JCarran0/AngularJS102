@@ -3,35 +3,36 @@
 
   angular.module('StudentNavModule')
 
-  .controller('StudentNavController', function () {
+  .controller('StudentNavController', function (){
     var self = this;
-    var index = 0;
+    self.index = 0;
 
     self.setIndex = function(selected){
-      index = self.displayList.indexOf(selected);
-      self.onUpdate({selectedStudent: selected});
+      self.index = self.displayList.indexOf(selected);
+      self.setSelectedStudent(self.index);
     };
 
     self.next = function(){
-      index ++;
-      if(index === self.displayList.length){
-        index = 0;
+      self.index ++;
+      if(self.index === self.displayList.length){
+        self.index = 0;
       }
-      setSelectedStudent(index);
+      self.setSelectedStudent(self.index);
     };
 
     self.previous = function(){
-      index --;
-      if(index === -1){
-        index = self.displayList.length-1;
+      self.index --;
+      if(self.index === -1){
+        self.index = self.displayList.length-1;
       }
-      setSelectedStudent(index);
+      self.setSelectedStudent(self.index);
     };
 
-    var setSelectedStudent = function(index){
-      self.selectedStudent = self.displayList[index];
+    self.setSelectedStudent = function(index){
+      self.selectedStudent = self.displayList[self.index];
       self.onUpdate({selectedStudent: self.selectedStudent});
     }
-  });
 
+    self.setSelectedStudent(self.index);
+  });
 })();

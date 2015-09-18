@@ -9,7 +9,12 @@
         url: '/m',
         templateUrl: 'app/shared/master/master.view.html',
         controller: 'MasterController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        resolve: {
+          dataObj: function(DataService){
+            return DataService.loadStudents();
+          }
+        }
       })
       .state('master.content', {
         url: '/content',
@@ -21,19 +26,28 @@
         url: '/log-outreach',
         templateUrl: 'app/components/content/outreach/log/log.view.html',
         controller: 'LogOutreachController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        data: {
+          tab: "log"
+        }
       })
       .state('master.content.outreachHistory', {
         url: '/outreach-history',
         templateUrl: 'app/components/content/outreach/history/history.view.html',
         controller: 'ViewHistoryController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        data: {
+          tab: "history"
+        }
       })
       .state('master.content.studentData', {
         url: '/student-data',
         templateUrl: 'app/components/content/outreach/data/data.view.html',
         controller: 'StudentDataController',
-        controllerAs: 'ctrl'
+        controllerAs: 'ctrl',
+        data: {
+          tab: "data"
+        }
       });
 
     $urlRouterProvider.otherwise('/m/content/log-outreach');
