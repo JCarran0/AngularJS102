@@ -3,23 +3,26 @@
 
   angular.module('template')
 
-  .service('OutreachService', function ($log) {
+  .service('OutreachService', function (State, DataService) {
     var self = this;
-    self.state = {};
 
-    // self.loadOutreachLogs = function(){
-    //   self.state.outreachLogs = StudentNavService.state.selectedStudent.outreachLogs;
-    // };
+    self.loadOutreachLogs = function(studentId){
+      DataService.loadOutreachLogs(studentId, function(err, logs){
+        if (err) {
+          throw err;
+        }
+        State.outreachLogs = logs;
+      });
+    };
 
-    // self.saveOutreachLog = function(newLog){
-    //   var selected = StudentNavService.state.selectedStudent;
-    //   if (!selected.outreachLogs){
-    //     selected.outreachLogs = [];
-    //   }
-    //   selected.outreachLogs.push(newLog);
-    //   self.loadOutreachLogs();
-    //   $log.debug('Save to db here');
-    // };
+    self.saveOutreachLog = function(newLog){
+      var selected = StudentNavService.state.selectedStudent;
+      if (!selected.outreachLogs){
+        selected.outreachLogs = [];
+      }
+      selected.outreachLogs.push(newLog);
+      self.loadOutreachLogs();
+      $log.debug('Save to db here');
+    };
   });
-
 })();

@@ -3,8 +3,9 @@
 
   angular.module('template')
 
-  .service('DataService', function($q, $log, StudentResource){
+  .service('DataService', function($q, $log, lodash, StudentResource, OutreachLogResource){
     var self = this;
+    var _ = lodash;
 
     self.loadStudents = function(callback){
       var dataAsync = StudentResource.list.get().$promise;
@@ -12,10 +13,17 @@
       fetchAndLoadData(dataAsync, listAsync, callback);
     };
 
-    self.loadOutreachLogs = function(){
-      //coming soon!
-      console.log('>> Need to >> load outreach logs')
-    }();
+    self.loadOutreachLogs = function(studentId, callback){
+      OutreachLogResource.byStudent.get(studentId).$promise.then(function(allLogs){
+        console.log('>> Need to >> refactor once we have a collection and REST enpoint for outreach logs')
+        var filteredResults = _.filter(allLogs, function(obj){
+          return obj.studentId === studentId;
+        });
+        callback(null, filteredResults);
+      }, function(err){
+        callback(err);
+      });
+    };
 
     self.loadFixtures = function() {
       //coming soon!

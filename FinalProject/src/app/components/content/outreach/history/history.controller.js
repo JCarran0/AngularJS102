@@ -3,9 +3,9 @@
 
   angular.module('template')
 
-  .controller('ViewHistoryController', function (OutreachService, CONSTANTS) {
+  .controller('ViewHistoryController', function (State, CONSTANTS) {
     var self = this;
     self.header = CONSTANTS.headers.outreachLogs;
-    self.state = OutreachService.state;
+    self.state = State;
   });
 })();

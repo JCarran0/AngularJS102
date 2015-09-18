@@ -3,7 +3,7 @@
 
   angular.module('template')
 
-  .controller('MasterController', function (State, DataService, StudentService) {
+  .controller('MasterController', function (State, DataService, StudentService, OutreachService) {
     var self = this;
 
     self.onUpdate = function(selectedStudent){
@@ -15,6 +15,7 @@
       StudentService.setActive(dataObj.list[0]);
       self.displayList = dataObj.list;
     });
+    OutreachService.loadOutreachLogs("90998754796B049");
   });
 
 })();

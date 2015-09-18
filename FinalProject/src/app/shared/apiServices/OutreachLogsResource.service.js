@@ -6,7 +6,7 @@
   .factory('OutreachLogResource', function($resource) {
     var OutreachResource = function(){};
 
-    OutreachResource.data = $resource('/assets/fixtures/studentData.json', null, {
+    OutreachResource.byStudent = $resource('/assets/fixtures/logsCollection.json', {}, {
       get: {
         method: 'GET',
         isArray: true
