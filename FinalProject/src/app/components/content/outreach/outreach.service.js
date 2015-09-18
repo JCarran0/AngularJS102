@@ -16,13 +16,11 @@
     };
 
     self.saveOutreachLog = function(newLog){
-      var selected = StudentNavService.state.selectedStudent;
-      if (!selected.outreachLogs){
-        selected.outreachLogs = [];
+      if (!State.outreachLogs){
+        State.outreachLogs = [];
       }
-      selected.outreachLogs.push(newLog);
-      self.loadOutreachLogs();
-      $log.debug('Save to db here');
+      State.outreachLogs.push(newLog);
+      console.log('>> Need to >> Save to db here');
     };
   });
 })();

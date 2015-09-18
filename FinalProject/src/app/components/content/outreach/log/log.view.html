@@ -9,7 +9,7 @@
     <label>
       What was this outreach related to?
       <select ng-options = 'activity._id as activity.name for activity in ctrl.activities'
-        ng-model = 'ctrl.outreachState.newLog.outreachType'
+        ng-model = 'ctrl.state.outreachState.newLog.outreachType'
         class = 'form-control'
         required>
       </select>
@@ -20,7 +20,7 @@
     <label>
       What was the method of outreach?
       <select ng-options = 'option as option for option in ctrl.outreachMethod'
-        ng-model = 'ctrl.outreachState.newLog.outreachMethod'
+        ng-model = 'ctrl.state.outreachState.newLog.outreachMethod'
         class = 'form-control'
         required>
       </select>
@@ -28,11 +28,11 @@
   </div>
 
   <div class="form-group"
-       ng-if="ctrl.outreachState.newLog.outreachMethod == 'Phone call home'">
+       ng-if="ctrl.state.outreachState.newLog.outreachMethod == 'Phone call home'">
     <label>
       Number dialed:
       <input type="text"
-             ng-model="ctrl.outreachState.newLog.numberDialed"
+             ng-model="ctrl.state.outreachState.newLog.numberDialed"
              class="form-control"
              placeholder="(xxx) xxx-xxxx"
              required>
@@ -40,25 +40,25 @@
   </div>
 
   <div class="form-group"
-       ng-if="ctrl.outreachState.newLog.outreachMethod == 'Email sent home'">
+       ng-if="ctrl.state.outreachState.newLog.outreachMethod == 'Email sent home'">
     <label>
       Recipient email address:
       <input type="text"
-             ng-model="ctrl.outreachState.newLog.recipientEmail"
+             ng-model="ctrl.state.outreachState.newLog.recipientEmail"
              class="form-control"
              required>
     </label>
   </div>
 
   <div id="attendance-form-fields"
-    ng-if="ctrl.outreachState.newLog.outreachType === 'attendance'">
+    ng-if="ctrl.state.outreachState.newLog.outreachType === 'attendance'">
 
     <div class="form-group">
       <label>
         Date of absence:
         <input type="date"
           class="form-control"
-          ng-model="ctrl.outreachState.newLog.dateOfAbsence"
+          ng-model="ctrl.state.outreachState.newLog.dateOfAbsence"
           required>
       </label>
     </div>
@@ -68,19 +68,19 @@
         Duration of absence (consecutive days):
         <input type="number"
           class="form-control"
-          ng-model="ctrl.outreachState.newLog.durationOfAbsence"
+          ng-model="ctrl.state.outreachState.newLog.durationOfAbsence"
           required>
       </label>
     </div>
   </div><!-- End attendance-form-fields -->
 
-  <div id="standard-form-fields" ng-if="ctrl.outreachState.newLog">
+  <div id="standard-form-fields" ng-if="ctrl.state.outreachState.newLog">
     <div class="form-group">
       <label>
         Outreach notes:
         <textarea type="textarea"
           class="form-control"
-          ng-model="ctrl.outreachState.newLog.outreachNotes"
+          ng-model="ctrl.state.outreachState.newLog.outreachNotes"
           rows="5"
           cols="60"
           required></textarea>
@@ -94,7 +94,9 @@
   </div>
 </form>
 
-
+<div>
+  <pre>{{ctrl.state.outreachState}}</pre>
+</div>
 
 
 
