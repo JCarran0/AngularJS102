@@ -14,6 +14,7 @@
 
     self.onUpdate = function(selectedStudent){
       StudentService.setActive(selectedStudent);
+      ContactService.formatActiveStudent();
       OutreachService.loadOutreachLogs(State.activeStudent._id);
     };
 

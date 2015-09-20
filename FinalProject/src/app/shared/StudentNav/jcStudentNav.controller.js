@@ -29,10 +29,10 @@
     };
 
     self.setSelectedStudent = function(index){
-      self.selectedStudent = self.displayList[self.index];
+      self.selectedStudent = self.displayList[index];
       self.onUpdate({selectedStudent: self.selectedStudent});
-    }
+    };
 
-    // self.setSelectedStudent(self.index);
+    self.setSelectedStudent(self.index);
   });
 })();
