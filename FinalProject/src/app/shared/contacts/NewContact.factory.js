@@ -6,7 +6,8 @@
   .factory('NewContactFactory', function(){
     return function(){
       this.isNew = true;
-      this.title = "Cutsom Contact";
+      this.type = "User Created";
+      this.title = "Custom Contact";
       this.first = "";
       this.last = "";
       this.email = "";

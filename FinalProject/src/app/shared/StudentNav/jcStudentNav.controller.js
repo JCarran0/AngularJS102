@@ -33,6 +33,6 @@
       self.onUpdate({selectedStudent: self.selectedStudent});
     }
 
-    self.setSelectedStudent(self.index);
+    // self.setSelectedStudent(self.index);
   });
 })();

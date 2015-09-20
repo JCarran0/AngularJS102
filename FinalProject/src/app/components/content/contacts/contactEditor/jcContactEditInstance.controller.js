@@ -16,6 +16,7 @@
       } else {
         ContactService.swapContacts(modContact, contact);
       }
+      ContactService.formatActiveStudent();
       $modalInstance.close();
     };
 
@@ -24,9 +25,10 @@
       $modalInstance.dismiss();
     };
 
-    self.deleteContact = function(contact){
-      $modalInstance.close();
+    self.deleteContact = function(){
       ContactService.deleteContact(contact);
+      ContactService.formatActiveStudent();
+      $modalInstance.close();
     };
 
     self.setDirty = function(){

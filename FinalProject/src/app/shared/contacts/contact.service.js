@@ -13,24 +13,34 @@
     self.addNewContact = function(newContact){
       delete newContact.isNew;
       self.state.activeStudent.additionalContactDetails.altContacts.push(newContact);
-      self.formatActiveStudent();
     };
 
     self.createNewContact = function(){
       return new NewContactFactory();
     };
 
+    self.confirmContactExistence = function(arr, item){
+      var indx = arr.indexOf(item);
+      if (indx === -1) {
+        throw new Error("Selected contact does not exist in contact array")
+      } else {
+        return indx;
+      }
+    }
+
     self.deleteContact = function(contact){
+      if(contact.type !== 'User Created'){
+        throw new Error('Cannot delete non-custom contacts');
+      }
       var alts = self.state.activeStudent.additionalContactDetails.altContacts;
-      var indx = alts.indexOf(contact);
+      var indx = self.confirmContactExistence(alts, contact);
       alts.splice(indx, 1);
-      self.formatActiveStudent();
     };
 
-    self.swapContacts = function(newContact, existingContact){
-      var contacts = self.state.activeStudent.contacts;
-      var indx = contacts.indexOf(existingContact);
-      contacts.splice(indx, 1, newContact); // swap existing with new
+    self.swapContacts = function(updatedContact, existingContact){
+      var alts = self.state.activeStudent.additionalContactDetails.altContacts;
+      var indx = self.confirmContactExistence(alts, existingContact);
+      alts.splice(indx, 1, updatedContact); // swap existing with new
     };
 
     /* This function builds an array of contacts and collapses
@@ -64,7 +74,7 @@
           ats[atsContact].name += " " + ats[atsContact].last;
         }
         ats[atsContact].isAts = true;
-        ats[atsContact].contactField = atsContact;
+        // ats[atsContact].contactField = atsContact;
         ats[atsContact].title = "ATS: " + (ats[atsContact].name || "");
         contactList.push(ats[atsContact]);
       }
@@ -75,8 +85,9 @@
           alts[altContact].name = alts[altContact].first;
           alts[altContact].name += " " + alts[altContact].last;
         }
-        alts[altContact].contactField = altContact;
+        // alts[altContact].contactField = altContact;
         alts[altContact].title = "Custom Contact: " + (alts[altContact].name || "");
+        alts[altContact].type = 'User Created';
         contactList.push(alts[altContact]);
       }
       student.contacts = contactList;
