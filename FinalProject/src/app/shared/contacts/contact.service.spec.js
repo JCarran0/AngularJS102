@@ -43,7 +43,7 @@
 
       it('deletes the isNew field before adding', function(){
         testContactService.addNewContact(mockNewContact);
-        expect(mockNewContact.isNew).not.toBeDefined()
+        expect(mockNewContact.isNew).not.toBeDefined();
       });
 
       it('pushes a new contact to the altContacts array', function(){
@@ -53,8 +53,8 @@
         var numFinalContacts = finalContacts.length;
         expect(numFinalContacts).toEqual(numInitialContacts + 1);
       });
-    })
-  })
+    });
+  });
 
 
   describe('ContactService.createNewContact', function(){
@@ -83,7 +83,7 @@
       var obj = {three: 3};
       var test = function(){
         testContactService.confirmContactExistence(arr, obj);
-      }
+      };
       expect(test).toThrowError('Selected contact does not exist in contact array');
     });
 
@@ -126,7 +126,7 @@
       contactToDelete.type = null;
       var test = function(){
         testContactService.deleteContact(contactToDelete);
-      }
+      };
       expect(test).toThrowError('Cannot delete non-custom contacts');
     });
 
@@ -167,7 +167,7 @@
     beforeEach(inject(function(Fixtures){
       studentDataFixture = Fixtures.studentData;
       mockState.activeStudent = studentDataFixture[0];
-    }))
+    }));
 
     it('formats the active student', function(){
       var actStu = mockState.activeStudent;

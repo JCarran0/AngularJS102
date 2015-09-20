@@ -1,12 +1,12 @@
 
-(function() {
-  'use strict';
+// (function() {
+//   'use strict';
 
-  angular.module('template')
+//   angular.module('template')
 
-  .service('LogContactService', function(){
+//   .service('LogContactService', function(){
 
-  });
+//   });
 
-})();
+// })();
 

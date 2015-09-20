@@ -22,11 +22,11 @@
     self.confirmContactExistence = function(arr, item){
       var indx = arr.indexOf(item);
       if (indx === -1) {
-        throw new Error("Selected contact does not exist in contact array")
+        throw new Error("Selected contact does not exist in contact array");
       } else {
         return indx;
       }
-    }
+    };
 
     self.deleteContact = function(contact){
       if(contact.type !== 'User Created'){

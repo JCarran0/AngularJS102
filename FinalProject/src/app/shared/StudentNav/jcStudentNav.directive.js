@@ -3,8 +3,7 @@
 
   angular.module('StudentNavModule')
 
-  .directive('jcStudentNav', function ($q){
-
+  .directive('jcStudentNav', function(){
     return {
       templateUrl: 'app/shared/studentNav/jcStudentNav.html',
       controller: 'StudentNavController',

@@ -3,6 +3,6 @@
 
   angular.module('State', [])
 
-  .value('State', {})
+  .value('State', {});
 
 })();
