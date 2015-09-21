@@ -153,6 +153,7 @@
       };
       altContacts = mockState.activeStudent.additionalContactDetails.altContacts;
     });
+
     it('swaps an existing custom contact', function(){
       var existingContact = altContacts[0];
       var updatedContact = angular.copy(existingContact);
@@ -160,6 +161,10 @@
       testContactService.swapContacts(updatedContact, existingContact);
       expect(altContacts).not.toContain(existingContact);
       expect(altContacts).toContain(updatedContact);
+    });
+
+    it('swaps an existing ats contact', function(){
+      console.log('Need to do this')
     });
   });
 
