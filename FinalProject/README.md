@@ -54,6 +54,8 @@ One File: index.route.js
 -data.service.js
 -student.service.js
 -NewContact.factory.js
+-log.values.js
+-index.constants.js
 
 ######$resource factories
 -OutreachLogsResource.service.js
