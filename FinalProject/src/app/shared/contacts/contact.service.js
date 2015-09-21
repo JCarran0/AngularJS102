@@ -38,9 +38,26 @@
     };
 
     self.swapContacts = function(updatedContact, existingContact){
-      var alts = self.state.activeStudent.additionalContactDetails.altContacts;
-      var indx = self.confirmContactExistence(alts, existingContact);
-      alts.splice(indx, 1, updatedContact); // swap existing with new
+      var active = self.state.activeStudent;
+      if(existingContact.type === 'User Created'){
+        var alts = active.additionalContactDetails.altContacts;
+        var indx = self.confirmContactExistence(alts, existingContact);
+        alts.splice(indx, 1, updatedContact);
+      } else {
+        var contactField = existingContact.contactField;
+        var metaData = active.additionalContactDetails.atsMetaData[contactField];
+        metaData.email = updatedContact.email || "";
+        if (!metaData.notes){
+          metaData.notes = [];
+        }
+        if(updatedContact.newNote){
+          metaData.notes.push(updatedContact.newNote);
+        }
+        metaData.emailIsBad = updatedContact.atsMetaData.emailIsBad || false;
+        metaData.numberIsBad = updatedContact.atsMetaData.numberIsBad || false;
+        metaData.isCellPhone = updatedContact.atsMetaData.isCellPhone || false;
+        metaData.relationship = updatedContact.atsMetaData.relationship || null;
+      }
     };
 
     /* This function builds an array of contacts and collapses
@@ -74,7 +91,7 @@
           ats[atsContact].name += " " + ats[atsContact].last;
         }
         ats[atsContact].isAts = true;
-        // ats[atsContact].contactField = atsContact;
+        ats[atsContact].contactField = atsContact;
         ats[atsContact].title = "ATS: " + (ats[atsContact].name || "");
         contactList.push(ats[atsContact]);
       }

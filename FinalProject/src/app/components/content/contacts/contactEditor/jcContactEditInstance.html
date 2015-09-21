@@ -27,7 +27,7 @@
         <label class='form-group'>Ralationship to student:
           <input type="text"
                  class="form-control"
-                 ng-model="ctrl.stagedContact.relationship">
+                 ng-model="ctrl.stagedContact.atsMetaData.relationship">
         </label>
       </div> <!-- end left-side -->
 
@@ -88,7 +88,7 @@
                   cols="100"
                   ng-change="ctrl.setDirty()"
                   placeholder="Optional: Enter notes specific to this contact"
-                  ng-model="ctrl.stagedContact.contactNotes"></textarea>
+                  ng-model="ctrl.stagedContact.newNote"></textarea>
       </label>
       <br>
     </div>

@@ -143,6 +143,7 @@
       mockState.activeStudent = {
         additionalContactDetails: {
           altContacts: [{
+            type: "User Created",
             title: "ATS: Crosby Cat",
             first: "Crosby",
             last: "Cat",
@@ -152,7 +153,7 @@
       };
       altContacts = mockState.activeStudent.additionalContactDetails.altContacts;
     });
-    it('swaps an existing contact', function(){
+    it('swaps an existing custom contact', function(){
       var existingContact = altContacts[0];
       var updatedContact = angular.copy(existingContact);
       updatedContact.phone = "1234567890"
